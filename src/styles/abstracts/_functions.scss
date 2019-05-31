@@ -1,0 +1,12 @@
+@function background-gradient($direction: 90deg) {
+  @return linear-gradient(
+      $direction,
+      $gradient-1 7%,
+      $gradient-2 31%,
+      $gradient-3 66%,
+      $gradient-4 92%
+  );
+}
+@function foreground-gradient($direction: 90deg) {
+  @return linear-gradient($direction, $blue 0%, $blue 100%);
+}

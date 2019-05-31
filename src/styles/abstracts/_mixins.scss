@@ -1,0 +1,49 @@
+//universal media mixin
+@mixin media($width...) {
+  @if length($width) == 1 {
+    @media (max-width: nth($width, 1)) {
+      @content;
+    }
+  }
+  @if length($width) == 2 {
+    @media (max-width: nth($width, 1)) and (min-width: nth($width, 2)) {
+      @content;
+    }
+  }
+}
+
+@mixin button {
+  margin-top: 1rem;
+  padding: 1em;
+  border: 3px dotted transparent;
+  background-image: foreground-gradient(), background-gradient();
+  background-clip: padding-box, border-box;
+  text-transform: uppercase;
+  text-align: center;
+  &:hover {
+    color: darken($olympic-white, 20);
+    cursor: pointer;
+  }
+}
+
+//for styling forms
+@mixin form-style {
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 100%;
+      min-height: 2em;
+      margin-top: 2vh;
+      margin-bottom: 4vh;
+      background: none;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid $olympic-white;
+    }
+    button {
+      @include button;
+    }
+  }
+}

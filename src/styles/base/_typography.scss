@@ -1,0 +1,13 @@
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+html {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+* {
+  color: $olympic-white;
+}
+label {
+  font-size: 1.2em;
+}

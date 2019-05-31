@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700,900&subset=latin-ext');
+@import 'base/reset';
+@import 'base/typography';
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+body {
+  height: 100vh;
+  background-image: url('../assets/hero1080p.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}

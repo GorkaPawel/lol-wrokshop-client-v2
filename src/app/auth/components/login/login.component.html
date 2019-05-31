@@ -1,0 +1,25 @@
+<h2>Log In</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+  <label for="email">Enter email</label>
+  <div [ngClass]="{'error--icon': loginForm.invalid}">
+    <input
+      type="email"
+      id="email"
+      formControlName="email">
+    <span class="error-message">{{getErrorMessage('email')}}</span>
+  </div>
+
+  <label for="password">Enter password</label>
+  <div [ngClass]="{'error--icon': loginForm.invalid}">
+    <input
+      type="password"
+      id="password"
+      formControlName="password">
+    <span class="error-message">{{getErrorMessage('password')}}</span>
+  </div>
+  <button type="submit" [disabled]="loginForm.invalid">Submit</button>
+</form>
+<p class="heading">Don't have an account?</p>
+<button class="link" type="button" [routerLink]="['register']">register</button>
+

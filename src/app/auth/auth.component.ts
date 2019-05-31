@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-auth',
   template: `
     <router-outlet></router-outlet>
   `,
-  styles: ['']
+  styleUrls: ['./auth.component.scss']
 })
-export class AppComponent {
+export class AuthComponent {
 }
