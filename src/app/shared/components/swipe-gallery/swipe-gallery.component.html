@@ -1,0 +1,18 @@
+<section *ngIf="champion" class="gallery-wrapper">
+  <ul class="image-container" #gallery>
+    <li
+      class="image-item"
+      *ngFor="let skin of champion.skins"
+    >
+      <p>{{skin.name}}</p>
+      <img
+        class="image"
+        src="{{skinUrl}}{{champion.key}}/{{skin.id}}.jpg"
+        alt="{{champion.name}}">
+    </li>
+  </ul>
+</section>
+<div>
+  <button (click)="next()">></button>
+  <button (click)="prev()"><</button>
+</div>
