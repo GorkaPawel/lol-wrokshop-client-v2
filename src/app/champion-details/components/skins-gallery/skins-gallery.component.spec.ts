@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChampionDetailComponent } from './champion-detail.component';
+import { SkinsGalleryComponent } from './skins-gallery.component';
 
-describe('ChampionDetailComponent', () => {
-  let component: ChampionDetailComponent;
-  let fixture: ComponentFixture<ChampionDetailComponent>;
+describe('SkinsGalleryComponent', () => {
+  let component: SkinsGalleryComponent;
+  let fixture: ComponentFixture<SkinsGalleryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChampionDetailComponent ]
+      declarations: [ SkinsGalleryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChampionDetailComponent);
+    fixture = TestBed.createComponent(SkinsGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

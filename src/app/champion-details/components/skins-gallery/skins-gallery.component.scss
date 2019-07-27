@@ -1,0 +1,21 @@
+.gallery-wrapper {
+  overflow: hidden;
+  width: 50vw;
+}
+
+.image-container {
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.image-item {
+  list-style-type: none;
+}
+
+.image {
+  width: 50vw;
+}
+button {
+  color: black;
+}

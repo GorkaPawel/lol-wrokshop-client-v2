@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {fromEvent, Observable, Subscription} from 'rxjs';
-import {ChampionsDataService} from '../../services/champions-data.service';
+import {ChampionsDataService} from '../../../shared/services/champions-data.service';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {Champion} from '../../models/champions';
+import {Champion} from '../../../shared/models/champions';
 import {Router} from '@angular/router';
 
 @Component({
@@ -33,7 +33,7 @@ export class ChampionSearchComponent implements AfterViewInit, OnDestroy {
 
   goToDetails(championName: string) {
     this.close();
-    this.router.navigate(['/dashboard/champion/' + championName]);
+    this.router.navigate(['dashboard/champion/' + championName + '/skins']);
   }
 
   ngAfterViewInit() {

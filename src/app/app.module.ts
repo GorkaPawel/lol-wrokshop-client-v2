@@ -10,6 +10,9 @@ import {AuthInterceptor} from './auth/services/auth.interceptor';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {AuthService} from './auth/services/auth.service';
 import {FormsService} from './shared/services/forms.service';
+import {ChampionsDataService} from './shared/services/champions-data.service';
+import {ChampionDetailsModule} from './champion-details/champion-details.module';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import {FormsService} from './shared/services/forms.service';
   imports: [
     AuthModule,
     DashboardModule,
+    ChampionDetailsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +29,7 @@ import {FormsService} from './shared/services/forms.service';
   ],
   providers: [
     AuthService,
+    ChampionsDataService,
     FormsService,
     {
       provide: HTTP_INTERCEPTORS,

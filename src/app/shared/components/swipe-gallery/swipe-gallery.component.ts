@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {BehaviorSubject, Subscription} from 'rxjs';
-import {Champ} from '../../../dashboard/models/champions';
+import {Champ} from '../../models/champions';
 
 @Component({
   selector: 'swipe-gallery',

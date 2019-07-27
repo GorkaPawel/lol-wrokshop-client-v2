@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
     <app-champion-search></app-champion-search>
     <router-outlet></router-outlet>
   `,
-  styleUrls: ['./dashboard.component.scss']
+  styles: [``]
 })
 export class DashboardComponent {
 }
