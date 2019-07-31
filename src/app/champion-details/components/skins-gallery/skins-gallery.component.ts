@@ -1,7 +1,6 @@
-import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Champ} from '../../../shared/models/champions';
-import {ActivatedRoute, Router} from '@angular/router';
-import {camelCaseToDashCase} from '@angular/platform-browser/src/dom/util';
+import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -53,11 +52,15 @@ export class SkinsGalleryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.champSub = this.route.parent.data
       .subscribe((data: { champion: Champ }) => {
+        this.currentSlide = 0;
+        if (this.galleryRef) {
+          this.renderer.removeStyle(this.galleryRef.nativeElement, 'transform');
+        }
         this.champion = data.champion;
         this.slidesLength = this.champion.skins.length;
-        this.currentSlide = 0;
       });
   }
+
   ngOnDestroy() {
     this.champSub.unsubscribe();
   }

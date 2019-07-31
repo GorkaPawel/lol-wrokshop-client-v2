@@ -1,0 +1,6 @@
+<div class="wrapper">
+  <img [src]="spellIconUrl" alt="spellIcon">
+  <h3>{{spell.name}}</h3>
+  <p [innerHTML]="parsed"></p>
+  <p class="error" *ngIf="apiError">"?" indicates missing data from League of legends API</p>
+</div>

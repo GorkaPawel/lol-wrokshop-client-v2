@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Champion} from '../models/champions';
+import {Champion, HasIdentity} from '../models/champions';
 import {map} from 'rxjs/operators';
+import {tap} from 'rxjs/internal/operators/tap';
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,14 @@ export class ChampionsDataService {
   public getChampion(champId: string) {
     return this.http.get(`${this.champURL}${champId}`)
       .pipe(
-        map((requestData: {data: any}) => {
-          return requestData.data[champId];
+        tap((champ: HasIdentity) => {
+          console.log(champ);
         })
       );
+  }
+  generateSpellImgUrl(apiUrl: string, name: string): string {
+    const baseUrl = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/characters/${name}/hud/icons2d/`;
+    const regex = /\w+\.png/;
+    return (baseUrl + apiUrl.match(regex)[0]).toLowerCase();
   }
 }
