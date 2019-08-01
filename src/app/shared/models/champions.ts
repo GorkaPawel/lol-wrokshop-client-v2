@@ -1,6 +1,6 @@
 export interface Champion {
-  championName: string;
   id: string;
+  name: string;
 }
 
 export interface HasSKins {

@@ -17,7 +17,6 @@ export class ChampionDetailResolver implements Resolve<Champ> {
     Observable<Champ> | Observable<never> {
 
     const id = route.paramMap.get('id');
-
     return this.champService.getChampion(id).pipe(
       take(1),
       mergeMap((champion: Champ) => {

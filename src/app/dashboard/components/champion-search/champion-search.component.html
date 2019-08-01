@@ -5,15 +5,15 @@
     placeholder="Search for a champion..."
     #search
   >
-  <ul *ngIf="results.length && isOpened" (clickOutside)="close()">
+  <ul (clickOutside)="close()" [ngClass]="{'hide': !isOpened}">
     <li
-      *ngFor="let result of results"
-      (click)="goToDetails(result.championName)"
+      *ngFor="let result of results$ | async"
+      (click)="goToDetails(result.name)"
     >
       <img
         src="http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{result.id}}.png"
-        alt="{{result.championName}}">
-      {{result.championName}}
+        alt="{{result.name}}">
+      {{result.name}}
     </li>
   </ul>
 </div>

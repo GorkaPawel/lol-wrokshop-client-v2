@@ -1,23 +1,24 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {fromEvent, Observable, Subscription} from 'rxjs';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {fromEvent, Observable} from 'rxjs';
 import {ChampionsDataService} from '../../../shared/services/champions-data.service';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {Champion} from '../../../shared/models/champions';
 import {Router} from '@angular/router';
+import {switchMap} from 'rxjs/internal/operators/switchMap';
+import {tap} from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-champion-search',
   templateUrl: './champion-search.component.html',
   styleUrls: ['./champion-search.component.scss']
 })
-export class ChampionSearchComponent implements AfterViewInit, OnDestroy {
+export class ChampionSearchComponent implements AfterViewInit {
 
   @ViewChild('search') searchRef: ElementRef;
-  results: Array<Champion> = [];
-  searchTerm$: Observable<Array<Champion> | []>;
+  results$: Observable<Array<Champion>>;
+  searchTerm$: Observable<string>;
 
   isOpened = false;
-  private searchSub: Subscription;
 
 
   constructor(private champService: ChampionsDataService, private router: Router) {
@@ -40,27 +41,18 @@ export class ChampionSearchComponent implements AfterViewInit, OnDestroy {
     this.searchTerm$ = fromEvent((this.searchRef.nativeElement as HTMLInputElement), 'input')
       .pipe(
         map((event) => {
-          let term = event.target['value'];
-          term = term.charAt(0).toUpperCase() + term.slice(1);
+          const term = event.target['value'];
           return term;
-        }),
-        debounceTime(400),
-        distinctUntilChanged(),
-        map((term: string) => {
-          return this.champService.findChampion(term);
         })
       );
-
-
-    this.searchSub = this.searchTerm$.subscribe((results: Array<Champion>) => {
-        this.results = results;
+    this.results$ = this.searchTerm$.pipe(
+      debounceTime(400),
+      switchMap((term: string) => {
+        return this.champService.getChampionList(term);
+      }),
+      tap(() => {
         this.open();
-        console.log('Champion subscribtion: ', results);
-      }
+      })
     );
-  }
-
-  ngOnDestroy(): void {
-    this.searchSub.unsubscribe();
   }
 }

@@ -1,50 +1,43 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Champion, HasIdentity} from '../models/champions';
-import {map} from 'rxjs/operators';
 import {tap} from 'rxjs/internal/operators/tap';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChampionsDataService {
 
-  private champListURL = 'http://localhost:8080/championList';
-  private champURL = 'http://localhost:8080/champion/';
-  championList: Array<Champion>;
+  private championListURL = 'http://localhost:8080/championList/';
+  private championURL = 'http://localhost:8080/champion/';
 
 
   constructor(private http: HttpClient) {
-    this.getChampionList();
   }
 
-  private getChampionList() {
-    this.http.get(this.champListURL)
-      .subscribe((list: Array<Champion>) => {
-        this.championList = list;
-        console.log('Champion service: got champion list');
-      });
-  }
-
-  public findChampion(term: string): Array<Champion> {
-    if (!term) {
-      return [];
+  getChampionList(searchTerm: string) {
+    if (!searchTerm) {
+      return of([]);
     }
-    const matchedChampions =
-      this.championList.filter((champion: Champion) => {
-        return champion.championName.startsWith(term);
-      });
-    return matchedChampions;
+    return this.http.get(`${this.championListURL}${searchTerm}`)
+      .pipe(
+        tap((championList: Array<Champion>) => {
+          console.log('Got champion list: ', championList);
+        })
+      );
+
   }
 
-  public getChampion(champId: string) {
-    return this.http.get(`${this.champURL}${champId}`)
+  getChampion(champId: string) {
+    return this.http.get(`${this.championURL}${champId}`)
       .pipe(
         tap((champ: HasIdentity) => {
           console.log(champ);
         })
       );
   }
+
   generateSpellImgUrl(apiUrl: string, name: string): string {
     const baseUrl = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/characters/${name}/hud/icons2d/`;
     const regex = /\w+\.png/;
