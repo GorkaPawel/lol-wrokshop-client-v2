@@ -9,16 +9,18 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './auth/services/auth.interceptor';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {AuthService} from './auth/services/auth.service';
-import {FormsService} from './shared/services/forms.service';
-import {ChampionsDataService} from './shared/services/champions-data.service';
+import {FormsService} from './shared/forms.service';
 import {ChampionDetailsModule} from './champion-details/champion-details.module';
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import {ApiService} from './API/SERVER/api.service';
+import {DbService} from './API/DB/db.service';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    NgxPaginationModule,
     AuthModule,
     DashboardModule,
     ChampionDetailsModule,
@@ -29,7 +31,8 @@ import {ChampionDetailsModule} from './champion-details/champion-details.module'
   ],
   providers: [
     AuthService,
-    ChampionsDataService,
+    ApiService,
+    DbService,
     FormsService,
     {
       provide: HTTP_INTERCEPTORS,

@@ -2,10 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {ExistingUser} from '../../models/user';
-import {AllValidationErrors} from '../../../shared/models/form.models';
+import {AllValidationErrors} from '../../../shared/form.models';
 import {Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {FormsService} from '../../../shared/services/forms.service';
+import {FormsService} from '../../../shared/forms.service';
 
 @Component({
   selector: 'app-login',

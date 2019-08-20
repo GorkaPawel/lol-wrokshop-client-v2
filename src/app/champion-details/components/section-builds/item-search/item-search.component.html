@@ -1,0 +1,20 @@
+<div class="dialog-background">
+  <div class="dialog-foreground"  (clickOutside)="close.emit()">
+    <input
+      class="input--search"
+      type="search"
+      placeholder="Search for an item..."
+      #search
+    >
+    <ul
+      *ngIf="results">
+      <li
+        *ngFor="let result of results | slice:0:4"
+        (click)="chooseItem(result.id)">
+        <img
+          src="http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/{{result.id}}.png">
+        <span>{{result.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<app-note-item
+  *ngFor="let note of userChampion.notes" [note]="note"
+  (click)="editNote(note); $event.stopPropagation()"
+>
+</app-note-item>
+<button (click)="editNote(null); $event.stopPropagation()">Add note</button>
+
+<div class="form--modal" *ngIf="formOpened">
+  <app-note-form (clickOutside)="closeForm()"></app-note-form>
+</div>

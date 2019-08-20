@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, DoCheck, Input, OnChanges} from '@angular/core';
-import {Passive} from '../../../shared/models/champions';
-import {ChampionsDataService} from '../../../shared/services/champions-data.service';
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
+import {Passive} from '../../../API/SERVER/api.model';
+import {ApiService} from '../../../API/SERVER/api.service';
 
 @Component({
   selector: 'champion-passive',
@@ -10,7 +10,7 @@ import {ChampionsDataService} from '../../../shared/services/champions-data.serv
 })
 export class ChampionPassiveComponent implements OnChanges {
 
-  constructor(private champService: ChampionsDataService) {
+  constructor(private api: ApiService) {
   }
 
   @Input()
@@ -23,7 +23,7 @@ export class ChampionPassiveComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.passive) {
-      this.passiveIconUrl = this.champService.generateSpellImgUrl(this.passive.abilityIconPath, this.name);
+      this.passiveIconUrl = this.api.generateSpellImgUrl(this.passive.abilityIconPath, this.name);
     }
   }
 

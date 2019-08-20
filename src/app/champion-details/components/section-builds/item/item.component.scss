@@ -1,0 +1,33 @@
+.item-wrapper {
+  margin: 5px;
+  $item-height: 48px;
+  $item-width: 48px;
+  .item {
+    display: flex;
+    position: relative;
+    img {
+      display: block;
+      width: $item-width;
+      height: $item-height;
+    }
+  }
+  .item-info {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    width: 200px;
+    background-color: darkslateblue;
+    color: orange;
+    font-size: .6em;
+  }
+  img:hover + .item-info {
+    display: block;
+  }
+  .placeholder {
+    width: $item-width;
+    height: $item-height;
+    background-color: lightseagreen;
+    border: 2px darkorange;
+  }
+}

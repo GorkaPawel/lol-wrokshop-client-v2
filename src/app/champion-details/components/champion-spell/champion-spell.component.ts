@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {Spell} from '../../../shared/models/champions';
-import {ChampionsDataService} from '../../../shared/services/champions-data.service';
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
+import {ApiService} from '../../../API/SERVER/api.service';
+import {Spell} from '../../../API/SERVER/api.model';
+
 
 @Component({
   selector: 'champion-spell',
@@ -10,7 +11,7 @@ import {ChampionsDataService} from '../../../shared/services/champions-data.serv
 })
 export class ChampionSpellComponent implements OnChanges {
 
-  constructor(private championData: ChampionsDataService) {
+  constructor(private api: ApiService) {
   }
 
   @Input()
@@ -65,7 +66,7 @@ export class ChampionSpellComponent implements OnChanges {
   ngOnChanges() {
     if (this.spell) {
       this.parsed = this.parseTooltip();
-      this.spellIconUrl = this.championData.generateSpellImgUrl(this.spell.abilityIconPath, this.name);
+      this.spellIconUrl = this.api.generateSpellImgUrl(this.spell.abilityIconPath, this.name);
     }
   }
 }

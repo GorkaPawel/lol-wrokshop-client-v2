@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DashboardComponent} from './dashboard.component';
-import {DashboardRoutingModule} from './dashboard-routing.module';
 import { ChampionSearchComponent } from './components/champion-search/champion-search.component';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
+import { BlankComponent } from './components/blank/blank.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ChampionSearchComponent],
+  declarations: [DashboardComponent, ChampionSearchComponent, BlankComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
   ],
 })
 export class DashboardModule {

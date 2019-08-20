@@ -1,0 +1,81 @@
+<main class="slide--container"  (wheel)="onWheel($event)">
+  <section class="slide overview" [appSlide]="currentElement" #overview>
+    <h1>OVERVIEW</h1>
+    <h1>{{champion.name}}</h1>
+    <h2>{{champion.title}}</h2>
+    <nav class="nav--inner">
+      <ul>
+        <li>
+          <a [routerLink]="[ {outlets: { overview: ['stats']}}]">stats</a>
+        </li>
+        <li>
+          <a [routerLink]="[ {outlets: { overview: ['skins']}}]">skins</a>
+        </li>
+        <li>
+          <a [routerLink]="[ {outlets: { overview: 'history'}}]">history</a>
+        </li>
+      </ul>
+    </nav>
+    <router-outlet name="overview"></router-outlet>
+  </section>
+  <section class="slide spells" [appSlide]="currentElement" #spells>
+    <h1>SPELLS</h1>
+    <champion-passive
+      [passive]="champion.passive"
+      [name]="champion.id">
+    </champion-passive>
+    <champion-spell
+      *ngFor="let spell of champion.spells"
+      [spell]="spell"
+      [name]="champion.id">
+    </champion-spell>
+  </section>
+  <section class="slide builds"  [appSlide]="currentElement" #builds>
+    <h1>BUILDS</h1>
+    <nav class="nav--inner">
+      <ul>
+        <li>
+          <a [routerLink]="[ {outlets: { builds: null}}]">items</a>
+        </li>
+        <li>
+          <a [routerLink]="[ {outlets: { builds: 'runes'}}]">runes</a>
+        </li>
+      </ul>
+    </nav>
+    <router-outlet name="builds"></router-outlet>
+  </section>
+  <section class="slide notes" [appSlide]="currentElement" #notes>
+    <h1>NOTES</h1>
+    <app-note-list [userChampion]="userChampion"></app-note-list>
+  </section>
+  <section class="slide counters" [appSlide]="currentElement" #counters>
+    <h1>COUNTERS</h1>
+  </section>
+</main>
+<nav class="sidebar">
+  <div class="nav--wrapper">
+    <div class="nav--hook"></div>
+    <ul>
+      <!--history and skins-->
+      <li>
+       <p (click)="scrollToElement(overview)">overview</p>
+      </li>
+      <!--includes passive-->
+      <li>
+        <p (click)="scrollToElement(spells)">spells</p>
+      </li>
+      <!--items and runes-->
+      <li>
+        <p (click)="scrollToElement(builds)">builds</p>
+      </li>
+      <!--notes-->
+      <li>
+        <p (click)="scrollToElement(notes)">notes</p>
+      </li>
+      <!--added counters, link to these champions-->
+      <li>
+        <p (click)="scrollToElement(counters)">counters</p>
+      </li>
+    </ul>
+  </div>
+</nav>

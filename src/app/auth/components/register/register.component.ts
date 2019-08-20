@@ -4,9 +4,9 @@ import {NewUser} from '../../models/user';
 import {AuthService} from '../../services/auth.service';
 import {debounceTime} from 'rxjs/operators';
 import {distinctUntilChanged} from 'rxjs/internal/operators/distinctUntilChanged';
-import {AllValidationErrors} from '../../../shared/models/form.models';
+import {AllValidationErrors} from '../../../shared/form.models';
 import {Subscription} from 'rxjs';
-import {FormsService} from '../../../shared/services/forms.service';
+import {FormsService} from '../../../shared/forms.service';
 
 
 @Component({

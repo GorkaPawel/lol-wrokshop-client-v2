@@ -18,7 +18,7 @@ export class AuthService {
   // TODO error handler
   register(newUser: NewUser) {
     this.http.post<any>(`${URL}/register`, newUser).subscribe(
-      () => this.router.navigate(['login']),
+      () => this.router.navigate(['']),
       err => {
         console.log(err.error);
       }

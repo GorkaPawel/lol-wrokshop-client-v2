@@ -1,14 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ChampionDetailsComponent} from './champion-details.component';
+import {ChampionDetailsComponent} from './view/champion-details.component';
 import {SharedModule} from '../shared/shared.module';
 import { SkinsGalleryComponent } from './components/skins-gallery/skins-gallery.component';
-import {ChampionDetailResolver} from './services/champion-detail.resolver';
+import {ChampionDetailResolver} from './champion-detail.resolver';
 import {RouterModule} from '@angular/router';
 import {ChampionStatsComponent} from './components/champion-stats/champion-stats.component';
 import {ChampionSpellComponent} from './components/champion-spell/champion-spell.component';
 import { ChampionPassiveComponent } from './components/champion-passive/champion-passive.component';
-
+import { ItemSearchComponent } from './components/section-builds/item-search/item-search.component';
+import { HistoryComponent } from './components/history/history.component';
+import { ChampionRunesComponent } from './components/champion-runes/champion-runes.component';
+import {SlideDirective} from './components/slide.directive';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { BuildListItemComponent } from './components/section-builds/build-list-item/build-list-item.component';
+import { SectionBuildsComponent } from './components/section-builds/section-builds.component';
+import { BuildListComponent } from './components/section-builds/build-list/build-list.component';
+import { EditBuildComponent } from './components/section-builds/edit-build/edit-build.component';
+import { ItemComponent } from './components/section-builds/item/item.component';
+import { NoteListComponent } from './components/section-notes/note-list/note-list.component';
+import {NoteItemComponent} from './components/section-notes/note-item/note-item.component';
+import { NoteFormComponent } from './components/section-notes/note-form/note-form.component';
+import {NoteService} from './components/section-notes/note.service';
 
 @NgModule({
   declarations: [
@@ -17,14 +31,30 @@ import { ChampionPassiveComponent } from './components/champion-passive/champion
     ChampionStatsComponent,
     ChampionSpellComponent,
     ChampionPassiveComponent,
+    ItemSearchComponent,
+    HistoryComponent,
+    ChampionRunesComponent,
+    SlideDirective,
+    NoteItemComponent,
+    BuildListItemComponent,
+    SectionBuildsComponent,
+    BuildListComponent,
+    EditBuildComponent,
+    ItemComponent,
+    NoteListComponent,
+    NoteFormComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
   ],
   providers: [
-    ChampionDetailResolver
+    ChampionDetailResolver,
+    NoteService,
   ]
 })
 export class ChampionDetailsModule { }

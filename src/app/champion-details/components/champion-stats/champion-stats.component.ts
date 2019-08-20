@@ -1,5 +1,8 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Stats} from '../../../shared/models/champions';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {pluck} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
+import {Stats} from '../../../API/SERVER/api.model';
 
 @Component({
   selector: 'champion-stats',
@@ -7,11 +10,21 @@ import {Stats} from '../../../shared/models/champions';
   styleUrls: ['./champion-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChampionStatsComponent {
+export class ChampionStatsComponent implements OnInit {
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
   }
 
-  @Input()
   champStats: Stats;
+  champSub: Subscription;
+
+  ngOnInit() {
+    this.champSub = this.route.parent.data
+      .pipe(
+        pluck('champion', 'ApiChamp', 'stats'),
+      )
+      .subscribe((stats: Stats) => {
+        this.champStats = stats;
+      });
+  }
 }

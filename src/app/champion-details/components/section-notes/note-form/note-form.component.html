@@ -1,0 +1,28 @@
+<form class="form" #noteForm="ngForm" (ngSubmit)="updateNotes(noteForm)">
+  <div class="control">
+    <label>Title</label>
+    <input name="title" [(ngModel)]="titleText" required #titleRef="ngModel">
+    <span class="error-message" *ngIf="!titleRef.valid && titleRef.touched">
+      This field cannot be empty.
+    </span>
+  </div>
+  <div class="control">
+    <label>Note</label>
+    <textarea
+      #noteRef="ngModel"
+      name="note"
+      [(ngModel)]="noteText"
+      required>
+      </textarea>
+    <span class="error-message" *ngIf="!noteRef.valid && noteRef.touched">
+      This field cannot be empty.
+    </span>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!noteForm.valid">Add note
+  </button>
+  <button
+    (click)="noteForm.reset()">Reset
+  </button>
+</form>

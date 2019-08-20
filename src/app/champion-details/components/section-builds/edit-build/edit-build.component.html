@@ -1,0 +1,10 @@
+<div class="build">
+  <input type="text" [(ngModel)]="build.buildName">
+  <app-item [(item)]="build.items[0]"></app-item>
+  <app-item [(item)]="build.items[1]"></app-item>
+  <app-item [(item)]="build.items[2]"></app-item>
+  <app-item [(item)]="build.items[3]"></app-item>
+  <app-item [(item)]="build.items[4]"></app-item>
+  <app-item [(item)]="build.items[5]"></app-item>
+  <button [disabled]="cantSave" (click)="save()">SAVE</button>
+</div>

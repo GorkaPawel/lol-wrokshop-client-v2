@@ -1,0 +1,13 @@
+<div class="item-wrapper">
+  <app-item-search  *ngIf="itemDialog" (close)="close()" (selectedItem)="update($event)"></app-item-search>
+  <div *ngIf="item" class="item">
+    <img [src]="itemImg" [alt]="item.name" (click)="open($event)">
+    <div class="item-info">
+      <p class="heading"><span>{{item.name}}</span><span>{{item.gold.base}}</span></p>
+      <p class="description">{{item.description}}</p>
+    </div>
+    <p>{{item.name}}</p>
+  </div>
+  <div *ngIf="!item" class="placeholder item" (click)="open($event)">
+  </div>
+</div>

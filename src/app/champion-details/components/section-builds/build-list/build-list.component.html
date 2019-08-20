@@ -1,0 +1,10 @@
+list
+<div class="build-list" *ngIf="builds">
+  <p>Your builds:</p>
+  <app-build-list-item
+    *ngFor="let build of builds | paginate: {itemsPerPage: 4, currentPage: page}"
+    (click)="selectBuild(build)"
+    [build]="build">
+  </app-build-list-item>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

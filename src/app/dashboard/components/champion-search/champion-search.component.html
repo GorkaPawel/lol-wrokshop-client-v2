@@ -3,13 +3,11 @@
     class="input--search"
     type="search"
     placeholder="Search for a champion..."
-    #search
-  >
-  <ul (clickOutside)="close()" [ngClass]="{'hide': !isOpened}">
+    #search>
+  <ul *ngIf="results" (clickOutside)="close()">
     <li
-      *ngFor="let result of results$ | async"
-      (click)="goToDetails(result.name)"
-    >
+      *ngFor="let result of results"
+      (click)="goToDetails(result.name)">
       <img
         src="http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{result.id}}.png"
         alt="{{result.name}}">

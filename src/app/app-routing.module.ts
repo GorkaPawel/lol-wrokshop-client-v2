@@ -1,15 +1,65 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {AuthComponent} from './auth/auth.component';
+import {LoginComponent} from './auth/components/login/login.component';
+import {RegisterComponent} from './auth/components/register/register.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ChampionDetailsComponent} from './champion-details/view/champion-details.component';
+import {ChampionDetailResolver} from './champion-details/champion-detail.resolver';
+import {SkinsGalleryComponent} from './champion-details/components/skins-gallery/skins-gallery.component';
+import {ChampionStatsComponent} from './champion-details/components/champion-stats/champion-stats.component';
+import {HistoryComponent} from './champion-details/components/history/history.component';
+import {ChampionRunesComponent} from './champion-details/components/champion-runes/champion-runes.component';
+import {SectionBuildsComponent} from './champion-details/components/section-builds/section-builds.component';
+import {EditBuildComponent} from './champion-details/components/section-builds/edit-build/edit-build.component';
+import {BuildListComponent} from './champion-details/components/section-builds/build-list/build-list.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {
+    path: '', component: AuthComponent, children: [
+      {path: '', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'logout', redirectTo: ''},
+    ]
+  },
+  {
+    path: 'dashboard', component: DashboardComponent, children: [
+      {
+        path: 'champion/:id',
+        component: ChampionDetailsComponent,
+        resolve: {champion: ChampionDetailResolver},
+        children: [
+          // {path: '', component: BlankComponent},
+          {
+            path: '', outlet: 'overview', children:
+              [
+                {path: '', component: ChampionStatsComponent},
+                {path: 'stats', component: ChampionStatsComponent},
+                {path: 'skins', component: SkinsGalleryComponent},
+                {path: 'history', component: HistoryComponent},
+              ]
+          },
+          {
+            path: '', outlet: 'builds', component: SectionBuildsComponent, children:
+              [
+                {path: '', component: BuildListComponent},
+                {path: 'edit', component: EditBuildComponent},
+              ]
+          },
+          {path: 'runes', outlet: 'builds', component: ChampionRunesComponent},
+        ]
+      },
+    ]
+  },
   {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(
+    routes,
+  )],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
