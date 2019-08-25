@@ -1,0 +1,11 @@
+.rune-slot, .path, .rune-select{
+  display: flex;
+}
+
+.selected-rune {
+  filter: none !important;
+}
+
+.rune {
+  filter: grayscale(100%);
+}

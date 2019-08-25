@@ -25,16 +25,17 @@ export class ChampionDetailResolver implements Resolve<ChampionSources> {
     const name = route.paramMap.get('id');
     const data = forkJoin([
       this.api.getChampion(name).pipe(tap((champion: ApiChampion) => {
-          this.db.championId = champion.id;
-        })),
-        this.db.getChampion(name),
-    ]);
+        this.db.championId = champion.id;
+      })),
+      this.db.getChampion(name),
+      this.api.getRunes()
+  ]);
 
     return data.pipe(
       switchMap((DBandAPI) => {
         console.log('Champion array: ', DBandAPI);
-        if (DBandAPI.length === 2) {
-          const result = {ApiChamp: DBandAPI[0], DbChamp: DBandAPI[1]};
+        if (DBandAPI.length === 3) {
+          const result = {ApiChamp: DBandAPI[0], DbChamp: DBandAPI[1], apiRunes: DBandAPI[2]};
           return of(result);
         } else {
           this.router.navigate(['/dashboard']);

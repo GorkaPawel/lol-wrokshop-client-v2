@@ -1,0 +1,28 @@
+.keystone {
+  position: relative;
+  img {
+    border: 1px solid deepskyblue;
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+  }
+  .tooltip {
+    display: none;
+  }
+  img:hover + .tooltip {
+    width: 150px;
+    display: block;
+    background-color: #040912;
+    border: 1px solid darkorange;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+  }
+}
+.blank {
+  width: 64px;
+  height: 64px;
+  background-color: darkslategray;
+  border: 1px solid deepskyblue;
+  border-radius: 50%;
+}

@@ -1,0 +1,9 @@
+.primary-path, .rune-slot{
+  display: flex;
+}
+.selected-rune {
+  filter: none !important;
+}
+.rune {
+  filter: grayscale(100%);
+}

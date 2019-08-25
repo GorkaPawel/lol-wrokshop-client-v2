@@ -8,6 +8,7 @@ const CHAMPION_LIST_URL = 'http://localhost:8080/champions';
 const CHAMPION_URL = 'http://localhost:8080/champion/';
 const ITEM_LIST_URL = 'http://localhost:8080/items';
 const ITEM_URL = 'http://localhost:8080/item/';
+const RUNES_URL = 'http://localhost:8080/runes';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,9 @@ export class ApiService {
         })
       );
   }
-
+  getRunes(): Observable<any> {
+    return this.http.get(RUNES_URL);
+  }
 
   generateSpellImgUrl(apiUrl: string, name: string): string {
     const baseUrl = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/characters/${name}/hud/icons2d/`;

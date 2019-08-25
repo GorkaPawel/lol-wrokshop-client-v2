@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChampionRunesComponent } from './champion-runes.component';
+import { RunesEditComponent } from './runes-edit.component';
 
-describe('ChampionRunesComponent', () => {
-  let component: ChampionRunesComponent;
-  let fixture: ComponentFixture<ChampionRunesComponent>;
+describe('RunesEditComponent', () => {
+  let component: RunesEditComponent;
+  let fixture: ComponentFixture<RunesEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChampionRunesComponent ]
+      declarations: [ RunesEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChampionRunesComponent);
+    fixture = TestBed.createComponent(RunesEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

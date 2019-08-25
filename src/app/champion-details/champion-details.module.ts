@@ -10,7 +10,6 @@ import {ChampionSpellComponent} from './components/champion-spell/champion-spell
 import { ChampionPassiveComponent } from './components/champion-passive/champion-passive.component';
 import { ItemSearchComponent } from './components/section-builds/item-search/item-search.component';
 import { HistoryComponent } from './components/history/history.component';
-import { ChampionRunesComponent } from './components/champion-runes/champion-runes.component';
 import {SlideDirective} from './components/slide.directive';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -23,6 +22,12 @@ import { NoteListComponent } from './components/section-notes/note-list/note-lis
 import {NoteItemComponent} from './components/section-notes/note-item/note-item.component';
 import { NoteFormComponent } from './components/section-notes/note-form/note-form.component';
 import {NoteService} from './components/section-notes/note.service';
+import { SectionRunesComponent } from './components/section-runes/section-runes.component';
+import { RunesListComponent } from './components/section-runes/runes-list/runes-list.component';
+import { RunesEditComponent } from './components/section-runes/runes-edit/runes-edit.component';
+import { KeystoneComponent } from './components/section-runes/keystone/keystone.component';
+import { RunePagePrimaryComponent } from './components/section-runes/rune-page-primary/rune-page-primary.component';
+import { RunePageSecondaryComponent } from './components/section-runes/rune-page-secondary/rune-page-secondary.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,6 @@ import {NoteService} from './components/section-notes/note.service';
     ChampionPassiveComponent,
     ItemSearchComponent,
     HistoryComponent,
-    ChampionRunesComponent,
     SlideDirective,
     NoteItemComponent,
     BuildListItemComponent,
@@ -43,6 +47,12 @@ import {NoteService} from './components/section-notes/note.service';
     ItemComponent,
     NoteListComponent,
     NoteFormComponent,
+    SectionRunesComponent,
+    RunesListComponent,
+    RunesEditComponent,
+    KeystoneComponent,
+    RunePagePrimaryComponent,
+    RunePageSecondaryComponent,
   ],
   imports: [
     CommonModule,

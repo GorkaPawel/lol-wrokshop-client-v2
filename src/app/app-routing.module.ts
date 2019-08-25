@@ -9,10 +9,13 @@ import {ChampionDetailResolver} from './champion-details/champion-detail.resolve
 import {SkinsGalleryComponent} from './champion-details/components/skins-gallery/skins-gallery.component';
 import {ChampionStatsComponent} from './champion-details/components/champion-stats/champion-stats.component';
 import {HistoryComponent} from './champion-details/components/history/history.component';
-import {ChampionRunesComponent} from './champion-details/components/champion-runes/champion-runes.component';
 import {SectionBuildsComponent} from './champion-details/components/section-builds/section-builds.component';
 import {EditBuildComponent} from './champion-details/components/section-builds/edit-build/edit-build.component';
 import {BuildListComponent} from './champion-details/components/section-builds/build-list/build-list.component';
+import {SectionRunesComponent} from './champion-details/components/section-runes/section-runes.component';
+import {RunesListComponent} from './champion-details/components/section-runes/runes-list/runes-list.component';
+import {RunesEditComponent} from './champion-details/components/section-runes/runes-edit/runes-edit.component';
+import {RunesResolver} from './champion-details/components/section-runes/runes.resolver';
 
 
 const routes: Routes = [
@@ -41,13 +44,22 @@ const routes: Routes = [
               ]
           },
           {
-            path: '', outlet: 'builds', component: SectionBuildsComponent, children:
+            path: '', outlet: 'builds', component: SectionBuildsComponent,
+            children:
               [
                 {path: '', component: BuildListComponent},
                 {path: 'edit', component: EditBuildComponent},
               ]
           },
-          {path: 'runes', outlet: 'builds', component: ChampionRunesComponent},
+          {
+            path: 'runes', outlet: 'builds', component: SectionRunesComponent,
+            resolve: {runes: RunesResolver},
+            children:
+              [
+                {path: '', component: RunesListComponent},
+                {path: 'edit', component: RunesEditComponent},
+              ],
+          }
         ]
       },
     ]

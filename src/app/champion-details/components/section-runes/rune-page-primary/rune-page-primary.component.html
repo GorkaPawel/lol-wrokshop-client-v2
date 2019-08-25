@@ -1,0 +1,24 @@
+<div class="primary-path">
+  <app-keystone [item]="currentPath" (click)="toggleSelection()"></app-keystone>
+  <ng-container *ngIf="pathSelectionOpened">
+    <app-keystone
+      *ngFor="let path of runesService.runePaths"
+      [item]="path"
+      (click)="select(path)"
+    >
+    </app-keystone>
+  </ng-container>
+</div>
+
+<div class="rune-slot" *ngFor="let slot of runeSlots; let i = index">
+  <app-keystone [item]="selectedRunes[i]" (click)="toggleSelection(i)"></app-keystone>
+  <ng-container *ngIf="slotSelectionOpened[i]">
+    <app-keystone
+      *ngFor="let rune of slot"
+      class="rune"
+      [item]="rune"
+      [ngClass]="{'selected-rune': isSelected(rune)}"
+      (click)="select(rune, i)">
+    </app-keystone>
+  </ng-container>
+</div>
