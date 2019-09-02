@@ -1,6 +1,49 @@
+@import "abstracts/variables";
 .wrapper {
-  border: 2px solid mediumvioletred;
+  width: 400px;
+}
+.spell-header {
+  display: flex;
+  justify-content: space-between;
+}
+h3 {
+  margin: 0;
+}
+.spell-header--modal {
+  display: flex;
+  h3 {
+    padding-left: 1rem;
+  }
+}
+.spell--image {
+  display: inline-block;
+  position: relative;
+  .spell--key {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1.3rem;
+    height: 1.3rem;
+    font-weight: 700;
+    background-color: rgba(1,1,1,.8);
+    color: white;
+  }
 }
 .error {
   color: darkgreen;
 }
+
+.ability-details {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: .6rem;
+}
+video {
+  width: 100%;
+}
+

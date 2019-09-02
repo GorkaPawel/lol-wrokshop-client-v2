@@ -1,10 +1,16 @@
 <div class="build">
-  <input type="text" [(ngModel)]="build.buildName">
-  <app-item [(item)]="build.items[0]"></app-item>
-  <app-item [(item)]="build.items[1]"></app-item>
-  <app-item [(item)]="build.items[2]"></app-item>
-  <app-item [(item)]="build.items[3]"></app-item>
-  <app-item [(item)]="build.items[4]"></app-item>
-  <app-item [(item)]="build.items[5]"></app-item>
-  <button [disabled]="cantSave" (click)="save()">SAVE</button>
+  <input class="input--title" type="text" [(ngModel)]="build.buildName" placeholder="Enter build title">
+  <div class="items">
+    <app-item [(item)]="build.items[0]"></app-item>
+    <app-item [(item)]="build.items[1]"></app-item>
+    <app-item [(item)]="build.items[2]"></app-item>
+    <app-item [(item)]="build.items[3]"></app-item>
+    <app-item [(item)]="build.items[4]"></app-item>
+    <app-item [(item)]="build.items[5]"></app-item>
+  </div>
+  <div class="save--wrapper">
+    <a [routerLink]="['../', {outlets: {builds: null}}]">BACK</a>
+    <button class="button--save" [disabled]="cantSave" (click)="save()">SAVE</button>
+    <p class="tooltip">You have to fill all the fields in order to save build.</p>
+  </div>
 </div>

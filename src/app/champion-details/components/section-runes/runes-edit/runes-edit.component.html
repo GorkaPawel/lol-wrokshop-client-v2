@@ -1,4 +1,4 @@
-<input type="text" placeholder="enter page name">
-<app-rune-page-primary></app-rune-page-primary>
-<app-rune-page-secondary></app-rune-page-secondary>
+<input type="text" placeholder="enter page name" [(ngModel)]="pageName">
+<app-rune-page-primary [state]="primaryState" (pageState)="onPrimaryState($event)"></app-rune-page-primary>
+<app-rune-page-secondary [state]="secondaryState" (pageState)="onSecondaryState($event)"></app-rune-page-secondary>
 <button (click)="saveRunePage()">save</button>

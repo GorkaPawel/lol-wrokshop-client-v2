@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Rune, RunePath} from '../runes.model';
 import {RunesAdapterService} from '../runes-adapter.service';
 import {Subscription} from 'rxjs';
@@ -11,16 +11,26 @@ import {RunesStateService} from '../runes-state.service';
 })
 export class RunePagePrimaryComponent implements OnInit, OnDestroy {
 
-  constructor(private runesService: RunesAdapterService, private runeStore: RunesStateService) {
+  constructor(private runesService: RunesAdapterService, private runeState: RunesStateService) {
   }
 
   private sub1: Subscription;
   private sub2: Subscription;
 
+  @Input() set state(primaryState: { primaryPath: RunePath, primaryRunes: Rune[] }) {
+    if (primaryState) {
+      this.runeState.currentPrimaryPath$.next(primaryState.primaryPath);
+      this.selectedRunes = primaryState.primaryRunes;
+    }
+  }
+
+  @Output() pageState = new EventEmitter<{ primaryPath: RunePath, primaryRunes: Rune[] }>();
+
   currentPath: RunePath;
+  selectedRunes = Array<Rune>(4);
+
   runeSlots: Array<Rune[]>;
   slotSelectionOpened = Array<boolean>(4).fill(false);
-  selectedRunes = Array<Rune>(4);
   pathSelectionOpened = false;
 
 
@@ -31,33 +41,39 @@ export class RunePagePrimaryComponent implements OnInit, OnDestroy {
       this.pathSelectionOpened = !this.pathSelectionOpened;
     }
   }
+
   select(item: Rune | RunePath, index?: number) {
     if (item instanceof Rune) {
       this.selectedRunes[item.slot] = item;
       this.toggleSelection(index);
-      // this.runeStore.updateStore(this.selectedRunes, this.runeStore.actions.updatePrimaryRunes);
     }
     if (item instanceof RunePath) {
-      this.runesService.currentPrimaryPath$.next(item);
+      this.selectedRunes.fill(null);
+      this.runeState.currentPrimaryPath$.next(item);
       this.toggleSelection();
     }
+    this.emitState();
   }
+
+  emitState() {
+    if (this.currentPath && !this.selectedRunes.some((rune: Rune) => !!rune === false)) {
+      this.pageState.emit({primaryPath: this.currentPath, primaryRunes: this.selectedRunes});
+    }
+  }
+
   isSelected(currentRune: Rune) {
     return this.selectedRunes.find((rune: Rune) => {
-      return rune === currentRune;
+      return rune && rune.key === currentRune.key;
     });
   }
+
   ngOnInit() {
-    this.sub1 = this.runesService.itemsByPath$.subscribe(items => {
-      // any time time current item set changes, reset chosen items;
-      this.selectedRunes.fill(null);
+    this.sub1 = this.runeState.itemsByPath$.subscribe(items => {
       this.runeSlots = items;
     });
-    this.sub2 = this.runesService.currentPrimaryPath$.subscribe((path: RunePath) => {
+    this.sub2 = this.runeState.currentPrimaryPath$.subscribe((path: RunePath) => {
       this.currentPath = path;
     });
-    console.log(this.slotSelectionOpened);
-    console.log(this.selectedRunes);
   }
 
   ngOnDestroy() {

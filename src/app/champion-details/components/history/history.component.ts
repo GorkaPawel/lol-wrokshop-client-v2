@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ApiChampion} from '../../../API/SERVER/api.model';
 
 @Component({
   selector: 'app-history',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+  }
+
+  champion: ApiChampion;
 
   ngOnInit() {
+    this.champion = this.route.parent.snapshot.data.champion.ApiChamp;
   }
 
 }

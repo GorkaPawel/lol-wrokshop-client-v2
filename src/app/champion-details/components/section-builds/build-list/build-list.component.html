@@ -1,10 +1,11 @@
-list
 <div class="build-list" *ngIf="builds">
-  <p>Your builds:</p>
-  <app-build-list-item
-    *ngFor="let build of builds | paginate: {itemsPerPage: 4, currentPage: page}"
-    (click)="selectBuild(build)"
-    [build]="build">
-  </app-build-list-item>
-  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <div class="build-list--content">
+    <app-build-list-item
+      *ngFor="let build of builds | paginate: {itemsPerPage: 6, currentPage: page}"
+      (click)="selectBuild(build)"
+      [build]="build">
+    </app-build-list-item>
+    <button class="add-build" (click)="navigate()">NEW</button>
+  </div>
+  <pagination-controls class="pagination--controls" (pageChange)="page = $event"></pagination-controls>
 </div>

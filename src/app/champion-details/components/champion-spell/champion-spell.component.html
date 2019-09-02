@@ -1,6 +1,31 @@
-<div class="wrapper">
-  <img [src]="spellIconUrl" alt="spellIcon">
-  <h3>{{spell.name}}</h3>
+<div class="wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
+  <div class="spell-header">
+    <div class="spell--image">
+      <img [src]="spellIconUrl" alt="spellIcon">
+      <div class="spell--key">{{spell.spellKey}}</div>
+    </div>
+    <h3>{{spell.name}}</h3>
+  </div>
+  <p>{{spell.description}}</p>
+  <div class="ability-details">
+    <span>cooldown:</span><span>{{spell.cooldownBurn}}</span>
+    <span>cost:</span><span>{{spell.costBurn}}</span>
+    <span>range:</span><span>{{spell.rangeBurn}}</span>
+  </div>
+</div>
+<app-ability-modal *ngIf="spellDetailsOpened" (modalClose)="closeSpellDetails()">
+  <div class="spell-header--modal">
+    <div class="spell--image">
+      <img [src]="spellIconUrl" alt="spellIcon">
+      <div class="spell--key">{{spell.spellKey}}</div>
+    </div>
+    <h3>{{spell.name}}</h3>
+  </div>
   <p [innerHTML]="parsed"></p>
   <p class="error" *ngIf="apiError">"?" indicates missing data from League of legends API</p>
-</div>
+  <video class="ability-video" controls>
+    <source [src]="spellVideoUrl + spell.abilityVideoPath" type="video/webm">
+  </video>
+</app-ability-modal>
+
+

@@ -1,15 +1,65 @@
-button {
-  position: relative;
+@import "abstracts/variables";
+@import 'abstracts/mixins';
+
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-button[disabled]:hover::after {
-  content: 'You have to fill all of the fields in order to proceed';
-  position: absolute;
-  bottom: calc(100% + 5px);
-  left: 0;
-  display: block;
-  width: 150px;
-  height: 80px;
-  background-color: orange;
-  color: black;
-  border: 1px solid darkblue;
+a {
+  margin-right: 1rem;
+}
+.button--save, a {
+  text-decoration: none;
+  position: relative;
+  margin-top: 2rem;
+  align-self: flex-end;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  color: inherit;
+  padding: .4rem 1rem;
+  background-color: transparent;
+  border: 2px solid $color6;
+
+  &:hover {
+    background-color: lighten(black, 2);
+  }
+}
+.save--wrapper {
+  display: flex;
+  position: relative;
+  width: 350px;
+  align-self: flex-end;
+  justify-content: center;
+ }
+.tooltip {
+  display: none;
+}
+button[disabled].button--save:hover + .tooltip {
+  @include tooltip;
+}
+.build {
+  display: flex;
+  flex-direction: column;
+
+  .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+}
+
+.input--title {
+  width: 30%;
+  background-color: transparent;
+  color: inherit;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: none;
+  border-bottom: 2px solid $color6;
+  font-family: inherit;
+  font-size: 1.5rem;
 }

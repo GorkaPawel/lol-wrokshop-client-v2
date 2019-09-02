@@ -26,6 +26,11 @@ export class BuildListComponent implements OnInit {
       });
   }
 
+  navigate() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.router.navigate(['dashboard', 'champion', id, {outlets: {builds: 'edit'}}]);
+  }
+
   ngOnInit() {
     this.route.parent.data
       .pipe(pluck('champion', 'DbChamp'))

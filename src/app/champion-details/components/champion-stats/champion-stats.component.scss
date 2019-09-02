@@ -1,3 +1,37 @@
+:host {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  height: 32px;
+  width: 32px;
+}
+
 ul {
-  border: 1px solid white;
+  width: 50%;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  padding: .5rem;
+
+  .stat {
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .value {
+    font-weight: 700;
+    margin-left: auto;
+
+    .per-level {
+      font-weight: 300;
+      color: #f4bb8a;
+    }
+  }
+
 }

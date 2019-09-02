@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
 import {fromEvent, Subscription} from 'rxjs';
-import {debounceTime, map, switchMap} from 'rxjs/operators';
+import {debounceTime, map} from 'rxjs/operators';
 import {ApiService} from '../../../../API/SERVER/api.service';
 import {ApiItem, ID} from '../../../../API/SERVER/api.model';
 
@@ -16,17 +16,13 @@ export class ItemSearchComponent implements AfterViewInit, OnDestroy {
   @ViewChild('search')
   searchRef: ElementRef;
   @Output()
-  close = new EventEmitter();
-  @Output()
   selectedItem = new EventEmitter();
   subscription: Subscription;
   sub2: Subscription;
   results: ID[] = [];
 
   chooseItem(id: string) {
-    console.log('item selection triggered');
     this.sub2 = this.api.getItem(id).subscribe((item: ApiItem) => {
-      this.close.emit();
       this.selectedItem.emit(item);
     });
   }
@@ -43,13 +39,8 @@ export class ItemSearchComponent implements AfterViewInit, OnDestroy {
         this.results = list;
       });
   }
-
-  ngOnInit() {
-    console.log('search component initialized');
-  }
-
+  // TODO co sie spuralo b=przy szukaniu itemow
   ngOnDestroy() {
-    console.log('search component destroyed');
     if (this.sub2) {
       this.sub2.unsubscribe();
     }

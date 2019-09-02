@@ -1,13 +1,16 @@
-<div class="item-wrapper">
-  <app-item-search  *ngIf="itemDialog" (close)="close()" (selectedItem)="update($event)"></app-item-search>
-  <div *ngIf="item" class="item">
-    <img [src]="itemImg" [alt]="item.name" (click)="open($event)">
-    <div class="item-info">
-      <p class="heading"><span>{{item.name}}</span><span>{{item.gold.base}}</span></p>
-      <p class="description">{{item.description}}</p>
+<div class="item-wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
+  <div *ngIf="item">
+    <div class="heading--item">
+      <img [src]="itemImg" [alt]="item.name">
+      <span class="name">{{item.name}}</span>
+      <span class="cost">cost: <span class="gold">{{item.gold.base}}</span></span>
     </div>
-    <p>{{item.name}}</p>
+    <p class="description" [innerHTML]="item.description"></p>
   </div>
-  <div *ngIf="!item" class="placeholder item" (click)="open($event)">
+  <div *ngIf="!item" class="placeholder">
+    <span>+</span>
   </div>
 </div>
+<app-ability-modal *ngIf="spellDetailsOpened" (modalClose)="closeSpellDetails()">
+  <app-item-search (selectedItem)="update($event)"></app-item-search>
+</app-ability-modal>

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RunesAdapterService} from './runes-adapter.service';
-import {RunesStateService} from './runes-state.service';
 
 @Component({
   selector: 'app-section-runes',
@@ -10,12 +9,12 @@ import {RunesStateService} from './runes-state.service';
     <button (click)="navigate(['runes', 'edit'])">edit</button>
     <router-outlet></router-outlet>
   `,
-  providers: [RunesAdapterService, RunesStateService],
+  providers: [RunesAdapterService],
   styles: [``]
 })
 export class SectionRunesComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private runesService: RunesAdapterService, private runeStore: RunesStateService) {
+  constructor(private route: ActivatedRoute, private router: Router, private runesService: RunesAdapterService) {
   }
 
   navigate(path: string | string[]) {
@@ -24,8 +23,5 @@ export class SectionRunesComponent implements OnInit {
   }
   ngOnInit() {
     this.runesService.storeRunes(this.route.snapshot.data['runes']);
-    this.runeStore.runeStore$.subscribe((state) => {
-      console.log('Store:', state);
-    });
   }
 }

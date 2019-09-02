@@ -1,18 +1,19 @@
-<section *ngIf="champion" class="gallery-wrapper">
-  <ul class="image-container" #gallery>
-    <li
-      class="image-item"
-      *ngFor="let skin of champion.skins"
+<section class="carousel">
+  <div class="image--wrapper">
+    <ul class="image-container" [ngStyle]="{'transform': 'translateX('+currentSlide*-100+'%)'}"
     >
-      <p>{{skin.name}}</p>
-      <img
-        class="image"
-        src="{{skinUrl}}{{champion.key}}/{{skin.id}}.jpg"
-        alt="{{champion.name}}">
-    </li>
-  </ul>
+      <li
+        *ngFor="let skin of champion.skins"
+        class="image-item"
+      >
+        <p class="skin-name">{{skin.name}}</p>
+        <img
+          class="image"
+          src="{{skinUrl}}{{champion?.key}}/{{skin?.id}}.jpg"
+          alt="{{champion?.name}}">
+      </li>
+    </ul>
+    <button class="next" (click)="next()"></button>
+    <button class="prev" (click)="prev()"></button>
+  </div>
 </section>
-<div>
-  <button (click)="next()">></button>
-  <button (click)="prev()"><</button>
-</div>

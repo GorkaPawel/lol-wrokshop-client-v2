@@ -1,5 +1,19 @@
-<div class="wrapper">
-  <h3>{{passive.name}}</h3>
-  <img [src]="passiveIconUrl" alt="passive-icon">
-  <p>{{passive.description}}</p>
+<div class="wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
+  <div class="passive--header">
+    <img [src]="passiveIconUrl" alt="passive-icon">
+    <h3>{{passive.name}}</h3>
+  </div>
+  <p class="passive-desc" [innerHTML]="passive.description"></p>
 </div>
+<app-ability-modal (modalClose)="closeSpellDetails()" *ngIf="spellDetailsOpened">
+  <div class="passive--header">
+    <img [src]="passiveIconUrl" alt="passive-icon">
+    <h3>{{passive.name}}</h3>
+  </div>
+  <p class="passive-desc--modal" [innerHTML]="passive.description"></p>
+  <video class="ability-video" controls>
+    <source [src]="spellVideoUrl + passive.abilityVideoPath" type="video/webm">
+  </video>
+</app-ability-modal>
+
+

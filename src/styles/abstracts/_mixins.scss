@@ -1,3 +1,4 @@
+@import 'abstracts/variables';
 //universal media mixin
 @mixin media($width...) {
   @if length($width) == 1 {
@@ -42,8 +43,32 @@
       outline: none;
       border-bottom: 1px solid $olympic-white;
     }
+
     button {
       @include button;
     }
+  }
+}
+@mixin tooltip {
+  margin: 0;
+  display: block;
+  position: absolute;
+  bottom: calc(100% + 2rem);
+  left: 0;
+  background-color: black;
+  color: $color6;
+  padding: 1.5rem;
+  border: 2px solid $color6;
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: inherit;
+    border-bottom: 2px solid $color6;
+    border-right: 2px solid $color6;
+    left: 50%;
+    transform: translate(-50%, 58%) rotateZ(45deg);
+    bottom: 0;
+    width: 20px;
+    height: 20px;
   }
 }

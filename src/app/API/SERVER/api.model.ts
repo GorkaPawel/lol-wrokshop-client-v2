@@ -12,7 +12,7 @@ export interface Spell {
   abilityIconPath: string;
   abilityVideoImagePath: string;
   abilityVideoPath: string;
-  spellkey: string;
+  spellKey: string;
   cooldownBurn: string;
   costBurn: string;
   effectBurn: Array<string>;

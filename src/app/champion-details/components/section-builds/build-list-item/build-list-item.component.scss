@@ -1,0 +1,23 @@
+img {
+  border-radius: 15%;
+}
+.items--grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: .5rem;
+  filter: grayscale(70%);
+  &:hover {
+    filter: contrast(120%);
+  }
+}
+p {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.build {
+  cursor: pointer;
+  background-color: rgba(1, 1, 1, .4);
+  padding: 1rem;
+}

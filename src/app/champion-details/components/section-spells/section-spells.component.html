@@ -1,0 +1,11 @@
+<div class="ability--wrapper">
+  <champion-passive
+    [passive]="champion.passive"
+    [name]="champion.id">
+  </champion-passive>
+  <champion-spell
+    *ngFor="let spell of champion.spells"
+    [spell]="spell"
+    [name]="champion.id">
+  </champion-spell>
+</div>

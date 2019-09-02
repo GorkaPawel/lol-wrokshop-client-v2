@@ -1,11 +1,10 @@
-:host {
-  z-index: 100000
-}
+@import "abstracts/variables";
 * {
   margin: 0;
   padding: 0;
 }
 .wrapper {
+  z-index: $search-index;
   position: fixed;
   top: 0;
   left: 0;

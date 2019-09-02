@@ -36,6 +36,10 @@ export class ChampionDetailResolver implements Resolve<ChampionSources> {
         console.log('Champion array: ', DBandAPI);
         if (DBandAPI.length === 3) {
           const result = {ApiChamp: DBandAPI[0], DbChamp: DBandAPI[1], apiRunes: DBandAPI[2]};
+          if (!result.DbChamp) {
+            result.DbChamp = {_id: '', name: '', notes: [], builds: [], runes: []};
+          }
+          console.log('resolver: ', result);
           return of(result);
         } else {
           this.router.navigate(['/dashboard']);

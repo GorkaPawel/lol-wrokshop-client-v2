@@ -1,5 +1,5 @@
 <app-note-item
-  *ngFor="let note of userChampion.notes" [note]="note"
+  *ngFor="let note of userChampion?.notes" [note]="note"
   (click)="editNote(note); $event.stopPropagation()"
 >
 </app-note-item>

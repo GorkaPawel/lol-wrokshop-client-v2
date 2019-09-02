@@ -1,33 +1,51 @@
+@import 'abstracts/mixins';
+
 .item-wrapper {
-  margin: 5px;
-  $item-height: 48px;
-  $item-width: 48px;
-  .item {
-    display: flex;
-    position: relative;
-    img {
-      display: block;
-      width: $item-width;
-      height: $item-height;
-    }
-  }
-  .item-info {
-    display: none;
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 0;
-    width: 200px;
-    background-color: darkslateblue;
-    color: orange;
-    font-size: .6em;
-  }
-  img:hover + .item-info {
-    display: block;
-  }
+  padding: 2rem;
+  background-color: rgba(1,1,1,.4);
+  $item-height: 64px;
+  $item-width: 64px;
+  width: 400px;
+  position: relative;
+
   .placeholder {
     width: $item-width;
     height: $item-height;
-    background-color: lightseagreen;
-    border: 2px darkorange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $item-height;
+    border: 1px solid $color6;
   }
+
+  img {
+    border-radius: 15%;
+  }
+}
+
+.heading--item {
+  display: flex;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  .name {
+    margin-left: 1rem;
+  }
+
+  .cost {
+    margin-left: auto;
+  }
+
+  .gold {
+    color: gold;
+  }
+}
+
+.description {
+  display: none;
+}
+
+.item-wrapper:hover .description {
+
+  @include tooltip;
 }

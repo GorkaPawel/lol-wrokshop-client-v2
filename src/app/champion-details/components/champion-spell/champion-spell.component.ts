@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
 import {ApiService} from '../../../API/SERVER/api.service';
 import {Spell} from '../../../API/SERVER/api.model';
+import {ModalControls} from '../../models';
 
 
 @Component({
@@ -9,19 +10,29 @@ import {Spell} from '../../../API/SERVER/api.model';
   styleUrls: ['./champion-spell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChampionSpellComponent implements OnChanges {
+export class ChampionSpellComponent extends ModalControls implements OnChanges {
 
   constructor(private api: ApiService) {
+    super();
   }
 
+  _spell: Spell;
   @Input()
-  spell: Spell;
+  set spell(spell: Spell) {
+    this._spell = spell;
+  }
+
+  get spell() {
+    return this._spell;
+  }
+
   @Input()
   name: string;
 
   parsed;
   apiError = false;
   spellIconUrl: string;
+  spellVideoUrl = 'https://d28xe8vt774jo5.cloudfront.net/';
 
   parseTags(text: string): string {
     const reg1 = /<\/(scale\w+|rules)>/gm;

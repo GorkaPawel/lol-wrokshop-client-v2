@@ -30,6 +30,7 @@ export type PathType = 'Domination' | 'Precision' | 'Sorcery' | 'Inspiration';
 
 export interface RunePage {
   _id?: string;
+  pageName: string;
   primaryPath: RunePath;
   primaryRunes: Array<Rune>;
   secondaryPath: RunePath;

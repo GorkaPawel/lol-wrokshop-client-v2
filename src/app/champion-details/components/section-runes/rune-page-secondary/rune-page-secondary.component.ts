@@ -1,22 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RunesAdapterService} from '../runes-adapter.service';
-import {PathType, Rune, RunePath} from '../runes.model';
-import {Observable, Subscription} from 'rxjs';
+import {Rune, RunePath} from '../runes.model';
+import {Observable} from 'rxjs';
 import {tap} from 'rxjs/internal/operators/tap';
+import {RunesStateService} from '../runes-state.service';
 
 @Component({
   selector: 'app-rune-page-secondary',
   templateUrl: './rune-page-secondary.component.html',
   styleUrls: ['./rune-page-secondary.component.scss']
 })
-export class RunePageSecondaryComponent implements OnInit {
+export class RunePageSecondaryComponent implements OnInit, DoCheck {
 
-  constructor(private runesService: RunesAdapterService) {
+  constructor(private runesService: RunesAdapterService, private runeState: RunesStateService) {
   }
 
   currentPath: RunePath;
-  runeSlots: Array<Rune[]>;
   selectedRunes = Array<Rune>(2);
+
+  @Input() set state(secondaryState: { secondaryPath: RunePath, secondaryRunes: Rune[] }) {
+    if (secondaryState) {
+      this.currentPath = secondaryState.secondaryPath;
+      this.selectedRunes = secondaryState.secondaryRunes;
+    }
+  }
+
+  @Output() pageState = new EventEmitter<{ secondaryPath: RunePath, secondaryRunes: Rune[] }>();
+
+  runeSlots: Array<Rune[]>;
   pathSelectionOpened = false;
   runeSelectionOpen = false;
   sourceIndex: number;
@@ -41,10 +52,19 @@ export class RunePageSecondaryComponent implements OnInit {
       this.togglePathSelection();
       this.reset();
     }
+    this.emitState();
   }
+
+  emitState() {
+    const isRunesNotFilled = this.selectedRunes.includes(undefined);
+    if (this.currentPath && !isRunesNotFilled) {
+      this.pageState.emit({secondaryPath: this.currentPath, secondaryRunes: this.selectedRunes});
+    }
+  }
+
   reset() {
     this.selectedRunes.fill(null);
-    this.runeSlots = this.runesService.getRunesByPath(this.currentPath.path).slice(1);
+    this.getSlots();
   }
 
   isSelected(currentRune: Rune) {
@@ -53,13 +73,23 @@ export class RunePageSecondaryComponent implements OnInit {
     });
   }
 
+  getSlots() {
+    this.runeSlots = this.runesService.getRunesByPath(this.currentPath.path).slice(1);
+  }
+
   ngOnInit() {
-    this.secondaryPaths$ = this.runesService.secondaryPaths$.pipe(
+    this.secondaryPaths$ = this.runeState.secondaryPaths$.pipe(
       tap((paths: RunePath[]) => {
         if (this.currentPath && !paths.includes(this.currentPath)) {
           this.currentPath = null;
         }
       })
     );
+  }
+
+  ngDoCheck() {
+    if (this.currentPath) {
+      this.getSlots();
+    }
   }
 }

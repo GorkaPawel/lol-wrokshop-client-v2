@@ -28,6 +28,9 @@ import { RunesEditComponent } from './components/section-runes/runes-edit/runes-
 import { KeystoneComponent } from './components/section-runes/keystone/keystone.component';
 import { RunePagePrimaryComponent } from './components/section-runes/rune-page-primary/rune-page-primary.component';
 import { RunePageSecondaryComponent } from './components/section-runes/rune-page-secondary/rune-page-secondary.component';
+import { RuneListItemComponent } from './components/section-runes/rune-list-item/rune-list-item.component';
+import { SectionSpellsComponent } from './components/section-spells/section-spells.component';
+import { AbilityModalComponent } from './components/ability-modal/ability-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { RunePageSecondaryComponent } from './components/section-runes/rune-page
     KeystoneComponent,
     RunePagePrimaryComponent,
     RunePageSecondaryComponent,
+    RuneListItemComponent,
+    SectionSpellsComponent,
+    AbilityModalComponent,
   ],
   imports: [
     CommonModule,

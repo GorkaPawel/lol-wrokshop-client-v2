@@ -15,7 +15,6 @@ export class EditBuildComponent implements DoCheck {
       this.build = this.router.getCurrentNavigation().extras.state.build;
     }
   }
-
   cantSave = true;
   build: Build = {
     buildName: '',

@@ -1,21 +1,64 @@
-.gallery-wrapper {
-  overflow: hidden;
-  width: 50vw;
-}
-
-.image-container {
-  padding: 0;
-  margin: 0;
+$image-width: 70vw;
+$image-max-width: 1024px;
+:host {
+  height: 100%;
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.image-item {
-  list-style-type: none;
-}
+.carousel {
+  overflow: hidden;
+  width: $image-width;
+  max-width: $image-max-width;
 
+  ul.image-container {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    transition: transform .6s ease-in-out;
+  }
+}
 .image {
-  width: 50vw;
+  width: $image-width;
+  max-width: $image-max-width;
 }
-button {
-  color: black;
+
+.skin-name {
+  text-transform: uppercase;
 }
+
+.image--wrapper:hover button {
+  opacity: 1;
+}
+
+.image--wrapper {
+
+  position: relative;
+
+  button {
+    outline: none;
+    border: none;
+    display: block;
+    height: 4rem;
+    width: 4rem;
+    background-color: rgba(1,1,1,.7);
+    position: absolute;
+    top: 50%;
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+  }
+
+  .prev {
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+    left: 1rem;
+  }
+
+  .next {
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    right: 1rem;
+  }
+}
+

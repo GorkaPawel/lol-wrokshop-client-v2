@@ -1,4 +1,5 @@
 import {ApiChampion, ApiItem} from '../SERVER/api.model';
+import {RunePage} from '../../champion-details/components/section-runes/runes.model';
 
 export interface Build {
   _id?: string;
@@ -17,6 +18,7 @@ export interface UserChampion {
   name: string;
   notes: Array<Note>;
   builds: Array<Build>;
+  runes: Array<RunePage>;
 }
 export interface ChampionSources {
   ApiChamp: ApiChampion;

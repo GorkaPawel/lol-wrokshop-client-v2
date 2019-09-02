@@ -17,7 +17,7 @@ export class ChampionStatsComponent implements OnInit {
 
   champStats: Stats;
   champSub: Subscription;
-
+  statImgUrl = 'https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/statmods/';
   ngOnInit() {
     this.champSub = this.route.parent.data
       .pipe(

@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {PathType, Rune, RunePath} from './runes.model';
-import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 
 @Injectable()
@@ -12,30 +10,6 @@ export class RunesAdapterService {
 
   private _runePaths: RunePath[] = [];
   private runes: Rune[] = [];
-
-  currentPrimaryPath$ = new BehaviorSubject<RunePath>(null);
-  itemsByPath$ = this.currentPrimaryPath$
-    .pipe(
-      map((path: RunePath) => {
-        if (path) {
-          return this.getRunesByPath(path.path);
-        }
-        return [];
-      })
-    );
-  secondaryPaths$ = this.currentPrimaryPath$
-    .pipe(
-      map((path: RunePath) => {
-        if (path) {
-          return this.runePaths.filter((runePath: RunePath) => {
-            return runePath.path !== path.path;
-          });
-        }
-        return this.runePaths;
-      })
-    );
-
-
   storeRunes(runes: any[]) {
     if (!this._runePaths.length || !this.runes.length) {
       for (const path of runes) {
