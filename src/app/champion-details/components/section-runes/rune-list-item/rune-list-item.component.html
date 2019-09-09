@@ -1,7 +1,20 @@
 <div class="page">
-  <p>{{page.pageName}}</p>
-  <p>{{page.primaryPath.path}}</p>
-  <img [src]="page.primaryPath.icon" alt="">
-  <p>{{page.secondaryPath.path}}</p>
-  <img [src]="page.secondaryPath.icon" alt="">
+  <div class="title">
+    <p>{{page.pageName}}</p>
+    <div class="images">
+      <img class="keystone" [src]="page.primaryRunes[0].icon" alt="keystone">
+      <img class="secondary-path" [src]="page.secondaryPath.icon" alt="keystone">
+    </div>
+  </div>
+  <div class="details">
+    <p class="details--path">{{page.primaryPath.path}}</p>
+    <ul>
+      <li *ngFor="let rune of page.primaryRunes">{{rune.name}}</li>
+    </ul>
+    <p class="details--path">{{page.secondaryPath.path}}</p>
+    <ul>
+      <li *ngFor="let rune of page.secondaryRunes">{{rune.name}}</li>
+    </ul>
+  </div>
+  <img [src]="mainPathUrl" alt="path">
 </div>

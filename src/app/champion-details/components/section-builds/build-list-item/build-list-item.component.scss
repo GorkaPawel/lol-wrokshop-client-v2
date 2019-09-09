@@ -5,6 +5,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: .5rem;
+  justify-items: center;
   filter: grayscale(70%);
   &:hover {
     filter: contrast(120%);

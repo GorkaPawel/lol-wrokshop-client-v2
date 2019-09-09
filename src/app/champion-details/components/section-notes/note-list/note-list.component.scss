@@ -1,12 +1,36 @@
-.form--modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: darkblue;
+@import "abstracts/mixins";
+.wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  z-index: 100000000000000;
+  h1 {
+    font-size: calc(20px + 1.5vw);
+  }
+}
+.content {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1vw;
+  grid-template-columns: repeat(auto-fit, 350px);
+  height: 65vh;
+  overflow-y: scroll;
+}
+.add-button {
+  @include button2;
+  white-space: nowrap;
+  font-size: calc(12px + 10vw/25);
+  text-transform: uppercase;
+  color: #895575;
+  font-weight: 700;
+  position: fixed;
+  bottom: 4vh;
+  left: 80%;
+  transform: translateX(-50%);
+}
+.hint {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

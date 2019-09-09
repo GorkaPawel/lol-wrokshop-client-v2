@@ -1,0 +1,101 @@
+.path, .rune {
+  display: flex;
+}
+
+.items {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selected-rune {
+  filter: none !important;
+}
+
+.selected--path {
+  position: relative;
+  min-width: 185px !important;
+  min-height: 185px !important;
+}
+
+.path__item {
+  display: block;
+  width: calc(64px + 2rem);
+  height: calc(64px + 2rem);
+}
+
+.rune__item {
+  padding: 1rem;
+  display: block;
+  filter: grayscale(100%);
+  max-width: calc(64px + 2rem);
+  max-height: calc(64px + 2rem);
+  width: calc(64px + 2rem);
+  height: calc(64px + 2rem);
+  min-width: calc(64px + 2rem);
+  min-height: calc(64px + 2rem);
+  border-radius: 50%;
+  position: relative;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.domination {
+  .rune__item {
+    background-image: url('/assets/vfx-d.png');
+  }
+}
+
+.resolve {
+  .rune__item {
+    background-image: url('/assets/vfx-r.png');
+  }
+}
+
+.precision {
+  .rune__item {
+    background-image: url('/assets/vfx-p.png');
+  }
+}
+
+.sorcery {
+  .rune__item {
+    background-image: url('/assets/vfx-s.png');
+  }
+}
+
+.inspiration {
+  .rune__item {
+    background-image: url('/assets/vfx-i.png');
+  }
+}
+
+.keystone {
+  padding: 0 !important;
+  min-width: 110px !important;
+  min-height: 110px !important;
+}
+
+img {
+  display: none;
+}
+
+.path--blank {
+  display: initial;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: glow 60s infinite linear both;
+}
+
+@keyframes glow {
+  from {
+    transform: rotateZ(0deg);
+    filter: hue-rotate(0deg) brightness(50%);
+  }
+  to {
+    transform: rotateZ(360deg);
+    filter: hue-rotate(360deg) brightness(400%);
+  }
+}

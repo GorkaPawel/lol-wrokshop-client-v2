@@ -14,9 +14,10 @@
   .spell-details-foreground {
     position: relative;
     padding: 1rem;
-    width: 50%;
-    min-width: 400px;
-    min-height: 50vh;
+    max-width: 50%;
+    width:50%;
+    min-width: 300px;
+    height: 50vh;
     max-height: 95vh;
     background-color: black;
     border: 1px solid $color6;
@@ -24,6 +25,8 @@
     flex-direction: column;
     overflow-y: scroll;
     .content {
+      height: 100%;
+      width: 100%;
       align-self: center;
     }
   }

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {Rune, RunePath} from '../runes.model';
+import {isRune, Rune, RunePath} from '../runes.model';
 import {RunesAdapterService} from '../runes-adapter.service';
-import {Subscription} from 'rxjs';
 import {RunesStateService} from '../runes-state.service';
+import {SubSink} from 'subsink';
 
 @Component({
   selector: 'app-rune-page-primary',
@@ -14,8 +14,7 @@ export class RunePagePrimaryComponent implements OnInit, OnDestroy {
   constructor(private runesService: RunesAdapterService, private runeState: RunesStateService) {
   }
 
-  private sub1: Subscription;
-  private sub2: Subscription;
+  subs = new SubSink();
 
   @Input() set state(primaryState: { primaryPath: RunePath, primaryRunes: Rune[] }) {
     if (primaryState) {
@@ -43,11 +42,10 @@ export class RunePagePrimaryComponent implements OnInit, OnDestroy {
   }
 
   select(item: Rune | RunePath, index?: number) {
-    if (item instanceof Rune) {
+    if (isRune(item)) {
       this.selectedRunes[item.slot] = item;
       this.toggleSelection(index);
-    }
-    if (item instanceof RunePath) {
+    } else {
       this.selectedRunes.fill(null);
       this.runeState.currentPrimaryPath$.next(item);
       this.toggleSelection();
@@ -56,9 +54,7 @@ export class RunePagePrimaryComponent implements OnInit, OnDestroy {
   }
 
   emitState() {
-    if (this.currentPath && !this.selectedRunes.some((rune: Rune) => !!rune === false)) {
-      this.pageState.emit({primaryPath: this.currentPath, primaryRunes: this.selectedRunes});
-    }
+    this.pageState.emit({primaryPath: this.currentPath, primaryRunes: this.selectedRunes});
   }
 
   isSelected(currentRune: Rune) {
@@ -68,16 +64,15 @@ export class RunePagePrimaryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub1 = this.runeState.itemsByPath$.subscribe(items => {
+    this.subs.add(this.runeState.itemsByPath$.subscribe(items => {
       this.runeSlots = items;
-    });
-    this.sub2 = this.runeState.currentPrimaryPath$.subscribe((path: RunePath) => {
+    }));
+    this.subs.add(this.runeState.currentPrimaryPath$.subscribe((path: RunePath) => {
       this.currentPath = path;
-    });
+    }));
   }
 
   ngOnDestroy() {
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

@@ -1,27 +1,64 @@
-<main class="slide--container" (wheel)="onWheel($event)">
+<main tabindex="1" class="slide--container" (wheel)="onWheel($event)" #main>
+  <app-burger-nav class="nav__main" [main]="true">
+    <li (click)="scrollToElement(overview)"
+        [ngClass]="{'active-link': currentElement===overview}">
+      overview
+    </li>
+    <li
+      (click)="scrollToElement(spells)"
+      [ngClass]="{'active-link': currentElement===spells}">
+      spells
+    </li>
+
+    <li
+      (click)="scrollToElement(builds)"
+      [ngClass]="{'active-link': currentElement===builds}">
+      builds
+    </li>
+
+    <li
+      (click)="scrollToElement(notes)"
+      [ngClass]="{'active-link': currentElement===notes}">
+      notes
+    </li>
+
+  </app-burger-nav>
   <section class="slide overview" [appSlide]="currentElement" #overview>
     <header class="champion--header">
-      <img class="img-portrait"[src]="'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/'+champion.key+'.png'" alt="champion-portrait">
+      <img class="img-portrait"
+           [src]="'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/'+champion.key+'.png'"
+           alt="champion-portrait">
       <div>
         <h1 class="champion--name">{{champion.name}}</h1>
         <h2 class="champion--title">{{champion.title}}</h2>
       </div>
-    <nav class="nav--inner">
-      <ul>
-        <li>
-          <a [routerLink]="[ {outlets: { overview: ['stats']}}]">stats</a>
-        </li>
-        <li>
-          <a [routerLink]="[ {outlets: { overview: ['skins']}}]">skins</a>
-        </li>
-        <li>
-          <a [routerLink]="[ {outlets: { overview: 'history'}}]">history</a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="nav--inner">
+        <ul class="standard-nav">
+          <li>
+            <a [routerLink]="[ {outlets: { overview: ['stats']}}]">stats</a>
+          </li>
+          <li>
+            <a [routerLink]="[ {outlets: { overview: ['skins']}}]">skins</a>
+          </li>
+          <li>
+            <a [routerLink]="[ {outlets: { overview: 'history'}}]">history</a>
+          </li>
+        </ul>
+        <app-burger-nav class="burger-nav">
+          <li>
+            <a [routerLink]="[ {outlets: { overview: ['stats']}}]">stats</a>
+          </li>
+          <li>
+            <a [routerLink]="[ {outlets: { overview: ['skins']}}]">skins</a>
+          </li>
+          <li>
+            <a [routerLink]="[ {outlets: { overview: 'history'}}]">history</a>
+          </li>
+        </app-burger-nav>
+      </nav>
     </header>
     <article class="section--article">
-        <router-outlet name="overview"></router-outlet>
+      <router-outlet name="overview"></router-outlet>
     </article>
   </section>
   <section class="slide spells" [appSlide]="currentElement" #spells>
@@ -33,23 +70,21 @@
     <nav class="nav--build">
       <ul>
         <li>
-          <a [routerLink]="[ {outlets: { builds: null}}]">items</a>
+          <a class="a--items" [routerLink]="[ {outlets: { builds: null}}]">
+            <span>&lsaquo;</span> items</a>
         </li>
         <li>
-          <a [routerLink]="[ {outlets: { builds: 'runes'}}]">runes</a>
+          <a class="a--runes" [routerLink]="[ {outlets: { builds: 'runes'}}]">runes
+            <span>&rsaquo;</span></a>
         </li>
       </ul>
     </nav>
-    <article class="section--article">
+    <article class="section--article article--builds">
       <router-outlet name="builds"></router-outlet>
     </article>
   </section>
   <section class="slide notes" [appSlide]="currentElement" #notes>
-    <h1>NOTES</h1>
     <app-note-list [userChampion]="userChampion"></app-note-list>
-  </section>
-  <section class="slide counters" [appSlide]="currentElement" #counters>
-    <h1>COUNTERS</h1>
   </section>
 </main>
 
@@ -76,9 +111,5 @@
         [ngClass]="{'active-link': currentElement===notes}">
       <span class="anchor-text">notes</span></li>
 
-    <li class="nav__item"
-        (click)="scrollToElement(counters)"
-        [ngClass]="{'active-link': currentElement===counters}">
-      <span class="anchor-text">counters</span></li>
   </ul>
 </nav>

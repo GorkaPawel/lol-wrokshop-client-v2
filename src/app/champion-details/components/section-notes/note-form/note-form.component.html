@@ -1,7 +1,7 @@
 <form class="form" #noteForm="ngForm" (ngSubmit)="updateNotes(noteForm)">
   <div class="control">
     <label>Title</label>
-    <input name="title" [(ngModel)]="titleText" required #titleRef="ngModel">
+    <input maxlength="30" name="title" [(ngModel)]="titleText" required #titleRef="ngModel">
     <span class="error-message" *ngIf="!titleRef.valid && titleRef.touched">
       This field cannot be empty.
     </span>
@@ -9,6 +9,8 @@
   <div class="control">
     <label>Note</label>
     <textarea
+      cols="10"
+      maxlength="255"
       #noteRef="ngModel"
       name="note"
       [(ngModel)]="noteText"
@@ -18,11 +20,12 @@
       This field cannot be empty.
     </span>
   </div>
-  <button
-    type="submit"
-    [disabled]="!noteForm.valid">Add note
-  </button>
-  <button
-    (click)="noteForm.reset()">Reset
-  </button>
+  <div class="form--controls">
+    <button type="reset"
+      (click)="noteForm.reset()">Reset
+    </button>
+    <button
+      type="submit"
+      [disabled]="!noteForm.valid">save</button>
+  </div>
 </form>

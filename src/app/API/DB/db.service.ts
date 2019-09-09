@@ -4,6 +4,7 @@ import {tap} from 'rxjs/internal/operators/tap';
 import {Build, Note, UserChampion} from './db.model';
 import {RunePage} from '../../champion-details/components/section-runes/runes.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 const USER_CHAMPION_LIST_URL = 'http://localhost:8080/account/champions';
 const USER_CHAMPION_URL = 'http://localhost:8080/account/champion/';
@@ -25,22 +26,20 @@ export class DbService {
   championId: string;
 
   getChampion(id: string) {
-    return this.http.get(USER_CHAMPION_URL + id)
-      .pipe(tap((champion: UserChampion) => console.log('DB champion: ', champion)));
+    return this.http.get(USER_CHAMPION_URL + id);
   }
 
   getChampionList(id: string) {
-    return this.http.get(USER_CHAMPION_LIST_URL + id)
-      .pipe(tap((champion: UserChampion) => console.log('DB champion: ', champion)));
+    return this.http.get(USER_CHAMPION_LIST_URL + id);
   }
 
 
   updateBuild(build: Build) {
-    this.http.put<Build>(USER_BUILD_URL, {championName: this.championId, build}).subscribe();
+    return this.http.put<Build>(USER_BUILD_URL, {championName: this.championId, build});
   }
 
   updateNote(note: Note) {
-    this.http.post<Note>(USER_NOTE_URL, {...note, championName: this.championId}).subscribe();
+    return this.http.post<Note>(USER_NOTE_URL, {...note, championName: this.championId});
   }
 
   updateRunes(runePage: RunePage) {

@@ -1,11 +1,21 @@
-:host {
-  display: flex;
-  width: 400px;
-}
-.control {
-  display:flex;
-  flex-direction: column;
-}
-.ng-invalid.ng-touched{
-
+@import 'abstracts/variables';
+.note {
+  p {
+    margin: 0;
+  }
+  padding: 1rem;
+  overflow-wrap: break-word;
+  font-size: calc(18px + 1vw / 25);
+  min-width: 300px;
+  width: 350px;
+  border: 1px solid rgba(255,255,255, .4);
+  border-radius: 10px;
+  .title {
+    margin-bottom: 1.5em;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: $color4;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255, .4);
+  }
 }

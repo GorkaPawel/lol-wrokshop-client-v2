@@ -1,11 +1,14 @@
 <div class="build-list" *ngIf="builds">
-  <div class="build-list--content">
+  <p class="hint" *ngIf="!builds.length">Click NEW to add a new build...</p>
+  <div class="build-list--content" (wheel)="$event.stopPropagation()">
     <app-build-list-item
-      *ngFor="let build of builds | paginate: {itemsPerPage: 6, currentPage: page}"
+      *ngFor="let build of builds | paginate: {itemsPerPage: 4, currentPage: page}"
       (click)="selectBuild(build)"
       [build]="build">
     </app-build-list-item>
+  </div>
+  <div class="paginator">
+    <pagination-controls class="pagination--controls" (pageChange)="page = $event"></pagination-controls>
     <button class="add-build" (click)="navigate()">NEW</button>
   </div>
-  <pagination-controls class="pagination--controls" (pageChange)="page = $event"></pagination-controls>
 </div>

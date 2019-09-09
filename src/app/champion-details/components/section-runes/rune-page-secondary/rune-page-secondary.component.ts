@@ -1,16 +1,15 @@
-import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {RunesAdapterService} from '../runes-adapter.service';
-import {Rune, RunePath} from '../runes.model';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/internal/operators/tap';
+import {isRune, Rune, RunePath} from '../runes.model';
 import {RunesStateService} from '../runes-state.service';
+import {SubSink} from 'subsink';
 
 @Component({
   selector: 'app-rune-page-secondary',
   templateUrl: './rune-page-secondary.component.html',
   styleUrls: ['./rune-page-secondary.component.scss']
 })
-export class RunePageSecondaryComponent implements OnInit, DoCheck {
+export class RunePageSecondaryComponent implements OnInit, DoCheck, OnDestroy {
 
   constructor(private runesService: RunesAdapterService, private runeState: RunesStateService) {
   }
@@ -31,7 +30,9 @@ export class RunePageSecondaryComponent implements OnInit, DoCheck {
   pathSelectionOpened = false;
   runeSelectionOpen = false;
   sourceIndex: number;
-  secondaryPaths$: Observable<RunePath[]>;
+  availablePaths: RunePath[] = [];
+  subs = new SubSink();
+
 
   togglePathSelection() {
     this.pathSelectionOpened = !this.pathSelectionOpened;
@@ -43,11 +44,10 @@ export class RunePageSecondaryComponent implements OnInit, DoCheck {
   }
 
   select(item: Rune | RunePath) {
-    if (item instanceof Rune) {
+    if (isRune(item)) {
       this.selectedRunes[this.sourceIndex] = item;
       this.toggleRuneSelection();
-    }
-    if (item instanceof RunePath) {
+    } else {
       this.currentPath = item;
       this.togglePathSelection();
       this.reset();
@@ -56,10 +56,7 @@ export class RunePageSecondaryComponent implements OnInit, DoCheck {
   }
 
   emitState() {
-    const isRunesNotFilled = this.selectedRunes.includes(undefined);
-    if (this.currentPath && !isRunesNotFilled) {
-      this.pageState.emit({secondaryPath: this.currentPath, secondaryRunes: this.selectedRunes});
-    }
+    this.pageState.emit({secondaryPath: this.currentPath, secondaryRunes: this.selectedRunes});
   }
 
   reset() {
@@ -73,18 +70,29 @@ export class RunePageSecondaryComponent implements OnInit, DoCheck {
     });
   }
 
+
   getSlots() {
     this.runeSlots = this.runesService.getRunesByPath(this.currentPath.path).slice(1);
   }
 
   ngOnInit() {
-    this.secondaryPaths$ = this.runeState.secondaryPaths$.pipe(
-      tap((paths: RunePath[]) => {
-        if (this.currentPath && !paths.includes(this.currentPath)) {
-          this.currentPath = null;
-        }
-      })
-    );
+    this.subs.add(this.runeState.secondaryPaths$.subscribe((paths: RunePath[]) => {
+      this.availablePaths = paths;
+      if (!this.currentPath) {
+        return;
+      }
+      const includes = this.availablePaths.some((path: RunePath) => {
+        return path.path === this.currentPath.path;
+      });
+      if (!includes) {
+        this.runeSelectionOpen = false;
+        this.currentPath = null;
+      }
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   ngDoCheck() {

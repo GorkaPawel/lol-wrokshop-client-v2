@@ -1,0 +1,91 @@
+@import "abstracts/variables";
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: calc(#{$builds-nav-index} - 1);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: -1;
+  }
+
+  .rune-selection {
+    border-top: 1px solid lighten(black, 8);
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3vh 0;
+  }
+}
+
+.primary, .secondary {
+  width: 100%;
+  max-width: 800px;
+}
+
+.rune--controls {
+  font-size: calc(15px + 1vw / 25);
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 3vh 0;
+
+  label {
+    display: inline-block;
+    color: lighten($color4, 8);
+    font-weight: 600;
+  }
+}
+
+.form--control {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-end;
+
+  input {
+    border-top-left-radius: 10px;
+    padding: .8em;
+    min-width: 200px;
+    background-color: lighten(black, 2);
+    border: none;
+    border-bottom: 2px solid $color4;
+    font-family: inherit;
+    font-size: 1.1em;
+  }
+
+  input, button {
+    margin-bottom: 5px;
+  }
+}
+
+.button--save {
+  font-size: 1.1em;
+  padding: .8em;
+  font-family: inherit;
+  font-weight: 600;
+  color: $color4;
+  border: 2px solid $color4;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: transparent;
+
+  &:hover {
+    background-color: lighten(black, 8);
+  }
+}
+
+.discard {
+  margin-left: 1em;
+
+  &:hover {
+    color: lighten(darkred, 30%);
+  }
+}

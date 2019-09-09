@@ -17,11 +17,9 @@ export class ApiService {
   constructor(private http: HttpClient) {
     this.http.get<ID[]>(CHAMPION_LIST_URL).subscribe((list: ID[]) => {
       this.championList = list;
-      console.log('Champion list: ', this.championList);
     });
     this.http.get<ID[]>(ITEM_LIST_URL).subscribe((list: ID[]) => {
       this.itemList = list;
-      console.log('Item list: ', this.itemList);
     });
   }
 
@@ -30,14 +28,16 @@ export class ApiService {
 
 
   find(searchTerm: string, option: { champion: boolean }) {
-    const term = searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1);
+    if (!searchTerm) {
+      return [];
+    }
     if (option.champion) {
       return this.championList.filter((item: ID) => {
-        return item.name.startsWith(term);
+        return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0;
       });
     }
     return this.itemList.filter((item: ID) => {
-      return item.name.startsWith(term);
+      return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0;
     });
   }
 
@@ -45,7 +45,6 @@ export class ApiService {
     return this.http.get<ApiChampion>(`${CHAMPION_URL}${name}`)
       .pipe(
         tap((champion: ApiChampion) => {
-          console.log('API champion: ', champion);
         })
       );
   }
@@ -54,10 +53,10 @@ export class ApiService {
     return this.http.get<ApiItem>(`${ITEM_URL}${id}`)
       .pipe(
         tap((item: ApiItem) => {
-          console.log('API item: ', item);
         })
       );
   }
+
   getRunes(): Observable<any> {
     return this.http.get(RUNES_URL);
   }

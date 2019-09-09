@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RunePage} from '../runes.model';
+import cloneDeep from 'lodash.clonedeep';
 
 @Component({
   selector: 'app-runes-list',
@@ -14,18 +15,21 @@ export class RunesListComponent implements OnInit {
   }
 
   runePages: RunePage[];
-
   edit(page: RunePage) {
-    page = JSON.parse(JSON.stringify(page));
+    const pageClone = cloneDeep(page);
+    this.navigate(pageClone);
+  }
+
+
+  navigate(data?: RunePage) {
     const id = this.route.parent.parent.snapshot.paramMap.get('id');
     this.router.navigate(['dashboard', 'champion', id, {outlets: {builds: ['runes', 'edit']}}],
       {
         state: {
-          page,
+          data,
         },
       });
   }
-
   ngOnInit() {
       this.runePages = this.runePages = this.route.parent.parent.snapshot.data.champion.DbChamp.runes;
     }

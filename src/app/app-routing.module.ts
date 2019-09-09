@@ -15,7 +15,6 @@ import {BuildListComponent} from './champion-details/components/section-builds/b
 import {SectionRunesComponent} from './champion-details/components/section-runes/section-runes.component';
 import {RunesListComponent} from './champion-details/components/section-runes/runes-list/runes-list.component';
 import {RunesEditComponent} from './champion-details/components/section-runes/runes-edit/runes-edit.component';
-import {RunesResolver} from './champion-details/components/section-runes/runes.resolver';
 
 
 const routes: Routes = [
@@ -53,7 +52,6 @@ const routes: Routes = [
           },
           {
             path: 'runes', outlet: 'builds', component: SectionRunesComponent,
-            resolve: {runes: RunesResolver},
             children:
               [
                 {path: '', component: RunesListComponent},

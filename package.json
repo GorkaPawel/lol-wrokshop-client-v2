@@ -23,8 +23,10 @@
     "@ngrx/store": "^7.4.0",
     "@ngrx/store-devtools": "^7.4.0",
     "core-js": "^2.5.4",
+    "lodash.clonedeep": "^4.5.0",
     "ngx-pagination": "^4.1.0",
     "rxjs": "^6.3.3",
+    "subsink": "^1.0.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

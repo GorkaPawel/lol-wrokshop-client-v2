@@ -1,23 +1,31 @@
 @import "abstracts/variables";
+@import 'abstracts/mixins';
+
 .wrapper {
-  width: 400px;
+  @include ability-card;
 }
+
 .spell-header {
   display: flex;
   justify-content: space-between;
 }
+
 h3 {
   margin: 0;
 }
+
 .spell-header--modal {
   display: flex;
+
   h3 {
-    padding-left: 1rem;
+    padding-left: 1em;
   }
 }
+
 .spell--image {
   display: inline-block;
   position: relative;
+
   .spell--key {
     text-transform: uppercase;
     display: flex;
@@ -26,13 +34,14 @@ h3 {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.3em;
+    height: 1.3em;
     font-weight: 700;
-    background-color: rgba(1,1,1,.8);
+    background-color: rgba(1, 1, 1, .8);
     color: white;
   }
 }
+
 .error {
   color: darkgreen;
 }
@@ -41,8 +50,9 @@ h3 {
   width: 60%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-row-gap: .6rem;
+  grid-row-gap: .6em;
 }
+
 video {
   width: 100%;
 }

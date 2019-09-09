@@ -1,5 +1,5 @@
 <div class="spell-details">
-  <div class="spell-details-foreground" (clickOutside)="closeModal()">
+  <div class="spell-details-foreground" (clickOutside)="closeModal()" (wheel)="$event.stopPropagation()">
     <div class="exit" (click)="closeModal()"></div>
     <div class="content">
       <ng-content></ng-content>

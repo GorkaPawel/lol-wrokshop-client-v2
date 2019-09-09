@@ -1,0 +1,11 @@
+<div class="burger-nav">
+  <ul class="nav" *ngIf="navOpened" (clickOutside)="toggleNav()" (click)="toggleNav()">
+    <ng-content></ng-content>
+  </ul>
+  <button [ngClass]="{'main': main, 'secondary': !main}"
+    (click)="toggleNav(); $event.stopPropagation()"
+    class="burger">
+    <span *ngIf="!main" class="span--more">More</span>
+    <span class="line"></span><span class="line"></span><span class="line"></span>
+  </button>
+</div>

@@ -38,11 +38,8 @@ export class AuthService {
   }
 
   logout() {
-    this.http.post<any>(`${URL}/logout`, null)
-      .subscribe(() => {
         this.removeTokens();
         this.router.navigate(['']);
-      });
   }
 
   refreshToken(): Observable<TokenBearer> {

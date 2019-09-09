@@ -8,9 +8,11 @@
   align-items: center;
   justify-content: center;
 }
+
 a {
   margin-right: 1rem;
 }
+
 .button--save, a {
   text-decoration: none;
   position: relative;
@@ -28,27 +30,34 @@ a {
     background-color: lighten(black, 2);
   }
 }
+
 .save--wrapper {
   display: flex;
   position: relative;
   width: 350px;
   align-self: flex-end;
   justify-content: center;
- }
+}
+
 .tooltip {
   display: none;
 }
+
 button[disabled].button--save:hover + .tooltip {
   @include tooltip;
 }
+
 .build {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .items {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 }
 

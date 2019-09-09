@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {NoteService} from '../note.service';
 import {Note} from '../../../../API/DB/db.model';
 import {Subscription} from 'rxjs';
+import {SubSink} from 'subsink';
 
 @Component({
   selector: 'app-note-form',
@@ -14,7 +15,7 @@ export class NoteFormComponent implements OnInit, OnDestroy {
   constructor(private noteService: NoteService) {
   }
 
-  sub: Subscription;
+  subs = new SubSink();
   note: Note;
   titleText = '';
   noteText = '';
@@ -29,7 +30,7 @@ export class NoteFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.noteService.noteToUpdate$.subscribe(
+    this.subs.add(this.noteService.noteToUpdate$.subscribe(
       (note: Note) => {
         if (note) {
           this.note = note;
@@ -40,11 +41,10 @@ export class NoteFormComponent implements OnInit, OnDestroy {
           this.noteText = '';
         }
       }
-    );
+    ));
   }
 
   ngOnDestroy() {
-    console.log('on destroy called on form');
-    this.sub.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

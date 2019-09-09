@@ -1,5 +1,5 @@
 $image-width: 70vw;
-$image-max-width: 1024px;
+$image-max-width: 730px;
 :host {
   height: 100%;
   width: 100%;
@@ -27,7 +27,14 @@ $image-max-width: 1024px;
 }
 
 .skin-name {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  padding-left: .5rem;
+  font-size: 1.2rem;
+  background-color: rgba(1,1,1, .6);
   text-transform: uppercase;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .image--wrapper:hover button {

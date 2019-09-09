@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
 import {fromEvent, Subscription} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
 import {ApiService} from '../../../../API/SERVER/api.service';
 import {ApiItem, ID} from '../../../../API/SERVER/api.model';
+import {SubSink} from 'subsink';
 
 @Component({
   selector: 'app-item-search',
@@ -10,25 +11,24 @@ import {ApiItem, ID} from '../../../../API/SERVER/api.model';
   styleUrls: ['./item-search.component.scss']
 })
 export class ItemSearchComponent implements AfterViewInit, OnDestroy {
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private detector: ChangeDetectorRef ) {
   }
 
   @ViewChild('search')
   searchRef: ElementRef;
   @Output()
   selectedItem = new EventEmitter();
-  subscription: Subscription;
-  sub2: Subscription;
-  results: ID[] = [];
+  results: ID[];
+  subs = new SubSink();
 
   chooseItem(id: string) {
-    this.sub2 = this.api.getItem(id).subscribe((item: ApiItem) => {
+    this.subs.add(this.api.getItem(id).subscribe((item: ApiItem) => {
       this.selectedItem.emit(item);
-    });
+    }));
   }
 
   ngAfterViewInit() {
-    this.subscription = fromEvent((this.searchRef.nativeElement as HTMLInputElement), 'input')
+    this.subs.add(fromEvent((this.searchRef.nativeElement as HTMLInputElement), 'input')
       .pipe(
         debounceTime(400),
         map((event) => {
@@ -37,13 +37,10 @@ export class ItemSearchComponent implements AfterViewInit, OnDestroy {
       )
       .subscribe((list: ID[]) => {
         this.results = list;
-      });
+        this.detector.detectChanges();
+      }));
   }
-  // TODO co sie spuralo b=przy szukaniu itemow
   ngOnDestroy() {
-    if (this.sub2) {
-      this.sub2.unsubscribe();
-    }
-    this.subscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

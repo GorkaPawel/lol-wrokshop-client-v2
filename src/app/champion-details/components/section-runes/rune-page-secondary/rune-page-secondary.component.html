@@ -1,30 +1,38 @@
-<div class="secondary-path">
-  <div class="path">
-    <app-keystone [item]="currentPath" (click)="togglePathSelection()"></app-keystone>
-    <ng-container *ngIf="pathSelectionOpened">
+<div class="path">
+  <div class="path__item selected--path" (click)="togglePathSelection()">
+    <img [ngClass]="{'path--blank': !currentPath}"
+         src="/assets/vfx-i.png"
+         alt="blank border">
+    <app-keystone
+      [item]="currentPath" [ngClass]="{'path--blank': !currentPath}">
+    </app-keystone>
+  </div>
+  <div class="items" *ngIf="pathSelectionOpened">
+    <app-keystone
+      class="path__item"
+      *ngFor="let path of availablePaths"
+      [item]="path"
+      (click)="select(path)"
+    >
+    </app-keystone>
+  </div>
+</div>
+<div class="rune" [ngClass]="currentPath ? (currentPath.path | lowercase) : null">
+  <div *ngIf="currentPath">
+    <app-keystone class="rune__item selected-rune" [item]="selectedRunes[0]"
+                  (click)="toggleRuneSelection(0)"></app-keystone>
+    <app-keystone class="rune__item selected-rune" [item]="selectedRunes[1]"
+                  (click)="toggleRuneSelection(1)"></app-keystone>
+  </div>
+  <div class="rune-palette" *ngIf="runeSelectionOpen">
+    <ng-container *ngFor="let slot of runeSlots">
       <app-keystone
-        *ngFor="let path of secondaryPaths$ | async"
-        [item]="path"
-        (click)="select(path)"
-      >
+        *ngFor="let rune of slot"
+        class="rune__item"
+        [item]="rune"
+        [ngClass]="{'selected-rune': isSelected(rune)}"
+        (click)="select(rune)">
       </app-keystone>
     </ng-container>
-  </div>
-  <div class="rune-select">
-    <div *ngIf="currentPath">
-      <app-keystone [item]="selectedRunes[0]" (click)="toggleRuneSelection(0)"></app-keystone>
-      <app-keystone [item]="selectedRunes[1]" (click)="toggleRuneSelection(1)"></app-keystone>
-    </div>
-    <div class="rune-palette" *ngIf="runeSelectionOpen">
-      <div class="rune-slot" *ngFor="let slot of runeSlots">
-        <app-keystone
-          *ngFor="let rune of slot"
-          class="rune"
-          [item]="rune"
-          [ngClass]="{'selected-rune': isSelected(rune)}"
-          (click)="select(rune)">
-        </app-keystone>
-      </div>
-    </div>
   </div>
 </div>

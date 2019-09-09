@@ -26,7 +26,8 @@ export class Rune {
   }
 }
 
-export type PathType = 'Domination' | 'Precision' | 'Sorcery' | 'Inspiration';
+export type PathType = 'Domination' | 'Precision' | 'Sorcery' | 'Inspiration' | 'Resolve';
+
 
 export interface RunePage {
   _id?: string;
@@ -35,4 +36,11 @@ export interface RunePage {
   primaryRunes: Array<Rune>;
   secondaryPath: RunePath;
   secondaryRunes: Array<Rune>;
+}
+
+export function isRune(toBeDetermined): toBeDetermined is Rune {
+  if (toBeDetermined && typeof (toBeDetermined as Rune).slot === 'number') {
+    return true;
+  }
+  return false;
 }

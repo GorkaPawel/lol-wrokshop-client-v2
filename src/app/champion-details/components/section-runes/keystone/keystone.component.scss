@@ -1,28 +1,31 @@
-.keystone {
+.stone, .blank {
+  width: 100%;
+  height: 100%;
+}
+.path--wrapper {
   position: relative;
-  img {
-    border: 1px solid deepskyblue;
-    border-radius: 50%;
-    height: 64px;
-    width: 64px;
-  }
-  .tooltip {
-    display: none;
-  }
-  img:hover + .tooltip {
-    width: 150px;
-    display: block;
-    background-color: #040912;
-    border: 1px solid darkorange;
+  .image--path {
     position: absolute;
-    bottom: calc(100% + 10px);
+    top: 0;
     left: 0;
+    max-width: 100%;
   }
 }
-.blank {
-  width: 64px;
-  height: 64px;
-  background-color: darkslategray;
-  border: 1px solid deepskyblue;
-  border-radius: 50%;
+.rune--wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .item--image {
+    max-width: 100%;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: inset 0 0 .5em .45em 	black;
+  }
 }

@@ -1,8 +1,11 @@
-<app-rune-list-item
-  *ngFor="let page of runePages"
-  [page]="page"
-  (click)="edit(page)"
-></app-rune-list-item>
-<div *ngIf="!runePages">
-  nothing here, click edit to add
+<div class="build-list">
+  <p class="hint" *ngIf="!runePages.length">Click NEW to add a new rune page...</p>
+  <div class="build-list--content" (wheel)="$event.stopPropagation()">
+    <app-rune-list-item
+      *ngFor="let page of runePages"
+      [page]="page"
+      (click)="edit(page)"
+    ></app-rune-list-item>
+  </div>
+  <button class="add-build" (click)="navigate()">NEW</button>
 </div>

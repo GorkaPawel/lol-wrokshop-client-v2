@@ -1,22 +1,28 @@
 @import "abstracts/variables";
+@import "abstracts/mixins";
+
 :host {
-  display: block;
-  max-width: 400px;
+  @include ability-card;
 }
+
 p {
   padding-top: 1rem;
   margin: 0;
 }
+
 .passive--header {
   display: flex;
+
   h3 {
     margin: 0;
     padding-left: 1rem;
   }
 }
+
 .passive-desc--modal {
   padding: 2rem 0;
 }
+
 video {
   width: 100%;
 }

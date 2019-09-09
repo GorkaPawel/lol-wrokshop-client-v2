@@ -1,4 +1,4 @@
-<div class="ability--wrapper">
+<div class="ability--wrapper" (wheel)="$event.stopPropagation()">
   <champion-passive
     [passive]="champion.passive"
     [name]="champion.id">

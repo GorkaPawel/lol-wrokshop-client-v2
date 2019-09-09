@@ -11,9 +11,16 @@ img {
 
 ul {
   width: 50%;
+  min-width: 350px;
+  padding: 0;
 }
 
 li {
+  @media (max-width: 1300px) {
+    & {
+      font-size: calc(1rem + 8px);
+    }
+  }
   display: flex;
   align-items: center;
   text-transform: uppercase;

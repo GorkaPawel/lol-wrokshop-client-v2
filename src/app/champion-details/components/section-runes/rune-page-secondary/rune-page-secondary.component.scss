@@ -1,11 +1,12 @@
-.rune-slot, .path, .rune-select{
-  display: flex;
-}
-
-.selected-rune {
-  filter: none !important;
-}
-
-.rune {
-  filter: grayscale(100%);
+@import 'shared/runes';
+.rune-palette {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  @media (max-width: 365px) {
+    & {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 }

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
@@ -23,7 +23,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   providers: [
     {
@@ -34,4 +34,5 @@ import {NgxPaginationModule} from 'ngx-pagination';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

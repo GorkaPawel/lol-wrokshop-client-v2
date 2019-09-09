@@ -22,8 +22,6 @@ export class RunesAdapterService {
         });
       }
     }
-    console.log('second time not setting: ', this.runePaths);
-    console.log('second time not setting: ', this.runes);
   }
 
   get runePaths() {

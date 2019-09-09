@@ -1,7 +1,7 @@
 <div class="wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
   <div class="passive--header">
     <img [src]="passiveIconUrl" alt="passive-icon">
-    <h3>{{passive.name}}</h3>
+    <h3>PASSIVE: {{passive.name}}</h3>
   </div>
   <p class="passive-desc" [innerHTML]="passive.description"></p>
 </div>

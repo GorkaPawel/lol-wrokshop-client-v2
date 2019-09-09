@@ -31,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (this.refreshTokenInProgress$.getValue()) {
           return this.handleRequestAfterRefresh(clonedRequest, next);
         }
-        // if 403 error and token hasn't started refreshing yet, go head and start the process
+        // if 403 error and token hasn't started refreshing yet, go ahead and start the process
         return this.refreshToken().pipe(
           // here goes the vale of Bearer received upon refreshing
           // get the value, unsubscribe then start new

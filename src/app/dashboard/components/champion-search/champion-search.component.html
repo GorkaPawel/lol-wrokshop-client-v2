@@ -6,7 +6,7 @@
     #search>
   <ul *ngIf="results" (clickOutside)="close()">
     <li
-      *ngFor="let result of results"
+      *ngFor="let result of results | slice:0:10"
       (click)="goToDetails(result.name)">
       <img
         src="http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{result.id}}.png"

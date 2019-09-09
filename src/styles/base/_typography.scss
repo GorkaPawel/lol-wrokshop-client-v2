@@ -13,29 +13,7 @@ label {
 }
 @media(max-width: 800px) {
   html {
-    font-size: 3vw;
+    font-size: 2vw;
   }
-}
-::-webkit-scrollbar-track
-{
-  background-color: lighten(black, 8);
-}
-
-::-webkit-scrollbar
-{
-  width: 5px;
-  background-color: black;
-}
-
-::-webkit-scrollbar-thumb
-{
-  border-radius: 30px;
-  background-color: black;
-  background-image: -webkit-gradient(linear,
-    40% 0%,
-    75% 84%,
-    from(	#ffff00),
-    to(#ff4000),
-    color-stop(.6,#ffbf00))
 }
 

@@ -2,7 +2,8 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Note, UserChampion} from '../../../../API/DB/db.model';
 import {NoteService} from '../note.service';
 import {DbService} from '../../../../API/DB/db.service';
-import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {SubSink} from 'subsink';
 
 @Component({
   selector: 'app-note-list',
@@ -11,11 +12,10 @@ import {Subscription} from 'rxjs';
 })
 export class NoteListComponent implements OnInit, OnDestroy {
 
-  constructor(private noteService: NoteService, private db: DbService) {
+  constructor(private noteService: NoteService, private db: DbService, private route: ActivatedRoute) {
   }
 
-  sub1: Subscription;
-  sub2: Subscription;
+  subs = new SubSink();
   @Input()
   userChampion: UserChampion;
   formOpened = false;
@@ -33,22 +33,20 @@ export class NoteListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub1 = this.noteService.noteToUpdate$.subscribe((note: Note) => {
-      console.log('value got from to update subject', note);
+    this.subs.add(this.noteService.noteToUpdate$.subscribe((note: Note) => {
       this.openForm();
-    });
-    this.sub2 = this.noteService.noteUpdated$.subscribe((note: Note) => {
+    }));
+    this.subs.add(this.noteService.noteUpdated$.subscribe((note: Note) => {
       if (note) {
-        this.db.updateNote(note);
+        this.db.updateNote(note).subscribe((response) => {
+          this.route.snapshot.data.champion.DbChamp.notes = response;
+        });
       }
-      console.log('value got from updated subject', note);
       this.closeForm();
-    });
+    }));
   }
 
   ngOnDestroy() {
-    console.log('ng destroy called on list');
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

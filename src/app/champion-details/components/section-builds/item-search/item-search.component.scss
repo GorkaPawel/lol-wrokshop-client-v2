@@ -24,6 +24,9 @@
   &:hover {
     background-color: lighten(#000, 6);
   }
+  img {
+    border-radius: 10px;
+  }
 }
 ul {
   margin: 0;

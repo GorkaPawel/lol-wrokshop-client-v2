@@ -72,3 +72,32 @@
     height: 20px;
   }
 }
+@mixin ability-card {
+  min-width: 300px;
+  max-width: 450px;
+  @media(max-width: 1200px) {
+    & {
+      font-size: 1.5rem;
+    }
+  }
+  @media(max-width: 450px) {
+    & {
+      font-size: 2rem;
+    }
+  }
+  background-color: rgba(1, 1, 1, .6);
+  padding: .2rem;
+  margin: 1rem;
+}
+@mixin  button2 {
+    border: 2px solid $color4;
+    background-color: transparent;
+    padding: .6em .5em;
+    font-size: 1em;
+    &:first-child {
+      margin-right: 1.5em;
+    }
+    &:hover {
+      filter: hue-rotate(20deg) brightness(120%);
+    }
+}

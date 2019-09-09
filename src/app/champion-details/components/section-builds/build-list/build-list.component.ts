@@ -1,27 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {Build, UserChampion} from '../../../../API/DB/db.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {pluck} from 'rxjs/operators';
-
+import cloneDeep from 'lodash.clonedeep';
+import {SubSink} from 'subsink';
 @Component({
   selector: 'app-build-list',
   templateUrl: './build-list.component.html',
   styleUrls: ['./build-list.component.scss']
 })
-export class BuildListComponent implements OnInit {
+export class BuildListComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private detector: ChangeDetectorRef) {
   }
 
+  subs = new SubSink();
   builds: Build[];
   page = 1;
 
   selectBuild(build: Build) {
+    const buildClone = cloneDeep(build);
     const id = this.route.snapshot.paramMap.get('id');
     this.router.navigate(['dashboard', 'champion', id, {outlets: {builds: 'edit'}}],
       {
         state: {
-          build,
+          build: buildClone,
         },
       });
   }
@@ -32,12 +35,14 @@ export class BuildListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.parent.data
+    this.subs.add(this.route.parent.data
       .pipe(pluck('champion', 'DbChamp'))
       .subscribe((champion: UserChampion) => {
-        if (champion) {
           this.builds = champion.builds;
-        }
-      });
+          this.detector.detectChanges();
+      }));
+  }
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

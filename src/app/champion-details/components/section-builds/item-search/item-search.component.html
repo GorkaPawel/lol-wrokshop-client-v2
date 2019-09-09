@@ -4,8 +4,7 @@
     placeholder="Search for an item..."
     #search
   >
-  <ul
-    *ngIf="results">
+  <ul>
     <li
       class="item"
       *ngFor="let result of results | slice:0:4"

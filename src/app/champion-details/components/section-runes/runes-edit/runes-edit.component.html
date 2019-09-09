@@ -1,4 +1,24 @@
-<input type="text" placeholder="enter page name" [(ngModel)]="pageName">
-<app-rune-page-primary [state]="primaryState" (pageState)="onPrimaryState($event)"></app-rune-page-primary>
-<app-rune-page-secondary [state]="secondaryState" (pageState)="onSecondaryState($event)"></app-rune-page-secondary>
-<button (click)="saveRunePage()">save</button>
+<div class="page" (wheel)="$event.stopPropagation()">
+  <div class="rune--controls">
+    <label for="title">
+      Rune page title:
+    </label>
+    <div class="form--control">
+      <input id="title" type="text" placeholder="Enter rune page title..."
+             [(ngModel)]="pageName">
+      <button class="button--save" (click)="saveRunePage(); $event.stopPropagation()">save</button>
+      <button class="button--save discard" (click)="navigate()">DISCARD</button>
+    </div>
+  </div>
+  <div class="rune-selection">
+    <app-rune-page-primary class="primary" [state]="primaryState"
+                           (pageState)="onPrimaryState($event)"></app-rune-page-primary>
+    <app-rune-page-secondary class="secondary" [state]="secondaryState"
+                             (pageState)="onSecondaryState($event)"></app-rune-page-secondary>
+  </div>
+</div>
+
+<app-ability-modal *ngIf="errorModalOpened" (modalClose)="toggleError()">
+  <p>Error!</p>
+  <p>Please fill all fields.</p>
+</app-ability-modal>
