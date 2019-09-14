@@ -1,3 +1,14 @@
-<p>
-  blank works!
-</p>
+<div class="wrapper" *ngIf="championList$ | async as champion">
+  <h1>Your champions:</h1>
+  <div class="champions">
+    <div class="champion" *ngFor="let champ of champion" (click)="gotToDetails(champ)">
+      <p class="title">{{champ.name}}</p>
+      <img [src]="baseUrl+champ.name+'/tile'" alt="champion">
+    </div>
+  </div>
+  <p class="hint" *ngIf="!champion.length">
+    You have not added any champions yet.
+    Find one and add a build, a rune page or a note in order to do
+    so.
+  </p>
+</div>

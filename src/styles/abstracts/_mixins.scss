@@ -12,43 +12,6 @@
     }
   }
 }
-
-@mixin button {
-  margin-top: 1rem;
-  padding: 1em;
-  border: 3px dotted transparent;
-  background-image: foreground-gradient(), background-gradient();
-  background-clip: padding-box, border-box;
-  text-transform: uppercase;
-  text-align: center;
-  &:hover {
-    color: darken($olympic-white, 20);
-    cursor: pointer;
-  }
-}
-
-//for styling forms
-@mixin form-style {
-  form {
-    display: flex;
-    flex-direction: column;
-
-    input {
-      width: 100%;
-      min-height: 2em;
-      margin-top: 2vh;
-      margin-bottom: 4vh;
-      background: none;
-      border: none;
-      outline: none;
-      border-bottom: 1px solid $olympic-white;
-    }
-
-    button {
-      @include button;
-    }
-  }
-}
 @mixin tooltip {
   margin: 0;
   display: block;
@@ -100,4 +63,43 @@
     &:hover {
       filter: hue-rotate(20deg) brightness(120%);
     }
+}
+@mixin hover-effect1 {
+  &::after {
+    content: '';
+    display: block;
+    background-color: white;
+    width: calc(100%);
+    height: 1px;
+    transform: scale(0);
+    transform-origin: right;
+    transition: transform 200ms ease-in;
+  }
+  &:hover::after,
+  &:focus::after {
+    transform: scale(1);
+    transform-origin: left;
+  }
+}
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
 }

@@ -11,6 +11,7 @@ export class BurgerNavComponent {
 
   navOpened = false;
   @Input() main = false;
+  @Input() left = false;
 
   toggleNav() {
     this.navOpened = !this.navOpened;

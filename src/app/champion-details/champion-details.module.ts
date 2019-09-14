@@ -31,6 +31,7 @@ import { RunePageSecondaryComponent } from './components/section-runes/rune-page
 import { RuneListItemComponent } from './components/section-runes/rune-list-item/rune-list-item.component';
 import { SectionSpellsComponent } from './components/section-spells/section-spells.component';
 import { AbilityModalComponent } from './components/ability-modal/ability-modal.component';
+import { SpellTileComponent } from './components/section-spells/spell-tile/spell-tile.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { AbilityModalComponent } from './components/ability-modal/ability-modal.
     RunePageSecondaryComponent,
     RuneListItemComponent,
     SectionSpellsComponent,
-    AbilityModalComponent,
+    SpellTileComponent,
   ],
   imports: [
     CommonModule,

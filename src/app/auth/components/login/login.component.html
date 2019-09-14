@@ -1,25 +1,26 @@
-<h2>Log In</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+<div class="border" [ngClass]="{'glow': !loginForm.invalid}"></div>
+<section class="login--wrapper">
+  <h2>Log In</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
-  <label for="email">Enter email</label>
-  <div [ngClass]="{'error--icon': loginForm.invalid}">
-    <input
-      type="email"
-      id="email"
-      formControlName="email">
-    <span class="error-message">{{getErrorMessage('email')}}</span>
-  </div>
+    <label for="email">email</label>
+    <input type="email" id="email" formControlName="email">
+    <span *ngIf="getErrorMessage('email') as error"
+          class="error-message">{{error}}</span>
 
-  <label for="password">Enter password</label>
-  <div [ngClass]="{'error--icon': loginForm.invalid}">
-    <input
-      type="password"
-      id="password"
-      formControlName="password">
-    <span class="error-message">{{getErrorMessage('password')}}</span>
-  </div>
-  <button type="submit" [disabled]="loginForm.invalid">Submit</button>
-</form>
-<p class="heading">Don't have an account?</p>
-<button class="link" type="button" [routerLink]="['register']">register</button>
+    <label for="password">password</label>
+    <input type="password" id="password" formControlName="password">
+    <span *ngIf="getErrorMessage('password') as error"
+          class="error-message">{{error}}</span>
 
+    <div class="wrappa">
+      <div class="primary-btn-wrapper" [ngClass]="{'glow': !loginForm.invalid}">
+      </div>
+      <button class="primary-btn" type="submit" [disabled]="loginForm.invalid">Submit</button>
+    </div>
+  </form>
+  <p class="heading">Don't have an account?</p>
+  <button class="btn-secondary" type="button" [routerLink]="['/register']">
+    <span class="no-skew">register</span>
+  </button>
+</section>

@@ -15,13 +15,10 @@ const REFRESH_TOKEN = 'REFRESH_TOKEN';
 })
 export class AuthService {
 
-  // TODO error handler
+
   register(newUser: NewUser) {
     this.http.post<any>(`${URL}/register`, newUser).subscribe(
       () => this.router.navigate(['']),
-      err => {
-        console.log(err.error);
-      }
     );
   }
 
@@ -31,15 +28,12 @@ export class AuthService {
         (tokens: TokenBearer) => {
           this.storeTokens(tokens);
           this.router.navigate(['dashboard']);
-        },
-        error => {
-          console.log(error);
         });
   }
 
   logout() {
-        this.removeTokens();
-        this.router.navigate(['']);
+    this.removeTokens();
+    this.router.navigate(['']);
   }
 
   refreshToken(): Observable<TokenBearer> {

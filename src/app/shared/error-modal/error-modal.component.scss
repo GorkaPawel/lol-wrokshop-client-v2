@@ -1,0 +1,50 @@
+@import "abstracts/variables";
+
+.foreground {
+  font-size: calc(12px + 1.5vw);
+  padding: 4vw;
+  min-width: 200px;
+  max-width: 450px;
+  background-color: black;
+  border: 2px solid $error-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 70px;
+    filter: contrast(0) brightness(.2) sepia(1) hue-rotate(-40deg) saturate(15);
+  }
+
+  .error-message {
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}
+button {
+  padding: .5em 1em;
+  background: transparent;
+  border: 2px solid $error-color;
+  transform: skew(-20deg);
+  font-size: .8em;
+    &:hover,
+    &:focus {
+      color: $error-color;
+    }
+  .skew-fix {
+    color: inherit;
+    display: inline-block;
+    transform: skew(20deg);
+  }
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1, 1, 1, .6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

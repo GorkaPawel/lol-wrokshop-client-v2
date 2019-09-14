@@ -1,28 +1,22 @@
-@import "abstracts/variables";
-@import "abstracts/mixins";
-
 :host {
-  @include ability-card;
+  display: block;
+  position: relative;
+  border: 1px solid red;
+  z-index: 1;
 }
-
-p {
-  padding-top: 1rem;
-  margin: 0;
-}
-
-.passive--header {
-  display: flex;
-
-  h3 {
-    margin: 0;
-    padding-left: 1rem;
-  }
-}
-
-.passive-desc--modal {
-  padding: 2rem 0;
-}
-
 video {
-  width: 100%;
+  max-width: 1056px;
+  position: absolute;
+  top: 0;
+  left:0;
+  margin: 0  auto;
+  z-index: -1;
+}
+.passive-title {
+  display: flex;
+  align-items: flex-start;
+  h1 {
+    margin: 0 0 0 .5rem;
+    padding: 0;
+  }
 }

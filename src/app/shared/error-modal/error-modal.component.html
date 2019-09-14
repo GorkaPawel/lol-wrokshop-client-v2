@@ -1,0 +1,11 @@
+<div class="background">
+  <div class="foreground" (clickOutside)="close()">
+    <img src="/assets/error.svg" alt="mark">
+      <p class="error-message">
+        <ng-content></ng-content>
+      </p>
+    <button (click)="close()">
+      <span class="skew-fix">OK</span>
+    </button>
+  </div>
+</div>

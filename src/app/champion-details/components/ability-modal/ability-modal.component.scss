@@ -17,8 +17,8 @@
     max-width: 50%;
     width:50%;
     min-width: 300px;
-    height: 50vh;
-    max-height: 95vh;
+    height: calc(100vh - 70px);
+    margin-top: 70px;
     background-color: black;
     border: 1px solid $color6;
     display: flex;

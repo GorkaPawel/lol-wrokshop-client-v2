@@ -1,19 +1,11 @@
-<div class="wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
-  <div class="passive--header">
-    <img [src]="passiveIconUrl" alt="passive-icon">
-    <h3>PASSIVE: {{passive.name}}</h3>
-  </div>
-  <p class="passive-desc" [innerHTML]="passive.description"></p>
+<div class="passive-title">
+  <app-spell-tile [spell]="{spell: 'p', champKey: name}"></app-spell-tile>
+  <h1>{{passive.name}}</h1>
 </div>
-<app-ability-modal (modalClose)="closeSpellDetails()" *ngIf="spellDetailsOpened">
-  <div class="passive--header">
-    <img [src]="passiveIconUrl" alt="passive-icon">
-    <h3>{{passive.name}}</h3>
-  </div>
-  <p class="passive-desc--modal" [innerHTML]="passive.description"></p>
-  <video class="ability-video" controls>
-    <source [src]="spellVideoUrl + passive.abilityVideoPath" type="video/webm">
-  </video>
-</app-ability-modal>
+<p class="passive-desc" [innerHTML]="passive.description"></p>
+
+<video class="ability-video" controls>
+  <source [src]="spellVideoUrl + passive.abilityVideoPath" type="video/webm">
+</video>
 
 

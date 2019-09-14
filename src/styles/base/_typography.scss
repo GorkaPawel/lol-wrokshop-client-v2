@@ -1,19 +1,30 @@
 @import "abstracts/variables";
-@import "abstracts/functions";
 @import "abstracts/mixins";
-html {
-  font-family: 'Jura', sans-serif;
-  font-size: 1.2vw;
-}
+
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 16px;
+$max_font: 24px;
 * {
   color: $olympic-white;
 }
+
+html {
+  font-family: 'Jura', sans-serif;
+  text-rendering: optimizeLegibility;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+h1 {
+  font-size: 1.1rem;
+}
+
+h2 {
+  font-size: calc(1.1rem + 4px);
+}
+
+
 label {
   font-size: 1.2em;
-}
-@media(max-width: 800px) {
-  html {
-    font-size: 2vw;
-  }
 }
 

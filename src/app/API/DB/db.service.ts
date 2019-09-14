@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/internal/operators/tap';
-import {Build, Note, UserChampion} from './db.model';
+import {Build, Note} from './db.model';
 import {RunePage} from '../../champion-details/components/section-runes/runes.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {ApiService} from '../SERVER/api.service';
+import {ID} from '../SERVER/api.model';
+import {switchMap} from 'rxjs/internal/operators/switchMap';
+import {of} from 'rxjs/internal/observable/of';
 import {Observable} from 'rxjs';
 
 const USER_CHAMPION_LIST_URL = 'http://localhost:8080/account/champions';
@@ -18,8 +21,6 @@ const USER_RUNES_URL = 'http://localhost:8080/runes/update';
 export class DbService {
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
   ) {
   }
 
@@ -29,10 +30,9 @@ export class DbService {
     return this.http.get(USER_CHAMPION_URL + id);
   }
 
-  getChampionList(id: string) {
-    return this.http.get(USER_CHAMPION_LIST_URL + id);
+  getChampionList(): Observable<{name: string}[]> {
+    return this.http.get<{name: string}[]>(USER_CHAMPION_LIST_URL);
   }
-
 
   updateBuild(build: Build) {
     return this.http.put<Build>(USER_BUILD_URL, {championName: this.championId, build});

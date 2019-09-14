@@ -23,6 +23,10 @@ export class ApiService {
     });
   }
 
+  get _championList() {
+    return this.championList;
+  }
+
   private championList: ID[];
   private itemList: ID[];
 

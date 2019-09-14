@@ -1,11 +1,34 @@
-<div class="ability--wrapper" (wheel)="$event.stopPropagation()">
-  <champion-passive
-    [passive]="champion.passive"
-    [name]="champion.id">
-  </champion-passive>
-  <champion-spell
-    *ngFor="let spell of champion.spells"
-    [spell]="spell"
-    [name]="champion.id">
-  </champion-spell>
+<div class="container">
+  <nav class="nav">
+    <ul class="tab">
+      <li
+        class="tab__item"
+        [class.active]="currentSpell === 'p'"
+        (click)="currentSpell = 'p'">
+        <app-spell-tile [spell]="{spell: 'p', champKey: champion.id}"></app-spell-tile>
+      </li>
+      <li *ngFor="let spell of champion.spells"
+          class="tab__item"
+          [class.active]="currentSpell === spell.spellKey"
+          (click)="currentSpell = spell.spellKey">
+        <app-spell-tile [spell]="{spell: spell, champKey: champion.id}"></app-spell-tile>
+      </li>
+    </ul>
+  </nav>
+  <div class="content--container" [ngSwitch]="currentSpell">
+    <ng-container *ngFor="let spell of champion.spells">
+      <champion-spell
+        class="tab-slider--body"
+        *ngSwitchCase="spell.spellKey"
+        [spell]="spell"
+        [name]="champion.id">
+      </champion-spell>
+    </ng-container>
+    <champion-passive
+      class="tab-slider--body"
+      *ngSwitchCase="'p'"
+      [passive]="champion.passive"
+      [name]="champion.id">
+    </champion-passive>
+  </div>
 </div>

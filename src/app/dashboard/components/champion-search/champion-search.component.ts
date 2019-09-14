@@ -4,6 +4,7 @@ import {debounceTime, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {ApiService} from '../../../API/SERVER/api.service';
 import {ID} from '../../../API/SERVER/api.model';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-champion-search',
@@ -11,7 +12,7 @@ import {ID} from '../../../API/SERVER/api.model';
   styleUrls: ['./champion-search.component.scss']
 })
 export class ChampionSearchComponent implements AfterViewInit, OnDestroy {
-  constructor(private api: ApiService, private router: Router) {
+  constructor(private api: ApiService, private router: Router, private authService: AuthService) {
   }
 
   @ViewChild('search') searchRef: ElementRef;
@@ -20,6 +21,10 @@ export class ChampionSearchComponent implements AfterViewInit, OnDestroy {
 
   close() {
     this.results = [];
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   goToDetails(championName: string) {

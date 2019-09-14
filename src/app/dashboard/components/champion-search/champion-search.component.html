@@ -1,17 +1,25 @@
 <div class="wrapper">
-  <input
-    class="input--search"
-    type="search"
-    placeholder="Search for a champion..."
-    #search>
-  <ul *ngIf="results" (clickOutside)="close()">
-    <li
-      *ngFor="let result of results | slice:0:10"
-      (click)="goToDetails(result.name)">
-      <img
-        src="http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{result.id}}.png"
-        alt="{{result.name}}">
-      {{result.name}}
-    </li>
-  </ul>
+  <app-burger-nav class="main-nav" [main]="true" [left]="true">
+    <li class="home"><a [routerLink]="['/dashboard']">home</a></li>
+    <li class="logout" (click)="logout()">logout</li>
+  </app-burger-nav>
+  <div class="input--wrapper">
+    <input
+      class="input--search"
+      type="text"
+      placeholder="Search for a champion..."
+      #search>
+    <img class="glass" src="/assets/search-solid.svg" alt="search">
+    <ul *ngIf="results" (clickOutside)="close()" class="result-list">
+      <li
+        *ngFor="let result of results | slice:0:10"
+        (click)="goToDetails(result.name)">
+        <img
+          src="http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{{result.id}}.png"
+          alt="{{result.name}}">
+        <span class="name">{{result.name}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="nav--placeholder"></div>
 </div>

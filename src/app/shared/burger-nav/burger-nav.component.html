@@ -1,8 +1,9 @@
 <div class="burger-nav">
-  <ul class="nav" *ngIf="navOpened" (clickOutside)="toggleNav()" (click)="toggleNav()">
+  <ul class="nav" *ngIf="navOpened" (clickOutside)="toggleNav()" (click)="toggleNav()"
+      [ngClass]="{'left': left, 'right': !left}">
     <ng-content></ng-content>
   </ul>
-  <button [ngClass]="{'main': main, 'secondary': !main}"
+  <button [ngClass]="{'main': main, 'secondary': !main, 'green-blue': left}"
     (click)="toggleNav(); $event.stopPropagation()"
     class="burger">
     <span *ngIf="!main" class="span--more">More</span>

@@ -1,7 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Passive} from '../../../API/SERVER/api.model';
-import {ApiService} from '../../../API/SERVER/api.service';
-import {ModalControls} from '../../models';
 
 @Component({
   selector: 'champion-passive',
@@ -9,10 +7,9 @@ import {ModalControls} from '../../models';
   styleUrls: ['./champion-passive.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChampionPassiveComponent extends ModalControls implements OnChanges {
+export class ChampionPassiveComponent {
 
-  constructor(private api: ApiService) {
-    super();
+  constructor() {
   }
 
   @Input()
@@ -21,13 +18,5 @@ export class ChampionPassiveComponent extends ModalControls implements OnChanges
   @Input()
   name: string;
 
-  passiveIconUrl;
   spellVideoUrl = 'https://d28xe8vt774jo5.cloudfront.net/';
-
-  ngOnChanges() {
-    if (this.passive) {
-      this.passiveIconUrl = this.api.generateSpellImgUrl(this.passive.abilityIconPath, this.name);
-    }
-  }
-
 }

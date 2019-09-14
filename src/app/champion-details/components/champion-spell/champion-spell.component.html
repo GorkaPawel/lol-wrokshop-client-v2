@@ -1,9 +1,6 @@
 <div class="wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
   <div class="spell-header">
-    <div class="spell--image">
-      <img [src]="spellIconUrl" alt="spellIcon">
-      <div class="spell--key">{{spell.spellKey}}</div>
-    </div>
+    <app-spell-tile [spell]="{spell: spell, champKey: name}"></app-spell-tile>
     <h3>{{spell.name}}</h3>
   </div>
   <p>{{spell.description}}</p>

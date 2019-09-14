@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {pluck} from 'rxjs/operators';
 import {Stats} from '../../../API/SERVER/api.model';
@@ -12,7 +12,7 @@ import {SubSink} from 'subsink';
 })
 export class ChampionStatsComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private detector: ChangeDetectorRef) {
   }
   subs = new SubSink();
   champStats: Stats;
@@ -24,6 +24,7 @@ export class ChampionStatsComponent implements OnInit, OnDestroy {
       )
       .subscribe((stats: Stats) => {
         this.champStats = stats;
+        this.detector.detectChanges();
       }));
   }
   ngOnDestroy(): void {

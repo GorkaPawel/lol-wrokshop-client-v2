@@ -1,23 +1,10 @@
 @import "./abstracts/variables";
-
+@import "./abstracts/mixins";
 .nav__main {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 16px;
+  right: 10px;
   z-index: $search-index;
-
-  li {
-    width: 35vw;
-    padding: 1rem;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-
-    &:hover {
-      background-color: lighten(black, 8);
-      border-bottom: 1px solid $color6;
-    }
-  }
-
   @media (hover: hover) {
     & {
       display: none;
@@ -43,9 +30,9 @@ a {
 }
 
 .img-portrait {
+  align-self: flex-start;
   max-width: 120px;
-  max-height: 120px;
-  margin-right: 1rem;
+  margin-right: .5rem;
 }
 
 // slides
@@ -68,7 +55,7 @@ a {
 
 .section--article {
   flex-grow: 1;
-  padding: 0 3rem;
+  padding: 0 1rem;
 }
 
 //overview section
@@ -77,52 +64,28 @@ a {
   padding: 1rem;
 
   .champion--name {
-    font-size: 2.5rem;
+    font-size: 1.1rem;
   }
 
   .champion--title {
-    font-size: 1.2rem;
+    font-size: .6rem;
     display: inline-block;
-    padding-top: 1rem;
+    padding-top: .2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
 
-  @media(max-width: 800px) {
-  }
+
 }
 
 .nav--inner {
-  flex-grow: 1;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  display: flex;
-
-  ul {
-    height: 100%;
+  margin-left: auto;
+  .standard-nav {
     display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-
-  li {
-    padding: 0 1rem;
-
-    &::after {
-      content: '';
-      display: block;
-      background-color: white;
-      width: calc(100%);
-      height: 1px;
-      transform: scale(0);
-      transform-origin: right;
-      transition: transform 200ms ease-in;
-    }
-
-    &:hover::after,
-    &:focus::after {
-      transform: scale(1);
-      transform-origin: left;
+    li {
+      text-transform: uppercase;
+      margin: 0 .5rem;
+      @include hover-effect1;
     }
   }
 }
@@ -137,9 +100,8 @@ a {
   transform: translateY(-50%);
   text-align: right;
   text-transform: uppercase;
-  font-size: 1.5rem;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 @media (hover: hover) {
@@ -149,14 +111,14 @@ a {
 }
 
 .nav__item {
-  $nav_item--height: 2rem;
-  padding-right: calc(#{$nav_item--height} + 1.5rem);
+  $nav_item--height: 1.1rem;
+  padding-right: calc(#{$nav_item--height} + .5rem);
   display: block;
   line-height: $nav_item--height;
   height: $nav_item--height;
   cursor: pointer;
   position: relative;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 
   &::after {
     content: '';
@@ -191,9 +153,6 @@ a {
 }
 
 // builds
-.article--builds {
-  height: 0;
-}
 .nav--build {
   z-index: $builds-nav-index;
   ul {
@@ -201,7 +160,6 @@ a {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 2rem;
     a {
       font-weight: 700;
       text-transform: uppercase;
@@ -222,17 +180,10 @@ a {
     .a--runes {
       margin-right: 2rem;
     }
-    @media(max-width: 540px) {
-      & {
-        font-size: calc(1em + 20px) !important;
-      }
-    }
   }
 }
 
-.standard-nav {
-  display: flex;
-}
+
 
 .burger-nav {
   margin-left: auto;

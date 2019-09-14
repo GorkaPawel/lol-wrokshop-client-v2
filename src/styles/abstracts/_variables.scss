@@ -5,6 +5,8 @@ $gradient-1: rgba(136,221,237,1);
 $gradient-2: rgba(11,217,118,1);
 $gradient-3: rgba(1,233,238,1);
 $gradient-4: rgba(73,180,153,1);
+$border-gradient: linear-gradient(45deg, #23074d, #cc5333);
+$border-blank: lighten(black, 12);
 //fixed top nav width
 $main-nav-width: 60px;
 
@@ -15,6 +17,8 @@ $color4: #895575;
 $color5: #0f0d35;
 $color6: #f4bb8a;
 $color7: #393b63;
+$error-color: #c3073f;
+$gradient-animation: button-ready 1.7s infinite alternate linear;
 
 //main context
 $search-index: 10;

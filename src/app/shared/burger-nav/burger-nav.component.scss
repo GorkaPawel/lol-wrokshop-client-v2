@@ -3,14 +3,39 @@
 .burger-nav {
   position: relative;
   .nav {
-    padding: 1rem;
+    z-index: $search-index;
+    min-width: 200px;
+    top: 100%;
     position: absolute;
-    top: 0;
-    right: 100%;
     display: flex;
     flex-direction: column;
     margin: 0;
-    background-color: rgba(1,1,1, .8);
+    padding: .5em;
+    background-color: black;
+    ::ng-deep li {
+      text-transform: uppercase;
+      padding: .5em;
+      border-bottom: 1px solid white;
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover,
+      &:focus {
+        background-color: lighten(black, 12);
+      }
+    }
+  }
+  .nav.left {
+    left: 0;
+    text-align: left;
+  }
+  .nav.right {
+    right: 0;
+    text-align: right;
   }
 }
 .burger {
@@ -20,16 +45,13 @@
   border: none;
   font-family: inherit;
   cursor: pointer;
-  &:hover {
-    border-bottom: 1px solid $olympic-white;
-  }
 }
 .secondary {
   flex-direction: row;
   align-items: center;
   .span--more {
-    font-size: calc(1.5rem + 5px);
-    padding-right: .5rem;
+    font-size: 1rem;
+    padding-right: .1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: inherit;
@@ -37,13 +59,12 @@
   &::after {
     content: '';
     clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-    width: 1.5rem;
-    height: 1.5rem;
+    width: .8rem;
+    height: .8rem;
     background-color: $olympic-white;
   }
 }
 .main {
-  margin: 1rem 1rem 0 0;
   .line {
     display: block;
     width: 60px;
@@ -51,4 +72,7 @@
     background-image: linear-gradient(to right, rgb(233, 100, 67), rgb(144, 78, 149));
     margin: 4px 0;
   }
+}
+.main.green-blue .line {
+  background-image: linear-gradient(to right, #00F260, #0575E6) !important;
 }

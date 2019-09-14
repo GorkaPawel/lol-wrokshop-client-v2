@@ -18,7 +18,6 @@
   </div>
 </div>
 
-<app-ability-modal *ngIf="errorModalOpened" (modalClose)="toggleError()">
-  <p>Error!</p>
-  <p>Please fill all fields.</p>
-</app-ability-modal>
+<app-error-modal *ngIf="errorModalOpened" (closeModal)="toggleError()">
+please fill all the fields.
+</app-error-modal>

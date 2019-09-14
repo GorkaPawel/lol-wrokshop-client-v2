@@ -13,6 +13,7 @@ import {ApiChampion} from '../../API/SERVER/api.model';
 import {UserChampion} from '../../API/DB/db.model';
 import {RunesAdapterService} from '../components/section-runes/runes-adapter.service';
 import {SubSink} from 'subsink';
+import {AuthService} from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-champion-details',
@@ -23,7 +24,7 @@ import {SubSink} from 'subsink';
 
 export class ChampionDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute, private router: Router, private runesService: RunesAdapterService) {
+  constructor(private renderer: Renderer2, private route: ActivatedRoute, private router: Router, private runesService: RunesAdapterService, private authService: AuthService) {
   }
 
   champion: ApiChampion;

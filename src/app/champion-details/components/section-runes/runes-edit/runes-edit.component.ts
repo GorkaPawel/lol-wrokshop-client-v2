@@ -53,8 +53,8 @@ export class RunesEditComponent implements OnDestroy {
   }
   saveRunePage() {
     if (!this.pageName ||
-      !this.primaryState.primaryPath ||
-      !this.secondaryState.secondaryPath ||
+      !this.primaryState ||
+      !this.secondaryState ||
       this.primaryState.primaryRunes.includes(null) ||
       this.secondaryState.secondaryRunes.includes(null)) {
       return this.toggleError();

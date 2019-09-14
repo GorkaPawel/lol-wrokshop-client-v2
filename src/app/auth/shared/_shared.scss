@@ -1,43 +1,117 @@
-@include form-style;
-.heading {
-  text-align: center;
-  font-size: 1.1em;
+@import "abstracts/variables";
+:host {
   display: block;
-  margin-top: 10vh;
-  margin-bottom: 0;
-}
-.link {
-  @include button;
   width: 100%;
-  margin-top: .5vh;
+  height: 100%;
+  position: relative;
+  background-color: black;
+  background-clip: content-box;
+  padding: 4px;
+}
+.border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: $border-blank;
+  &.glow {
+    background: $border-gradient;
+    animation: $gradient-animation;
+  }
+}
+.login--wrapper {
+  padding: 1em;
 }
 h2 {
-  margin-bottom: 10vh;
+  margin-top: 0;
+  color: lighten($color4, 15%);
 }
-.error--icon {
-  position: relative;
-
-  &::after {
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+input, button {
+  border: none;
+  background: transparent;
+}
+input {
+  width: 100%;
+  background-color: lighten(black, 12);
+  padding: 1em 1.5em;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+}
+label {
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+.error-message {
+  margin-bottom: 3vh;
+  display: flex;
+  align-items: center;
+  $error-color: #c3073f;
+  color: $error-color;
+  &::before {
     content: '';
     display: block;
-    height: 1em;
     width: 1em;
-    position: absolute;
-    top: calc(2vh - 4px);
-    right: 0;
-    background-color: red;
+    height: 1em;
+    margin-right: .3em;
+    background-color: $error-color;
     clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
   }
 }
-.error-message {
-  font-size: 0.6em;
-  color: red;
-  position: absolute;
-  top: 60%;
-  left: 0;
+.wrappa {
+  align-self: flex-end;
+  position: relative;
 }
-button[disabled] {
-  &:hover{
-    color: inherit !important;
+.primary-btn-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: none;
+  background-color: lighten(black, 12);
+  &.glow {
+    background-image: $border-gradient;
+    animation: $gradient-animation;
+  }
+}
+.primary-btn {
+  text-transform: uppercase;
+  font-size: 1em;
+  padding: .75em 1em;
+  border: 3px solid transparent;
+  background-color: black;
+  background-clip: padding-box;
+  isolation: isolate;
+  &:not([disabled]):hover {
+    background-color: lighten(black, 10);
+  }
+}
+.btn-secondary {
+  background-color: transparent;
+  padding: .40em 1em;
+  border: 2px solid $color4;
+  transform: skew(-20deg);
+  .no-skew {
+    display: inline-block;
+    transform: skew(20deg);
+    text-transform: capitalize;
+  }
+  &:hover {
+    background-color: lighten(black, 10);
+  }
+}
+@keyframes button-ready {
+  from {
+    filter: hue-rotate(0);
+  }
+  to {
+    filter: hue-rotate(360deg)  brightness(200%) ;
   }
 }

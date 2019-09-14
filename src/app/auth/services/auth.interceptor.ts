@@ -1,6 +1,6 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {ErrorHandler, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {catchError, filter, switchMap, take} from 'rxjs/operators';
 
 import {TokenBearer} from '../models/auth';
@@ -13,8 +13,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
-    private errorHandler: ErrorHandler,
-
   ) {
   }
 
@@ -25,6 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error) => {
         // if error isn't 403 then rethrow
         if (error.status !== 403) {
+          this.authService.logout();
           return throwError(error);
         }
         // if 403 error and token is being refreshed, schedule request or sth
@@ -35,7 +34,10 @@ export class AuthInterceptor implements HttpInterceptor {
         return this.refreshToken().pipe(
           // here goes the vale of Bearer received upon refreshing
           // get the value, unsubscribe then start new
-          switchMap(() => this.retryRequest(clonedRequest, next)),
+          switchMap((tokens: TokenBearer) => {
+            this.authService.storeTokens(tokens);
+            return this.retryRequest(clonedRequest, next);
+          }),
           // refresh token could expire to here its get handled
           catchError(err => this.handleAuthorizationError(err))
         );

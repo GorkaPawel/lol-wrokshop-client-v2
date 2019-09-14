@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
@@ -10,6 +10,10 @@ import {AuthInterceptor} from './auth/services/auth.interceptor';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {ChampionDetailsModule} from './champion-details/champion-details.module';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {AuthGuard} from './auth/services/auth.guard';
+import {NegateAuthGuard} from './auth/services/negate-auth.guard';
+import {ErrorsHandler} from './errors-handler';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   providers: [
@@ -31,6 +36,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
       useClass: AuthInterceptor,
       multi: true
     },
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    },
+    AuthGuard,
+    NegateAuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -22,6 +22,6 @@ export interface UserChampion {
 }
 export interface ChampionSources {
   ApiChamp: ApiChampion;
-  DbChamp: UserChampion;
+  DbChamp: UserChampion | Object;
   apiRunes: any;
 }

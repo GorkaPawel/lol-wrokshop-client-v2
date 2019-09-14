@@ -15,24 +15,20 @@ import {BuildListComponent} from './champion-details/components/section-builds/b
 import {SectionRunesComponent} from './champion-details/components/section-runes/section-runes.component';
 import {RunesListComponent} from './champion-details/components/section-runes/runes-list/runes-list.component';
 import {RunesEditComponent} from './champion-details/components/section-runes/runes-edit/runes-edit.component';
+import {NegateAuthGuard} from './auth/services/negate-auth.guard';
+import {AuthGuard} from './auth/services/auth.guard';
+import {BlankComponent} from './dashboard/components/blank/blank.component';
 
 
 const routes: Routes = [
   {
-    path: '', component: AuthComponent, children: [
-      {path: '', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
-      {path: 'logout', redirectTo: ''},
-    ]
-  },
-  {
-    path: 'dashboard', component: DashboardComponent, children: [
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], children: [
+      {path: '', component: BlankComponent},
       {
         path: 'champion/:id',
         component: ChampionDetailsComponent,
         resolve: {champion: ChampionDetailResolver},
         children: [
-          // {path: '', component: BlankComponent},
           {
             path: '', outlet: 'overview', children:
               [
@@ -62,7 +58,15 @@ const routes: Routes = [
       },
     ]
   },
-  {path: '**', redirectTo: 'home', pathMatch: 'full'},
+  {
+    path: '', component: AuthComponent, canActivate: [NegateAuthGuard], children: [
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+    ]
+  },
+  {path: 'not-found', component: BlankComponent},
+  {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
 ];
 
 @NgModule({

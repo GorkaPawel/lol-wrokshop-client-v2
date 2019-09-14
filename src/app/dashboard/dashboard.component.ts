@@ -4,9 +4,14 @@ import {Component} from '@angular/core';
   selector: 'app-dashboard',
   template: `
     <app-champion-search></app-champion-search>
-    <router-outlet></router-outlet>
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
   `,
-  styles: [``]
+  styles: [`
+  .content {
+    margin-top: 70px;
+  }`]
 })
 export class DashboardComponent {
 }

@@ -1,3 +1,5 @@
+@import "abstracts/variables";
+
 $image-width: 70vw;
 $image-max-width: 730px;
 :host {
@@ -27,18 +29,13 @@ $image-max-width: 730px;
 }
 
 .skin-name {
-  margin: 0;
-  padding-bottom: 0.5rem;
   padding-left: .5rem;
-  font-size: 1.2rem;
+  font-size: .8rem;
+  margin: 0;
   background-color: rgba(1,1,1, .6);
   text-transform: uppercase;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-}
-
-.image--wrapper:hover button {
-  opacity: 1;
 }
 
 .image--wrapper {
@@ -46,26 +43,36 @@ $image-max-width: 730px;
   position: relative;
 
   button {
+    border-radius: 5px;
     outline: none;
     border: none;
-    display: block;
-    height: 4rem;
-    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2rem;
+    width: 2.2rem;
     background-color: rgba(1,1,1,.7);
     position: absolute;
     top: 50%;
-    opacity: 0;
-    transition: opacity 200ms ease-in;
+    transform: translateY(-50%);
+    &::after {
+      content: '';
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      background-color: $olympic-white;
+    }
   }
-
   .prev {
-    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
-    left: 1rem;
+    left: .3rem;
+    &::after {
+      clip-path: polygon(100% 0, 15% 50%, 100% 100%, 85% 100%, 0 50%, 85% 0);
+    }
   }
-
   .next {
-    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-    right: 1rem;
+    right: .3rem;
+    &::after {
+      clip-path: polygon(15% 0, 100% 50%, 15% 100%, 0 100%, 85% 50%, 0 0);
+    }
   }
 }
-
