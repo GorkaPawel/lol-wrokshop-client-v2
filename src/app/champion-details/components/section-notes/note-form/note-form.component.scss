@@ -1,21 +1,19 @@
 @import "abstracts/variables";
+@import "abstracts/mixins";
 form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
+  width: 600px;
+  max-width: 90vw;
+  padding: 1rem;
 }
 .control {
-  width: 80%;
   display: flex;
   flex-direction: column;
-  font-size: calc(15px + 1vw/25);
 }
 label, button {
-  font-size: 1.5em;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  font-weight: 700;
-  padding: .3em 0;
+  padding: .3rem 0;
   color: $color4;
 }
 .error-message {
@@ -34,13 +32,18 @@ label, button {
   }
 }
 input, textarea {
-  font-size: 1.3em;
+  font-size: .9rem;
   background-color: transparent;
   display:block;
   width: 100%;
+  max-width: 100%;
   border: 1px solid lighten(black, 15);
   border-radius: 7px;
-  padding: .8em .5em;
+  padding: .5em .3em;
+}
+textarea {
+  height: 40vh !important;
+
 }
 button {
   border: 2px solid $color4;
@@ -50,16 +53,13 @@ button {
   &:first-child {
    margin-right: 1.5em;
   }
-  &:hover {
-    filter: hue-rotate(20deg) brightness(120%);
-  }
+  @include skewed-glitching;
 }
 textarea {
   height: 170px;
 }
 .form--controls {
   margin-top: 2vh;
-  width: 80%;
   display: flex;
   justify-content: flex-end;
 }

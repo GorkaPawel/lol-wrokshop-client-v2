@@ -1,36 +1,33 @@
 @import "abstracts/mixins";
-.wrapper {
+:host {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  h1 {
-    font-size: calc(20px + 1.5vw);
-  }
+  height: 100%;
 }
 .content {
-  max-width: 100%;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 1vw;
-  grid-template-columns: repeat(auto-fit, 350px);
-  height: 80vh;
+  flex: 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
   overflow-y: auto;
-}
-.add-button {
-  @include button2;
-  white-space: nowrap;
-  font-size: calc(12px + 10vw/25);
-  text-transform: uppercase;
-  color: #895575;
-  font-weight: 700;
-  position: fixed;
-  bottom: 4vh;
-  left: 80%;
-  transform: translateX(-50%);
 }
 .hint {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.bottom-nav {
+  height: 70px;
+  background-color: rgba(1,1,1,.7);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .add-button {
+    font-size: 1rem;
+    width: 30%;
+    margin-right: 1rem;
+    @include skewed-glitching;
+  }
 }

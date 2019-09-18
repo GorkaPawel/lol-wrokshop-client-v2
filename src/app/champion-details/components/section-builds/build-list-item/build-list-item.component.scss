@@ -4,23 +4,32 @@
   display: inline-block;
   padding: 3px;
   clip-path: clip-rectangle(1.5rem);
-  background-color: $error-color;
+  background-color: rgba(102, 51, 153,.8);
   margin: .5rem;
 }
-img {
-  max-width: 100%;
-  border-radius: 15%;
+.image-wrapper {
+  padding: 2px;
+  background-color: rebeccapurple;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  img {
+    display: block;
+    width: 100%;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    filter: sepia(.8) contrast(.9) saturate(2.5);
+  }
 }
 .items--grid {
   display: grid;
   grid-template-columns: repeat(3, 48px);
   grid-gap: .2rem;
-  filter: grayscale(70%);
+  filter: grayscale(90%);
 }
 p {
   margin-top: 0;
   text-transform: uppercase;
   font-weight: 600;
+  color: rgb(40, 209, 181);
+  border-bottom: 1px solid darken(rgb(102, 51, 153), 20%);
 }
 
 .build {
@@ -30,6 +39,6 @@ p {
   background-color: rgba(1,1,1,.9);
   padding: 1rem;
   &:hover .items--grid {
-    filter: contrast(120%);
+    filter: none;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ApiItem} from '../../../../API/SERVER/api.model';
 import {ModalControls} from '../../../models';
 
@@ -18,6 +18,7 @@ export class ItemComponent extends ModalControls {
     if (item) {
       this._item = item;
       this.itemImg = `http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/${item.id}.png`;
+      console.log(item.description);
     }
   }
 

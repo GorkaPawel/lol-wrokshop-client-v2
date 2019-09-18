@@ -1,8 +1,7 @@
 <div class="build">
   <p>{{build.buildName}}</p>
   <div class="items--grid">
-    <img
-      *ngFor="let item of build.items"
-      [src]="itemUrl+item.id+'.png'" [alt]="item.name">
+    <div class="image-wrapper" *ngFor="let item of build.items"><img
+      [src]="itemUrl+item.id+'.png'" [alt]="item.name"></div>
   </div>
 </div>

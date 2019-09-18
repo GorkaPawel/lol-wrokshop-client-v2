@@ -1,16 +1,21 @@
 @import "abstracts/variables";
 @import "abstracts/mixins";
+
 :host {
-  display: block;
+  display: flex;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
   height: calc(100% - 70px);
   overflow-y: auto;
 }
+
 .container {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
   justify-content: center;
 }
+
 .hint {
   font-size: 1.8rem;
   position: fixed;
@@ -35,27 +40,33 @@
   }
 
   .add-build {
-    @include skewed-button;
+    @include skewed-button(rebeccapurple);
+    width: 30%;
+    min-width: 15%;
     margin-right: 2vw;
     margin-left: auto;
+    color: rebeccapurple;
+
     span {
       font-size: 1rem;
       font-weight: 600;
       $color: inherit;
       @include glitch;
-      &:hover {
-          &::before {
-            left: 2px;
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
-            background-color: black;
-          }
-          &::after {
-            left: -2px;
-            animation: glitch-anim-2 2s infinite linear alternate-reverse;
-            background: black
-          }
-        }
+    }
+
+    &:hover span {
+      &::before {
+        left: 2px;
+        animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        background-color: black;
+      }
+
+      &::after {
+        left: -2px;
+        animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        background: black
       }
     }
+  }
 }
 

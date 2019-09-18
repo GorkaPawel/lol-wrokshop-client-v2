@@ -1,6 +1,4 @@
-<div class="wrapper">
-  <h1>NOTES</h1>
-  <div class="content" *ngIf="userChampion.notes.length">
+  <div class="content" *ngIf="userChampion.notes.length" (wheel)="$event.stopPropagation()">
     <app-note-item
       *ngFor="let note of userChampion?.notes" [note]="note"
       (click)="editNote(note); $event.stopPropagation()"
@@ -10,9 +8,9 @@
     </div>
   </div>
   <p class="hint" *ngIf="!userChampion.notes.length">You have not added any notes yet...</p>
-  <button class="add-button" (click)="editNote(null); $event.stopPropagation()">Add note</button>
-</div>
-
+<nav class="bottom-nav">
+  <button class="add-button" (click)="editNote(null); $event.stopPropagation()"><span data-text="add note">add note</span></button>
+</nav>
 <app-ability-modal *ngIf="formOpened" (modalClose)="closeForm()">
   <app-note-form></app-note-form>
 </app-ability-modal>

@@ -1,4 +1,8 @@
 @import 'abstracts/variables';
+:host {
+  display: inline-block;
+  margin: 1rem;
+}
 .note {
   p {
     margin: 0;

@@ -6,11 +6,6 @@
   top: 16px;
   right: 10px;
   z-index: $search-index;
-  @media (hover: hover) {
-    & {
-      display: none;
-    }
-  }
 }
 
 * {
@@ -108,11 +103,6 @@ a {
   letter-spacing: 1px;
 }
 
-@media (hover: hover) {
-  .sidebar {
-    display: block !important;
-  }
-}
 
 .nav__item {
   $nav_item--height: 1.1rem;
@@ -155,27 +145,32 @@ a {
 .sidebar:hover .anchor-text {
   opacity: 1;
 }
+
 .nav--build {
   //z-index: $builds-nav-index;
   ul {
     * {
       color: #c3073f;
     }
+
     margin: 3vh auto;
     width: 100%;
     display: flex;
     justify-content: space-between;
     color: $error-color;
-    a, a span{
+
+    a, a span {
       display: inline-block;
       font-size: 1.2rem;
       font-weight: 700;
       text-transform: uppercase;
       text-align: center;
     }
+
     a {
       padding: 0 .3rem;
       position: relative;
+
       &::after, &::before {
         content: '';
         position: absolute;
@@ -185,12 +180,14 @@ a {
         transform: scale(0);
         transition: transform .3s ease-out;
       }
+
       &::before {
         top: 0;
         left: 0;
         border-left: 2px solid #c3073f;
         border-top: 2px solid #c3073f;
       }
+
       &::after {
         right: 0;
         bottom: 0;
@@ -198,10 +195,12 @@ a {
         border-bottom: 2px solid #c3073f;
       }
     }
+
     a:hover, a:active {
       &::after, &::before {
         transform: scale(1);
       }
+
       background-color: lighten(black, 5%);
 
     }
@@ -209,6 +208,7 @@ a {
     .a--items {
       margin-left: 2rem;
     }
+
     .a--runes {
       margin-right: 2rem;
     }
@@ -227,5 +227,23 @@ a {
   }
   .burger-nav {
     display: block;
+  }
+}
+
+
+@media (hover: hover) {
+  .nav__main {
+    display: none;
+  }
+  .sidebar {
+    display: initial;
+  }
+}
+@media (max-width: 1200px) {
+  .nav__main {
+    display: initial;
+  }
+  .sidebar {
+    display: none;
   }
 }

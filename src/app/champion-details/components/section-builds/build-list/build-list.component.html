@@ -6,8 +6,9 @@
     [build]="build">
   </app-build-list-item>
 
-  <nav class="paginator">
-    <pagination-controls *ngIf="builds.length" class="pagination--controls" (pageChange)="page = $event"></pagination-controls>
-    <button class="add-build" (click)="navigate()"><span data-text="new">new</span></button>
-  </nav>
+    <nav class="paginator">
+      <pagination-controls *ngIf="builds.length" class="pagination--controls"
+                           (pageChange)="page = $event"></pagination-controls>
+      <button class="add-build" (click)="navigate()"><span data-text="new">new</span></button>
+    </nav>
 </div>

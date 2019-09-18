@@ -12,7 +12,6 @@
     }
   }
 }
-
 @mixin tooltip {
   margin: 0;
   display: block;
@@ -142,7 +141,7 @@
   }
 }
 
-@mixin skewed-button {
+@mixin skewed-button($error-color: #c3073f) {
   text-transform: uppercase;
   transform: skew(-20deg);
   padding: .3rem .5rem;
