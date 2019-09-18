@@ -1,11 +1,14 @@
-<div class="passive-title">
-  <app-spell-tile [spell]="{spell: 'p', champKey: name}"></app-spell-tile>
-  <h1>{{passive.name}}</h1>
+<div class="main--wrapper">
+  <div class="content" [overflows]="videoWrapper">
+    <span class="spellPassive"><span class="passive-title">PASSIVE: {{passive.name}}</span></span>
+    <p class="passive-desc" [innerHTML]="passive.description"></p>
+  </div>
+  <div class="video--wrapper" #videoWrapper>
+    <video class="ability-video"  [src]="spellVideoUrl" #video>
+    </video>
+    <div class="controls">
+      <button *ngIf="!isPlaying" class="control play" (click)="play()"></button>
+      <button *ngIf="isPlaying" class="control pause" (click)="pause()"></button>
+    </div>
+  </div>
 </div>
-<p class="passive-desc" [innerHTML]="passive.description"></p>
-
-<video class="ability-video" controls>
-  <source [src]="spellVideoUrl + passive.abilityVideoPath" type="video/webm">
-</video>
-
-

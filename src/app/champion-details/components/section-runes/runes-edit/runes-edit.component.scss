@@ -1,91 +1,83 @@
 @import "abstracts/variables";
-
+@import "abstracts/mixins";
+@import "abstracts/functions";
 .page {
   height: 100%;
   display: flex;
   flex-direction: column;
-  z-index: calc(#{$builds-nav-index} - 1);
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    z-index: -1;
-  }
-
-  .rune-selection {
-    border-top: 1px solid lighten(black, 8);
-    overflow-y: scroll;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 3vh 0;
-  }
+  padding-bottom: 2vh;
 }
-
+.rune--controls {
+  padding: 2vh 0;
+  border: 2px solid lighten(black, 20%);
+  border-bottom: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .form--control {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  .buttons {
+    margin-top: 1rem;
+    margin-left: 4vw;
+    display: flex;
+    align-self: flex-end;
+  }
+  .input--wrapper {
+    display: inline-block;
+    padding: 2px;
+    background-color: $error-color;
+    clip-path: clip-rectangle();
+  }
+  input {
+    clip-path: clip-rectangle();
+    background: black;
+    font-size: .9rem;
+    padding: .3rem 1.5rem;
+    border: none;
+  }
+  button {
+    transform: skew(-10deg);
+    margin-right: 2vw;
+    background-color: black;
+    width: 100%;
+    color: $error-color;
+    border: 2px solid $error-color;
+    font-size: .9rem;
+    padding: .3rem 1.5rem;
+    font-weight: 400;
+    span {
+      @include glitch;
+      color: inherit;
+    }
+      &:hover span {
+        &::before {
+          left: 2px;
+          animation: glitch-anim-1 4s infinite linear alternate-reverse;
+          background-color: black;
+        }
+        &::after {
+          left: -2px;
+          animation: glitch-anim-2 4s infinite linear alternate-reverse;
+          background: black
+        }
+      }
+    }
+  }
+.rune-selection {
+  flex-grow: 1;
+  min-height: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3vh 2vw;
+  overflow-y: auto;
+  justify-content: center;
+  border: 2px solid lighten(black, 20%);
+}
 .primary, .secondary {
   width: 100%;
   max-width: 800px;
 }
 
-.rune--controls {
-  font-size: calc(15px + 1vw / 25);
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 3vh 0;
 
-  label {
-    display: inline-block;
-    color: lighten($color4, 8);
-    font-weight: 600;
-  }
-}
-
-.form--control {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: flex-end;
-
-  input {
-    border-top-left-radius: 10px;
-    padding: .8em;
-    min-width: 200px;
-    background-color: lighten(black, 2);
-    border: none;
-    border-bottom: 2px solid $color4;
-    font-family: inherit;
-    font-size: 1.1em;
-  }
-
-  input, button {
-    margin-bottom: 5px;
-  }
-}
-
-.button--save {
-  font-size: 1.1em;
-  padding: .8em;
-  font-family: inherit;
-  font-weight: 600;
-  color: $color4;
-  border: 2px solid $color4;
-  text-transform: uppercase;
-  cursor: pointer;
-  background-color: transparent;
-
-  &:hover {
-    background-color: lighten(black, 8);
-  }
-}
-
-.discard {
-  margin-left: 1em;
-
-  &:hover {
-    color: lighten(darkred, 30%);
-  }
-}

@@ -1,6 +1,22 @@
 <div class="build">
-  <input class="input--title" type="text" [(ngModel)]="build.buildName" placeholder="Enter build title">
-  <div class="items">
+  <div class="rune--controls">
+    <div class="form--control">
+      <label for="title">TITLE:</label>
+      <div class="input--wrapper">
+        <input id="title" type="text" placeholder="Enter build title..."
+               [(ngModel)]="build.buildName" autocomplete="off">
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="button--save" (click)="save(); $event.stopPropagation()">
+        <span data-text="SAVE">SAVE</span>
+      </button>
+      <button class="button--save discard" [routerLink]="['../', {outlets: {builds: null}}]">
+        <span data-text="DISCARD">DISCARD</span>
+      </button>
+    </div>
+  </div>
+  <div class="items" (wheel)="$event.stopPropagation()">
     <app-item [(item)]="build.items[0]"></app-item>
     <app-item [(item)]="build.items[1]"></app-item>
     <app-item [(item)]="build.items[2]"></app-item>
@@ -8,9 +24,7 @@
     <app-item [(item)]="build.items[4]"></app-item>
     <app-item [(item)]="build.items[5]"></app-item>
   </div>
-  <div class="save--wrapper">
-    <a [routerLink]="['../', {outlets: {builds: null}}]">BACK</a>
-    <button class="button--save" [disabled]="cantSave" (click)="save()">SAVE</button>
-    <p class="tooltip">You have to fill all the fields in order to save build.</p>
-  </div>
 </div>
+<app-error-modal *ngIf="errorModalOpened" (closeModal)="toggleError()">
+  please fill all the fields.
+</app-error-modal>

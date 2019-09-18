@@ -29,8 +29,8 @@ export class RunePagePrimaryComponent implements OnInit, OnDestroy {
   selectedRunes = Array<Rune>(4);
 
   runeSlots: Array<Rune[]>;
-  slotSelectionOpened = Array<boolean>(4).fill(false);
-  pathSelectionOpened = false;
+  slotSelectionOpened = Array<boolean>(4).fill(true);
+  pathSelectionOpened = true;
 
 
   toggleSelection(index?: number) {

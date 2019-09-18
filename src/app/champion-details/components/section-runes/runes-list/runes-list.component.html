@@ -1,5 +1,5 @@
-<div class="build-list">
-  <p class="hint" *ngIf="!runePages.length">Click NEW to add a new rune page...</p>
+
+<p class="hint" *ngIf="!runePages.length">Click NEW to add a new rune page...</p>
   <div class="build-list--content" (wheel)="$event.stopPropagation()">
     <app-rune-list-item
       *ngFor="let page of runePages"
@@ -7,5 +7,6 @@
       (click)="edit(page)"
     ></app-rune-list-item>
   </div>
-  <button class="add-build" (click)="navigate()">NEW</button>
-</div>
+<nav class="bottom-nav">
+  <button class="add-build" (click)="navigate()"><span data-text="NEW">NEW</span></button>
+</nav>

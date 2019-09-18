@@ -1,22 +1,13 @@
+@import "abstracts/variables";
+@import "../section-spells/spells";
+
 :host {
-  display: block;
-  position: relative;
-  border: 1px solid red;
-  z-index: 1;
-}
-video {
-  max-width: 1056px;
-  position: absolute;
-  top: 0;
-  left:0;
-  margin: 0  auto;
-  z-index: -1;
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+  overflow-y: auto;
 }
 .passive-title {
-  display: flex;
-  align-items: flex-start;
-  h1 {
-    margin: 0 0 0 .5rem;
-    padding: 0;
-  }
+  display: inline-block;
+  padding: .2rem 0;
 }

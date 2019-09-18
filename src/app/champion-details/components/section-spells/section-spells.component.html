@@ -15,7 +15,7 @@
       </li>
     </ul>
   </nav>
-  <div class="content--container" [ngSwitch]="currentSpell">
+  <div class="content--container" [ngSwitch]="currentSpell" (wheel)="$event.stopPropagation()">
     <ng-container *ngFor="let spell of champion.spells">
       <champion-spell
         class="tab-slider--body"

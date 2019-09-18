@@ -1,24 +1,35 @@
+@import "abstracts/functions";
+@import "abstracts/variables";
+:host {
+  display: inline-block;
+  padding: 3px;
+  clip-path: clip-rectangle(1.5rem);
+  background-color: $error-color;
+  margin: .5rem;
+}
 img {
+  max-width: 100%;
   border-radius: 15%;
 }
 .items--grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: .5rem;
-  justify-items: center;
+  grid-template-columns: repeat(3, 48px);
+  grid-gap: .2rem;
   filter: grayscale(70%);
-  &:hover {
-    filter: contrast(120%);
-  }
 }
 p {
   margin-top: 0;
   text-transform: uppercase;
-  font-size: 1.2rem;
   font-weight: 600;
 }
+
 .build {
+  clip-path: clip-rectangle(1.5rem);
+  display: inline-block;
   cursor: pointer;
-  background-color: rgba(1, 1, 1, .4);
+  background-color: rgba(1,1,1,.9);
   padding: 1rem;
+  &:hover .items--grid {
+    filter: contrast(120%);
+  }
 }

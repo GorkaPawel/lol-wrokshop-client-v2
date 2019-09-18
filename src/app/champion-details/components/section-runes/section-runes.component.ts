@@ -4,7 +4,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   template: `
     <router-outlet></router-outlet>
   `,
-  styles: [``],
+  styles: [`
+ `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionRunesComponent {

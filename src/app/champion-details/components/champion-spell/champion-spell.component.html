@@ -1,28 +1,37 @@
-<div class="wrapper" (click)="openSpellDetails(); $event.stopPropagation()">
-  <div class="spell-header">
-    <app-spell-tile [spell]="{spell: spell, champKey: name}"></app-spell-tile>
-    <h3>{{spell.name}}</h3>
+<div class="ability-overview">
+  <h1>{{spell.name}}</h1>
+  <ul>
+    <li><img
+      src="https://raw.communitydragon.org/pbe/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/statmods/statmodscdrscalingicon.png"
+      alt="cost"></li>
+    <li class="number" *ngFor="let cd of spell.cooldownBurn | split:'/'">{{cd}}</li>
+  </ul>
+  <ul>
+    <li><img src="https://raw.communitydragon.org/latest/game/assets/perks/statmods/statmodsabilitypowericon.png"
+             alt="cost"></li>
+    <li class="number" *ngFor="let cd of spell.costBurn | split:'/'">{{cd}}</li>
+  </ul>
+  <ul>
+    <li><img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/kills.png"
+             alt="range"></li>
+    <li class="number" *ngFor="let cd of spell.rangeBurn | split:'/'">{{cd}}</li>
+  </ul>
+</div>
+<div class="main--wrapper">
+  <div class="content" [overflows]="videoWrapper">
+    <p class="passive-desc" [innerHTML]="parsed"></p>
+    <p class="error" *ngIf="apiError">* indicates dynamic game data</p>
   </div>
-  <p>{{spell.description}}</p>
-  <div class="ability-details">
-    <span>cooldown:</span><span>{{spell.cooldownBurn}}</span>
-    <span>cost:</span><span>{{spell.costBurn}}</span>
-    <span>range:</span><span>{{spell.rangeBurn}}</span>
+  <div class="video--wrapper" #videoWrapper>
+    <video class="ability-video" [src]="spellVideoUrl + spell.abilityVideoPath" #video>
+    </video>
+    <div class="controls">
+      <button *ngIf="!isPlaying" class="control play" (click)="play()"></button>
+      <button *ngIf="isPlaying" class="control pause" (click)="pause()"></button>
+    </div>
   </div>
 </div>
-<app-ability-modal *ngIf="spellDetailsOpened" (modalClose)="closeSpellDetails()">
-  <div class="spell-header--modal">
-    <div class="spell--image">
-      <img [src]="spellIconUrl" alt="spellIcon">
-      <div class="spell--key">{{spell.spellKey}}</div>
-    </div>
-    <h3>{{spell.name}}</h3>
-  </div>
-  <p [innerHTML]="parsed"></p>
-  <p class="error" *ngIf="apiError">"?" indicates missing data from League of legends API</p>
-  <video class="ability-video" controls>
-    <source [src]="spellVideoUrl + spell.abilityVideoPath" type="video/webm">
-  </video>
-</app-ability-modal>
+
+
 
 

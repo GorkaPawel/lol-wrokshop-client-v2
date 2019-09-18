@@ -1,4 +1,5 @@
 @import "abstracts/variables";
+@import "abstracts/mixins";
 .hint {
   font-size: 1.8rem;
   position: fixed;
@@ -6,34 +7,28 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.build-list {
-  width: 100%;
-  height: 100%;
+.build-list--content {
+  height: calc(100% - 70px);
   display: flex;
-  flex-direction: column;
-  position: relative;
-  .build-list--content {
-    align-self: center;
-    justify-content: center;
-    height: 50vh;
-    overflow-y: scroll;
-    width: 60%;
-    min-width: 400px;
-    flex-grow: 4;
-    display: grid;
-    grid-gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
-    justify-items: center;
-  }
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  overflow-y: auto;
+}
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  width: 100vw;
+  background-color: rgba(1,1,1,.7);
+  display: flex;
+  align-items: center;
 }
 .add-build {
-  display: block;
-  padding: .5rem 1rem;
-  background-color: transparent;
-  border: 2px solid $color6;
-  margin-left: auto;
-  margin-bottom: 2vh;
-  &:hover {
-    background-color: black;
-  }
+  margin: 0 4vw 0 auto;
+  font-size: 1rem;
+  font-weight: 600;
+  @include skewed-glitching;
+  width: 30%;
 }

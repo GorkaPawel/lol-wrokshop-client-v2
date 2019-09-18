@@ -15,9 +15,11 @@
   position: relative;
   width: 100%;
   height: 100%;
+
   .item--image {
     max-width: 100%;
   }
+
   &::after {
     content: '';
     position: absolute;
@@ -26,6 +28,7 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    box-shadow: inset 0 0 .5em .45em 	black;
+    box-shadow: inset 0 0 .5em .45em black;
   }
+
 }

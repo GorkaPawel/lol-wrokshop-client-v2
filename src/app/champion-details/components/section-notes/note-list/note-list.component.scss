@@ -13,8 +13,8 @@
   display: grid;
   grid-gap: 1vw;
   grid-template-columns: repeat(auto-fit, 350px);
-  height: 65vh;
-  overflow-y: scroll;
+  height: 80vh;
+  overflow-y: auto;
 }
 .add-button {
   @include button2;

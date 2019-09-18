@@ -4,6 +4,8 @@ import {ClickOutsideDirective} from './click-outside.directive';
 import { BurgerNavComponent } from './burger-nav/burger-nav.component';
 import {AbilityModalComponent} from '../champion-details/components/ability-modal/ability-modal.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
+import { SplitPipe } from './split.pipe';
+import { OverflowsDirective } from './overflows.directive';
 
 @NgModule({
   declarations: [
@@ -11,13 +13,17 @@ import { ErrorModalComponent } from './error-modal/error-modal.component';
     BurgerNavComponent,
     AbilityModalComponent,
     ErrorModalComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    SplitPipe,
+    OverflowsDirective
   ],
   exports: [
+    OverflowsDirective,
     ClickOutsideDirective,
     BurgerNavComponent,
     AbilityModalComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    SplitPipe
   ],
   imports: [
     CommonModule

@@ -27,8 +27,8 @@ export class RunePageSecondaryComponent implements OnInit, DoCheck, OnDestroy {
   @Output() pageState = new EventEmitter<{ secondaryPath: RunePath, secondaryRunes: Rune[] }>();
 
   runeSlots: Array<Rune[]>;
-  pathSelectionOpened = false;
-  runeSelectionOpen = false;
+  pathSelectionOpened = true;
+  runeSelectionOpen = true;
   sourceIndex: number;
   availablePaths: RunePath[] = [];
   subs = new SubSink();

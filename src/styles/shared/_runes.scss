@@ -1,17 +1,12 @@
 .path, .rune {
   display: flex;
 }
-
 .items {
+  margin-left: 1rem;
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
 }
-
-.selected-rune {
-  filter: none !important;
-}
-
 .selected--path {
   position: relative;
   min-width: 185px !important;
@@ -25,56 +20,56 @@
 }
 
 .rune__item {
-  padding: 1rem;
+  padding: .2rem;
   display: block;
   filter: grayscale(100%);
-  max-width: calc(64px + 2rem);
-  max-height: calc(64px + 2rem);
-  width: calc(64px + 2rem);
-  height: calc(64px + 2rem);
-  min-width: calc(64px + 2rem);
-  min-height: calc(64px + 2rem);
+  max-width: calc(64px + .4rem);
+  max-height: calc(64px + .4rem);
+  width: calc(64px + .4rem);
+  height: calc(64px + .4rem);
+  min-width: calc(64px + .4rem);
+  min-height: calc(64px + .4rem);
   border-radius: 50%;
   position: relative;
   background-color: black;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
-
+.selected-rune {
+  filter: none !important;
+}
 .domination {
   .rune__item {
-    background-image: url('/assets/vfx-d.png');
+    border: 3px solid rgb(102, 28, 28);
   }
 }
 
 .resolve {
   .rune__item {
-    background-image: url('/assets/vfx-r.png');
+    border: 3px solid rgb(13, 99, 48);
   }
 }
 
 .precision {
   .rune__item {
-    background-image: url('/assets/vfx-p.png');
+    border: 3px solid rgb(150, 96, 15);
   }
 }
 
 .sorcery {
   .rune__item {
-    background-image: url('/assets/vfx-s.png');
+    border: 3px solid rebeccapurple;
   }
 }
 
 .inspiration {
   .rune__item {
-    background-image: url('/assets/vfx-i.png');
+    border: 3px solid rgb(28, 67, 102);
   }
 }
 
 .keystone {
   padding: 0 !important;
-  min-width: 110px !important;
-  min-height: 110px !important;
+  min-width: 90px !important;
+  min-height: 90px !important;
 }
 
 img {

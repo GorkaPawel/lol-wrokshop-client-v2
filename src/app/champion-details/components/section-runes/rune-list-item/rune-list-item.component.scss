@@ -1,5 +1,9 @@
 @import 'abstracts/variables';
+:host {
+  cursor: pointer;
+}
 .page {
+  margin: 1rem;
   width: 200px;
   border: 1px solid white;
   position: relative;

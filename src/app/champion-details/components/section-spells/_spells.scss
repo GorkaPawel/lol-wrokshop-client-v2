@@ -1,0 +1,155 @@
+@import "abstracts/variables";
+
+:host {
+  opacity: 0;
+  animation: display 1s .15s ease-out forwards;
+}
+
+@keyframes display {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main--wrapper {
+  position: relative;
+  max-width: 1024px;
+  z-index: 1;
+}
+
+.video--wrapper {
+  position: relative;
+
+  video {
+    display: block;
+    width: 100%;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    display: block;
+    width: 60%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(1, 1, 1, .9), 85%, transparent);
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 3;
+
+    .control {
+      display: block;
+      background-color: transparent;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      outline: none;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 0;
+      filter: opacity(70%);
+    }
+
+    .play {
+      background-image: url('/assets/play.svg');
+    }
+
+    .pause {
+      background-image: url('/assets/pause.svg');
+    }
+  }
+}
+
+.content {
+  padding: .6rem;
+  width: 45%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+
+  .error {
+    background-color: lighten(rgba(1, 1, 1, .4), 18%);
+    font-size: .7rem;
+    padding: .5rem 0;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+
+  &.overflows {
+    position: initial;
+    width: 100%;
+  }
+}
+
+.passive-desc {
+  color: slategrey;
+  margin: 0;
+  font-size: .85rem;
+  line-height: 1.8;
+  font-weight: 400;
+
+  ::ng-deep {
+    span {
+      font-weight: 600 !important;
+    }
+
+    b {
+      font-weight: inherit;
+    }
+
+    span, b, li {
+      color: inherit;
+    }
+
+    .scaleAD {
+      color: #803349;
+    }
+
+    .physicalDamage {
+      color: #803349;
+    }
+
+    .scaleAP {
+      color: #84a8e0;
+    }
+
+    .magicDamage {
+      color: #84a8e0;
+    }
+
+    .scaleLevel {
+      color: #3ede8b;
+    }
+
+    .keywordStealth {
+      color: darkslategrey;
+    }
+    .rules {
+      display: inline-block;
+      border-top: 1px solid lighten(black, 10%);
+      color: rgba(194, 164, 76, .8);
+      * {
+        color: inherit !important;
+      }
+    }
+
+    .trueDamage {
+      color: rebeccapurple;
+    }
+
+    .unknown {
+      display: inline-block;
+      padding: 0 .07rem;
+    }
+
+  }
+}

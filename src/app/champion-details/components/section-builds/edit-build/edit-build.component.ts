@@ -18,13 +18,17 @@ export class EditBuildComponent implements DoCheck, OnDestroy {
   }
   subs = new SubSink();
   cantSave = true;
+  errorModalOpened = false;
   build: Build = {
     buildName: '',
     items: Object.seal(new Array(6).fill(null)),
   };
-
+  toggleError() {
+    this.errorModalOpened = !this.errorModalOpened;
+  }
   save() {
     if (this.cantSave) {
+      this.toggleError();
       return;
     }
     const id = this.route.parent.snapshot.paramMap.get('id');

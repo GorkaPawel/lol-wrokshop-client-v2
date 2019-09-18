@@ -1,30 +1,24 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ApiChampion} from '../../../API/SERVER/api.model';
 
 @Component({
   selector: 'app-section-spells',
   templateUrl: './section-spells.component.html',
   styleUrls: ['./section-spells.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SectionSpellsComponent implements OnInit {
+export class SectionSpellsComponent implements OnChanges {
 
   constructor() {
   }
 
-  @Input() set champion(champ: ApiChampion) {
-    this._champion = champ;
-    this.spellUrl = `https://cdn.communitydragon.org/latest/champion/${champ.key}/ability-icon/`;
-  }
+  @Input() champion: ApiChampion;
 
-  get champion() {
-    return this._champion;
-  }
+  spellUrl;
+  currentSpell;
 
-  private _champion: ApiChampion;
-  currentSpell: string;
-  spellUrl: string;
-
-  ngOnInit() {
+  ngOnChanges() {
+    this.spellUrl = `https://cdn.communitydragon.org/latest/champion/${this.champion.key}/ability-icon/`;
     this.currentSpell = 'p';
   }
 }

@@ -1,5 +1,6 @@
 @import "./abstracts/variables";
 @import "./abstracts/mixins";
+
 .nav__main {
   position: fixed;
   top: 16px;
@@ -56,6 +57,7 @@ a {
 .section--article {
   flex-grow: 1;
   padding: 0 1rem;
+  min-height: 0;
 }
 
 //overview section
@@ -80,8 +82,10 @@ a {
 
 .nav--inner {
   margin-left: auto;
+
   .standard-nav {
     display: flex;
+
     li {
       text-transform: uppercase;
       margin: 0 .5rem;
@@ -151,29 +155,57 @@ a {
 .sidebar:hover .anchor-text {
   opacity: 1;
 }
-
-// builds
 .nav--build {
-  z-index: $builds-nav-index;
+  //z-index: $builds-nav-index;
   ul {
+    * {
+      color: #c3073f;
+    }
     margin: 3vh auto;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    a {
+    color: $error-color;
+    a, a span{
+      display: inline-block;
+      font-size: 1.2rem;
       font-weight: 700;
       text-transform: uppercase;
       text-align: center;
-      display: block;
-      background: linear-gradient(to right, rgb(233, 100, 67), rgb(144, 78, 149));
-      -webkit-background-clip: text;
-      -moz-background-clip: text;
-      background-clip: text;
-      color: transparent;
     }
-    a:hover {
-      color: $olympic-white;
+    a {
+      padding: 0 .3rem;
+      position: relative;
+      &::after, &::before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        height: 1rem;
+        width: 1rem;
+        transform: scale(0);
+        transition: transform .3s ease-out;
+      }
+      &::before {
+        top: 0;
+        left: 0;
+        border-left: 2px solid #c3073f;
+        border-top: 2px solid #c3073f;
+      }
+      &::after {
+        right: 0;
+        bottom: 0;
+        border-right: 2px solid #c3073f;
+        border-bottom: 2px solid #c3073f;
+      }
     }
+    a:hover, a:active {
+      &::after, &::before {
+        transform: scale(1);
+      }
+      background-color: lighten(black, 5%);
+
+    }
+
     .a--items {
       margin-left: 2rem;
     }
@@ -182,7 +214,6 @@ a {
     }
   }
 }
-
 
 
 .burger-nav {
