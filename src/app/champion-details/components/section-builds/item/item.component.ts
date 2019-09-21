@@ -18,7 +18,6 @@ export class ItemComponent extends ModalControls {
     if (item) {
       this._item = item;
       this.itemImg = `http://ddragon.leagueoflegends.com/cdn/9.3.1/img/item/${item.id}.png`;
-      console.log(item.description);
     }
   }
 

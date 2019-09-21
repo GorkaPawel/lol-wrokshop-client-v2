@@ -18,6 +18,7 @@ import {RunesEditComponent} from './champion-details/components/section-runes/ru
 import {NegateAuthGuard} from './auth/services/negate-auth.guard';
 import {AuthGuard} from './auth/services/auth.guard';
 import {BlankComponent} from './dashboard/components/blank/blank.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -65,7 +66,7 @@ const routes: Routes = [
       {path: 'register', component: RegisterComponent},
     ]
   },
-  {path: 'not-found', component: BlankComponent},
+  {path: 'not-found', component: NotFoundComponent},
   {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
 ];
 

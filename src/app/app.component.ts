@@ -38,7 +38,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.add(this.notificationService.errorMessages$.subscribe(message => {
         this.message = message;
-        console.log(this.message);
         this.detector.detectChanges();
       })
     );

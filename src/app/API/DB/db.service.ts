@@ -2,18 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Build, Note} from './db.model';
 import {RunePage} from '../../champion-details/components/section-runes/runes.model';
-import {map} from 'rxjs/operators';
-import {ApiService} from '../SERVER/api.service';
-import {ID} from '../SERVER/api.model';
-import {switchMap} from 'rxjs/internal/operators/switchMap';
-import {of} from 'rxjs/internal/observable/of';
 import {Observable} from 'rxjs';
 
-const USER_CHAMPION_LIST_URL = 'http://localhost:8080/account/champions';
-const USER_CHAMPION_URL = 'http://localhost:8080/account/champion/';
-const USER_BUILD_URL = 'http://localhost:8080/account/build';
-const USER_NOTE_URL = 'http://localhost:8080/account/note';
-const USER_RUNES_URL = 'http://localhost:8080/runes/update';
+const SERVER_URL = 'https://lol-workshop-server.herokuapp.com';
+const USER_CHAMPION_LIST_URL = `${SERVER_URL}/account/champions`;
+const USER_CHAMPION_URL = `${SERVER_URL}/account/champion/`;
+const USER_BUILD_URL = `${SERVER_URL}/account/build`;
+const USER_NOTE_URL = `${SERVER_URL}/account/note`;
+const USER_RUNES_URL = `${SERVER_URL}/runes/update`;
 
 @Injectable({
   providedIn: 'root'

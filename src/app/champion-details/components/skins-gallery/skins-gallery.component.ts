@@ -36,7 +36,6 @@ export class SkinsGalleryComponent implements OnInit {
 
   ngOnInit() {
     this.champion = this.route.parent.snapshot.data.champion.ApiChamp;
-    console.log('lele', this.champion);
     this.currentSlide = 0;
     this.slidesLength = this.champion.skins.length;
   }

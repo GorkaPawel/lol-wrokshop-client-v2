@@ -14,10 +14,12 @@ import {AuthGuard} from './auth/services/auth.guard';
 import {NegateAuthGuard} from './auth/services/negate-auth.guard';
 import {ErrorsHandler} from './errors-handler';
 import {SharedModule} from './shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     NgxPaginationModule,

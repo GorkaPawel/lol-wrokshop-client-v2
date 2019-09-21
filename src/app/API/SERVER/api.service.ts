@@ -4,11 +4,13 @@ import {tap} from 'rxjs/internal/operators/tap';
 import {Observable} from 'rxjs';
 import {ApiChampion, ApiItem, ID} from './api.model';
 
-const CHAMPION_LIST_URL = 'http://localhost:8080/champions';
-const CHAMPION_URL = 'http://localhost:8080/champion/';
-const ITEM_LIST_URL = 'http://localhost:8080/items';
-const ITEM_URL = 'http://localhost:8080/item/';
-const RUNES_URL = 'http://localhost:8080/runes';
+const SERVER_URL = 'https://lol-workshop-server.herokuapp.com';
+
+const CHAMPION_LIST_URL = `${SERVER_URL}/champions`;
+const CHAMPION_URL = `${SERVER_URL}/champion/`;
+const ITEM_LIST_URL = `${SERVER_URL}/items`;
+const ITEM_URL = `${SERVER_URL}/item/`;
+const RUNES_URL = `${SERVER_URL}/runes`;
 
 @Injectable({
   providedIn: 'root'

@@ -6,7 +6,7 @@ import {TokenBearer} from '../models/auth';
 import {Router} from '@angular/router';
 
 
-const URL = 'http://localhost:8080';
+const URL = 'https://lol-workshop-server.herokuapp.com';
 const TOKEN = 'TOKEN';
 const REFRESH_TOKEN = 'REFRESH_TOKEN';
 
