@@ -1,11 +1,11 @@
 export abstract class ModalControls {
-  protected spellDetailsOpened = false;
+   spellDetailsOpened = false;
 
-  protected openSpellDetails() {
+   openSpellDetails() {
     this.spellDetailsOpened = true;
   }
 
-  protected closeSpellDetails() {
+   closeSpellDetails() {
     this.spellDetailsOpened = false;
   }
 }

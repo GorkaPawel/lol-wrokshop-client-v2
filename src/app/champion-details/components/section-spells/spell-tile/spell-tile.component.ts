@@ -10,9 +10,10 @@ import {Spell} from '../../../../API/SERVER/api.model';
     </div>
   `,
   styles: [`
+    :host {
+      width: 100%;
+    }
     .spell--tile {
-      width: 64px;
-      height: 64px;
       position: relative;
     }
     img {

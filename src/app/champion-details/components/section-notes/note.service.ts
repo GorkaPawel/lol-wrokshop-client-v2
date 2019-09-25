@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Note} from '../../../API/DB/db.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NoteService {
 
   noteToUpdate$ = new BehaviorSubject<Note>(null);

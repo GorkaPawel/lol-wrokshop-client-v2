@@ -1,5 +1,9 @@
 @import "abstracts/variables";
 @import "abstracts/mixins";
+:host {
+  display: block;
+  height: calc(100% - 70px);
+}
 .hint {
   font-size: 1.8rem;
   position: fixed;
@@ -8,12 +12,13 @@
   transform: translate(-50%, -50%);
 }
 .build-list--content {
-  height: calc(100% - 70px);
+  min-height: 0;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
   overflow-y: auto;
+  justify-content: center;
+  align-items: center;
 }
 .bottom-nav {
   position: fixed;

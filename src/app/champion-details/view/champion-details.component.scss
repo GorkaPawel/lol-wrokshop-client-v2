@@ -38,7 +38,7 @@ a {
   position: fixed;
   top: 100vh;
   opacity: 0;
-  transition: transform 1s ease-out, opacity 1s ease-out;
+  transition: transform .6s ease-out, opacity .7s ease-in-out;
   display: flex;
   flex-direction: column;
 }

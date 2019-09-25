@@ -57,6 +57,7 @@ export interface ApiChampion {
   partype: string;
   key: string;
   id: string;
+  lore: string;
   passive: Passive;
   stats: Stats;
   skins: Array<Skin>;

@@ -1,8 +1,6 @@
 @import "abstracts/variables";
 @import "../section-spells/spells";
 :host {
-  height: 80vh;
-  overflow-y: auto;
   margin: 0 auto;
   max-width: 1024px;
   display: flex;

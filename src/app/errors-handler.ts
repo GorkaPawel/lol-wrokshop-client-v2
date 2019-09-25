@@ -12,12 +12,12 @@ export class ErrorsHandler implements ErrorHandler {
     const notificationService = this.injector.get(NotificationService);
     if (error instanceof HttpErrorResponse) {
       if (!navigator.onLine) {
-        console.error('No internet connection');
+        notificationService.errorMessages$.next('No internet connection');
       } else {
         notificationService.errorMessages$.next(error.error);
       }
     } else {
-      console.error(error);
+      notificationService.errorMessages$.next(error.message);
     }
   }
 }

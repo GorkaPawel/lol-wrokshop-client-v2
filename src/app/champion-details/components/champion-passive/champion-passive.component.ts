@@ -28,8 +28,12 @@ export class ChampionPassiveComponent implements AfterViewInit {
     return this._passive;
   }
   play() {
-    this.video.nativeElement.play();
-    this.isPlaying = true;
+    this.video.nativeElement.play().then(() => {
+      this.isPlaying = true;
+    })
+      .catch((err) => {
+       throw err;
+      });
   }
   pause() {
     this.video.nativeElement.pause();

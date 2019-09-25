@@ -2,13 +2,13 @@
 @import "abstracts/mixins";
 
 :host {
-  display: flex;
-  min-height: 0;
-  align-items: center;
-  justify-content: center;
-  height: calc(100% - 70px);
-  overflow-y: auto;
-}
+   display: flex;
+   min-height: 0;
+   align-items: center;
+   justify-content: center;
+   height: calc(100% - 70px);
+   overflow-y: auto;
+ }
 
 .container {
   display: flex;

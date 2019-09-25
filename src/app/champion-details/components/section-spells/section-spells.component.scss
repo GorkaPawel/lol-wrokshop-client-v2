@@ -1,14 +1,28 @@
 @import "abstracts/variables";
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  .content--container {
+    min-height: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+}
 .tab {
   margin: 3vh auto;
   padding: 0;
   max-width: 600px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   .tab__item {
+    flex: 1 1 64px;
+    max-width: 64px;
     overflow: hidden;
     cursor: pointer;
     padding: 1px;
+    margin: 0 .2rem;
     position: relative;
     &::after {
       content: '';
@@ -28,7 +42,6 @@
       right: 0;
       background-color: black;
     }
-    margin: 0 auto;
   }
 }
 .active {

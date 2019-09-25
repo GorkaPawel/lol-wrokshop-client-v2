@@ -16,8 +16,8 @@ export class SkinsGalleryComponent implements OnInit {
   skinUrl = 'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/';
 
 
-  private champion: ApiChampion;
-  private currentSlide = 0;
+  champion: ApiChampion;
+  currentSlide = 0;
   private slidesLength = 0;
 
   next() {

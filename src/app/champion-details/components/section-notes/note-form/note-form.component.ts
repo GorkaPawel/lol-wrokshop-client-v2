@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {NoteService} from '../note.service';
 import {Note} from '../../../../API/DB/db.model';
-import {Subscription} from 'rxjs';
 import {SubSink} from 'subsink';
 
 @Component({

@@ -14,12 +14,13 @@ import {UserChampion} from '../../API/DB/db.model';
 import {RunesAdapterService} from '../components/section-runes/runes-adapter.service';
 import {SubSink} from 'subsink';
 import {AuthService} from '../../auth/services/auth.service';
+import {NoteService} from '../components/section-notes/note.service';
 
 @Component({
   selector: 'app-champion-details',
   templateUrl: './champion-details.component.html',
   styleUrls: ['./champion-details.component.scss'],
-  providers: [RunesAdapterService],
+  providers: [RunesAdapterService, NoteService],
 })
 
 export class ChampionDetailsComponent implements OnInit, AfterViewInit, OnDestroy {

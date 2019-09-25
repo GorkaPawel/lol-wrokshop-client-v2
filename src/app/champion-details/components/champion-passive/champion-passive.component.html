@@ -7,7 +7,7 @@
     <video class="ability-video"  [src]="spellVideoUrl" #video>
     </video>
     <div class="controls">
-      <button *ngIf="!isPlaying" class="control play" (click)="play()"></button>
+      <button *ngIf="!isPlaying" class="control play" (click)="play(); $event.stopPropagation()"></button>
       <button *ngIf="isPlaying" class="control pause" (click)="pause()"></button>
     </div>
   </div>

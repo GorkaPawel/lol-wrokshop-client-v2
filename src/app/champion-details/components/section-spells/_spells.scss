@@ -15,9 +15,9 @@
 }
 
 .main--wrapper {
-  position: relative;
   max-width: 1024px;
   z-index: 1;
+  position: relative;
 }
 
 .video--wrapper {
@@ -85,7 +85,7 @@
   }
 
   &.overflows {
-    position: initial;
+    position: static;
     width: 100%;
   }
 }
