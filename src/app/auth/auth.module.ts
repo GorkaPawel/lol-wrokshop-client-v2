@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthComponent} from './auth.component';
 import {RouterModule} from '@angular/router';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, AuthComponent],
@@ -13,6 +14,7 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
+    SharedModule
   ]
 })
 export class AuthModule {

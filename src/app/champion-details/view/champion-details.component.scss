@@ -46,6 +46,7 @@ a {
 .slide.current-slide {
   padding-top: $main-nav-width;
   transform: translateY(-100vh);
+z-index:1;
   opacity: 1;
 }
 
@@ -95,6 +96,7 @@ a {
   display: none;
   position: fixed;
   top: 50%;
+  z-index: 2;
   right: 10px;
   transform: translateY(-50%);
   text-align: right;

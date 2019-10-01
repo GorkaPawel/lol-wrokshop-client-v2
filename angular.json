@@ -141,6 +141,134 @@
           }
         }
       }
+    },
+    "spinner": {
+      "root": "projects/spinner/",
+      "sourceRoot": "projects/spinner/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/spinner",
+            "index": "projects/spinner/src/index.html",
+            "main": "projects/spinner/src/main.ts",
+            "polyfills": "projects/spinner/src/polyfills.ts",
+            "tsConfig": "projects/spinner/tsconfig.app.json",
+            "assets": [
+              "projects/spinner/src/favicon.ico",
+              "projects/spinner/src/assets"
+            ],
+            "styles": [
+              "projects/spinner/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/spinner/src/environments/environment.ts",
+                  "with": "projects/spinner/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "spinner:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "spinner:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "spinner:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/spinner/src/test.ts",
+            "polyfills": "projects/spinner/src/polyfills.ts",
+            "tsConfig": "projects/spinner/tsconfig.spec.json",
+            "karmaConfig": "projects/spinner/karma.conf.js",
+            "styles": [
+              "projects/spinner/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/spinner/src/favicon.ico",
+              "projects/spinner/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/spinner/tsconfig.app.json",
+              "projects/spinner/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "spinner-e2e": {
+      "root": "projects/spinner-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/spinner-e2e/protractor.conf.js",
+            "devServerTarget": "spinner:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "spinner:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/spinner-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "lol-workshop-client-v2"

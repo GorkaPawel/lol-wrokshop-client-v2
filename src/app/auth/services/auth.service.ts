@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {ExistingUser, NewUser} from '../models/user';
 import {TokenBearer} from '../models/auth';
 import {Router} from '@angular/router';
+import {tap} from 'rxjs/internal/operators/tap';
 
 
 const URL = 'https://lol-workshop-server.herokuapp.com';
@@ -17,18 +18,18 @@ export class AuthService {
 
 
   register(newUser: NewUser) {
-    this.http.post<any>(`${URL}/register`, newUser).subscribe(
-      () => this.router.navigate(['']),
+    return this.http.post<any>(`${URL}/register`, newUser).pipe(
+      tap(() => this.router.navigate(['']))
     );
   }
 
   login(existingUser: ExistingUser) {
-    this.http.post<TokenBearer>(`${URL}/login`, existingUser)
-      .subscribe(
-        (tokens: TokenBearer) => {
-          this.storeTokens(tokens);
-          this.router.navigate(['dashboard']);
-        });
+    return this.http.post<TokenBearer>(`${URL}/login`, existingUser).pipe(
+      tap((tokens: TokenBearer) => {
+        this.storeTokens(tokens);
+        this.router.navigate(['dashboard']);
+      })
+    );
   }
 
   logout() {

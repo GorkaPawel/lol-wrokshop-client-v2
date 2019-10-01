@@ -10,6 +10,7 @@ import {Passive} from '../../../API/SERVER/api.model';
 export class ChampionPassiveComponent implements AfterViewInit {
   constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {
   }
+
   @ViewChild('video') video: ElementRef;
 
   private _passive: Passive;
@@ -27,18 +28,22 @@ export class ChampionPassiveComponent implements AfterViewInit {
   get passive() {
     return this._passive;
   }
+
   play() {
+    this.isPlaying = true;
     this.video.nativeElement.play().then(() => {
-      this.isPlaying = true;
     })
       .catch((err) => {
-       throw err;
+        this.isPlaying = false;
+        throw err;
       });
   }
+
   pause() {
     this.video.nativeElement.pause();
     this.isPlaying = false;
   }
+
   ngAfterViewInit() {
     this.renderer.listen(this.video.nativeElement, 'ended', () => {
       this.isPlaying = false;

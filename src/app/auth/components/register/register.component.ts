@@ -19,13 +19,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   errors: AllValidationErrors[] = [];
   subscription: Subscription;
+  spin = false;
   onRegister() {
+    this.spin = true;
     const user = new NewUser(
       this.registerForm.get('email').value,
       this.registerForm.get('passwords.password').value,
       this.registerForm.get('passwords.passwordConfirm').value,
     );
-    this.authService.register(user);
+    this.authService.register(user).subscribe(() => this.spin = false);
   }
   getErrorMessage(controlName: string): string {
     return this.forms.getErrorMessage(controlName, this.errors);

@@ -6,6 +6,7 @@ import {AbilityModalComponent} from '../champion-details/components/ability-moda
 import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { SplitPipe } from './split.pipe';
 import { OverflowsDirective } from './overflows.directive';
+import {SpinnerComponent} from './spinner.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OverflowsDirective } from './overflows.directive';
     ErrorModalComponent,
     ErrorModalComponent,
     SplitPipe,
-    OverflowsDirective
+    OverflowsDirective,
+    SpinnerComponent
   ],
   exports: [
     OverflowsDirective,
@@ -23,7 +25,8 @@ import { OverflowsDirective } from './overflows.directive';
     BurgerNavComponent,
     AbilityModalComponent,
     ErrorModalComponent,
-    SplitPipe
+    SplitPipe,
+    SpinnerComponent
   ],
   imports: [
     CommonModule

@@ -1,6 +1,9 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {NotificationService} from './notification.service';
 import {SubSink} from 'subsink';
+import {NavigationEnd, Router, RouterEvent, Scroll} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +14,7 @@ import {SubSink} from 'subsink';
       (closeModal)="close()">
       {{message}}
     </app-error-modal>
+    <app-spinner *ngIf="spin$ | async"></app-spinner>
     <router-outlet></router-outlet>
   `,
   styles: [`
@@ -23,9 +27,18 @@ import {SubSink} from 'subsink';
   `]
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private notificationService: NotificationService, private detector: ChangeDetectorRef) {
+  constructor(private notificationService: NotificationService, private detector: ChangeDetectorRef, private router: Router) {
+    this.spin$ = this.router.events.pipe(
+      map((event: RouterEvent) => {
+        if (event instanceof NavigationEnd || event instanceof Scroll) {
+          return false;
+        }
+        return true;
+      })
+    );
   }
 
+  spin$: Observable<boolean>;
   message = null;
 
   subs = new SubSink();

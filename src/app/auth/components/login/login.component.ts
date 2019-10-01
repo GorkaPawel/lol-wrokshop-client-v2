@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   errors: AllValidationErrors[] = [];
   subscription: Subscription;
+  spin = false;
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
@@ -25,11 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLogin() {
+    this.spin = true;
     const user = new ExistingUser(
       this.loginForm.value.email,
       this.loginForm.value.password
     );
-    this.authService.login(user);
+    this.authService.login(user).subscribe(() => this.spin = false);
   }
 
   getErrorMessage(controlName: string): string {
